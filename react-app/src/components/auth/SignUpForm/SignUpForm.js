@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { Redirect } from 'react-router-dom';
-import { signUp } from '../../store/session';
+import { Redirect, NavLink } from 'react-router-dom';
+import { signUp, login } from '../../../store/session';
+import "./SignUpForm.css";
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -42,52 +43,70 @@ const SignUpForm = () => {
     return <Redirect to='/' />;
   }
 
+  const handleDemo = async () => {
+    const data = await dispatch(login("demo@aa.io", "password"));
+    if (data) {
+      setErrors(data);
+    }
+  }
+
   return (
-    <form onSubmit={onSignUp}>
-      <div>
-        {errors.map((error, ind) => (
+    <div className="signUpForm__container">
+
+      <div className="signUpForm__header"><NavLink to="/" exact={true}><div className="logo">Audify</div></NavLink></div>
+
+      <div className="signUpForm__main">
+        
+        <form onSubmit={onSignUp} className="signUpForm">
+          <div className="signUpForFree">Sign up for free to start listening.</div>
+          <button type="button" className="demoButton" onClick={handleDemo}>CONTINUE WITH DEMO</button>
+          <div className="orDivider">OR</div>
+          <div>
+            {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
         ))}
       </div>
-      <div>
-        <label>User Name</label>
+        <label htmlFor="username" className="usernameLabel">User Name</label>
         <input
-          type='text'
-          name='username'
+        id="usernameInput"
+          type="text"
+          name="username"
+          placeholder="User Name"
           onChange={updateUsername}
           value={username}
         ></input>
-      </div>
-      <div>
-        <label>Email</label>
+        <label htmlFor="email" id="emailLabel">Email</label>
         <input
+        id="emailInput"
           type='text'
           name='email'
           onChange={updateEmail}
           value={email}
+          placeholder="Email"
         ></input>
-      </div>
-      <div>
-        <label>Password</label>
+        <label htmlFor="password" id="passwordLabel" >Password</label>
         <input
+        id="passwordInput"
           type='password'
           name='password'
           onChange={updatePassword}
           value={password}
+          placeholder="Password"
         ></input>
-      </div>
-      <div>
-        <label>Repeat Password</label>
+        <label htmlFor="repeat_password" id="repeatePasswordLabel">Repeat Password</label>
         <input
+        id="repeatePasswordInput"
           type='password'
           name='repeat_password'
           onChange={updateRepeatPassword}
           value={repeatPassword}
           required={true}
+          placeholder="Repeat Password"
         ></input>
-      </div>
-      <button type='submit'>Sign Up</button>
+      <button type='submit' id="signUpButton">Sign Up</button>
     </form>
+    </div>
+    </div>
   );
 };
 
