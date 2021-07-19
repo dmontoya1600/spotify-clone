@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 
-const Search = () => {
+const MusicPlayer = () => {
 
 
     return (
-        <div className="Search__container">
+        <div className="MusicPlayer__container">
 
         </div>
     )
 }
 
-export default Search
+export default MusicPlayer

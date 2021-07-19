@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 
-const Search = () => {
+const LikedPlaylists = () => {
 
 
     return (
-        <div className="Search__container">
+        <div className="likedPlaylists__container">
 
         </div>
     )
 }
 
-export default Search
+export default LikedPlaylists
