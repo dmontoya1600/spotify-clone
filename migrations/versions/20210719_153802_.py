@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: c09c1fe83de4
+Revision ID: 3698aac322c9
 Revises: 
-Create Date: 2021-07-19 15:29:48.757272
+Create Date: 2021-07-19 15:38:02.007675
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'c09c1fe83de4'
+revision = '3698aac322c9'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -21,10 +21,9 @@ def upgrade():
     op.create_table('playlists',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('playlist_name', sa.String(length=40), nullable=False),
-    sa.Column('playlist_image_url', sa.String(length=255), nullable=False),
+    sa.Column('playlist_image_url', sa.String(length=255), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('playlist_image_url'),
     sa.UniqueConstraint('playlist_name')
     )
     op.create_table('songs',
@@ -33,9 +32,7 @@ def upgrade():
     sa.Column('song_name', sa.String(length=40), nullable=False),
     sa.Column('artist_name', sa.String(length=40), nullable=False),
     sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('api_id'),
-    sa.UniqueConstraint('artist_name'),
-    sa.UniqueConstraint('song_name')
+    sa.UniqueConstraint('api_id')
     )
     op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
