@@ -1,0 +1,10 @@
+.loginPage__container {
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+  justify-content: center;
+}
+
+.loginPage__form {
+    display: flex;
+    flex-direction: column;
+}
