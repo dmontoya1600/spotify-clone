@@ -78,4 +78,5 @@ def upload_profile_pic():
         response = create_presigned_post('spotify-clone-project', 'test_file')
         print(f'THIS IS THE RESPONSE {response}')
         # FINISHED SETTING UP AWS. STILL NEED TO MAKE A LITTLE MORE DYNAMIC
+        # MAKE SURE THE RESPONSE IS WORKING AS PLANNED
         return response
