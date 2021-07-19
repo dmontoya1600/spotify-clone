@@ -30,7 +30,7 @@ function App() {
     <BrowserRouter>
       {/* <NavBar /> */}
       <Switch>
-        <Route path='/'>
+        <Route path='/' exact={true}>
           <Main />
         </Route>
         <Route path='/login' exact={true}>
