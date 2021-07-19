@@ -1,1 +1,36 @@
 /* TODO Add site wide styles */
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.Main__container {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 240px 1fr;
+    grid-template-rows: 100px 1fr 100px;
+    grid-template-areas:
+    "side nav nav"
+    "side main main"
+    "player player player";
+}
+.navigation__container {
+    border: 4px solid red;
+    grid-area: nav;
+}
+.sideBar__container {
+    border: 4px solid red;
+
+    width: 240px;
+    grid-area: side;
+}
+.MainContent__container {
+    border: 4px solid red;
+    grid-area: main;
+}
+.MusicPlayer__container {
+    border: 4px solid red;
+
+    grid-area: player;
+}
