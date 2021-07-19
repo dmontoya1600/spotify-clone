@@ -66,7 +66,7 @@ def create_presigned_post(bucket_name, object_name,
 
 @upload_pic_routes.route('/testrun', methods=['POST'])
 def upload_profile_pic():
-    form = UploadFile()
+    # form = UploadFile()
     s3 = boto3.client('s3')
     if request.files:
         file_data = request.files['image']
