@@ -9,12 +9,18 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import MyLibrary from './components/MyLibrary';
 import { authenticate } from './store/session';
+import { getToken } from './store/accessToken';
 import Main from "./components/Main"
 
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    (async() => {
+      await dispatch(getToken())
+    })()
+  }, [])
   useEffect(() => {
     (async() => {
       await dispatch(authenticate());

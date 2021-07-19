@@ -3,12 +3,12 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 # from .playlist_songs import follow_playlist
 
-follow_user = db.Table(
-    'follow_user',
-    db.Model.metadata,
-    db.Column("follower_id", db.Integer, db.ForeignKey("users.id"), primary_key=True),
-    db.Column("followee_id", db.Integer, db.ForeignKey("users.id"), primary_key=True)
-)
+# follow_user = db.Table(
+#     'follow_user',
+#     db.Model.metadata,
+#     db.Column("follower_id", db.Integer, db.ForeignKey("users.id"), primary_key=True),
+#     db.Column("followee_id", db.Integer, db.ForeignKey("users.id"), primary_key=True)
+# )
 
 
 class User(db.Model, UserMixin):
@@ -21,7 +21,7 @@ class User(db.Model, UserMixin):
     user_image = db.Column(db.String(255), nullable=True)
 
     playlists = db.relationship('Playlist', secondary='follow_playlist', back_populates='users')
-    users = db.relationship('User', secondary='follow_user', back_populates='users')
+    # follows = db.relationship('User', secondary='follow_user', back_populates='follows')
 
     @property
     def password(self):
