@@ -1,0 +1,17 @@
+.playlist__mainContainer {
+    width: 210px;
+    height: 290px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+}
+
+.playlist__container {
+    width: 180px;
+}
+
+.playlist__image {
+    width: 100%;
+    object-fit: contain;
+    max-height: 180px;
+}
