@@ -78,7 +78,7 @@
   line-height: 1;
   border-radius: 500px;
   padding: 16px 48px 18px;
-  transition-property: background-color, border-color, color, box-shadow, filter;
+  /* transition-property: background-color, border-color, color, box-shadow, filter; */
   transition-duration: 0.3s;
   border-width: 0;
   letter-spacing: 2px;
@@ -86,6 +86,9 @@
   text-transform: uppercase;
   white-space: normal;
   cursor: pointer;
+}
+.demoButton:hover {
+  box-shadow: 0 0 0 1px black;
 }
 
 .loginButton {
@@ -96,7 +99,7 @@
   line-height: 1;
   border-radius: 500px;
   padding: 16px 48px 18px;
-  transition-property: background-color, border-color, color, box-shadow, filter;
+  /* transition-property: background-color, border-color, color, box-shadow, filter; */
   transition-duration: 0.3s;
   border-width: 0;
   letter-spacing: 2px;
@@ -106,6 +109,10 @@
   margin-top: 15px;
   margin-bottom: 30px;
   cursor: pointer;
+}
+
+.loginButton:hover {
+  box-shadow: 0 0 0 1px black;
 }
 
 .noAccount {
@@ -125,10 +132,10 @@
   font-size: 14px;
   line-height: 1;
   background-color: white;
-  box-shadow: 0 0 0 1px;
+  box-shadow: 0 0 0 1px gray;
   border-radius: 500px;
   padding: 16px 48px 18px;
-  transition-property: background-color, border-color, color, box-shadow, filter;
+  /* transition-property: background-color, border-color, color, box-shadow, filter; */
   transition-duration: 0.3s;
   border-width: 0;
   letter-spacing: 2px;
@@ -136,4 +143,10 @@
   text-transform: uppercase;
   white-space: normal;
   cursor: pointer;
+}
+
+#loginSignUpButton:hover {
+  box-shadow: 0 0 0 1px black;
+  background-color: black;
+  color: white;
 }
