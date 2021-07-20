@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import MyLibrary from "./MyLibrary"
-import Search from './Search';
-import HomePage from './HomePage';
+import MyLibrary from "../MyLibrary"
+import Search from '../Search';
+import HomePage from '../HomePage';
 
 const MainContent = () => {
     const [activeComp, setActiveComp] = useState("MyLibrary")
