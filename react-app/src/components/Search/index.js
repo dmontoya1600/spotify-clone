@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import "./Search.css"
 
-
-const SideBar = () => {
+const Search = () => {
 
 
     return (
-        <div className="sideBar__container">
+        <div className="Search__container">
 
         </div>
     )
 }
 
-export default SideBar
+export default Search

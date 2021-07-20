@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import "./Song.css"
 
-
-const Search = () => {
-
-
+export default function Song() {
     return (
-        <div className="Search__container">
+        <div className="song__container">
+
 
         </div>
     )
 }
-
-export default Search

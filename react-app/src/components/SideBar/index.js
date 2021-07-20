@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import "./SideBar.css"
 
-
-const MusicPlayer = () => {
+const SideBar = () => {
 
 
     return (
-        <div className="MusicPlayer__container">
+        <div className="sideBar__container">
 
         </div>
     )
 }
 
-export default MusicPlayer
+export default SideBar
