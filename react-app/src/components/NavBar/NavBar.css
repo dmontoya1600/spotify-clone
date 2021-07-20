@@ -1,5 +1,7 @@
 #sessionButtons {
+  display: flex;
   min-width: 300px;
+  justify-content: flex-end;
 }
 #navLoginButton {
   border-radius: 500px;
@@ -40,7 +42,6 @@
     text-transform: uppercase;
     border-width: 0;
     margin-right: 10px;
-
 }
 
 #searchBar {
