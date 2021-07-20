@@ -9,10 +9,9 @@ import "./Main.css"
 
 const Main = () => {
 
-
     return (
         <div className="Main__container">
-            <Navigation />
+            <NavBar />
             <SideBar />
             <MusicPlayer />
             <MainContent />

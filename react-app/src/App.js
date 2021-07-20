@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import LoginForm from './components/auth/LoginForm';
-import SignUpForm from './components/auth/SignUpForm';
-import NavBar from './components/NavBar';
-import ProtectedRoute from './components/auth/ProtectedRoute';
+import LoginForm from './components/Auth/LoginForm/LoginForm';
+import SignUpForm from './components/Auth/SignUpForm/SignUpForm';
+import Search from "./components/Search";
+import ProtectedRoute from './components/Auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import MyLibrary from './components/MyLibrary';
@@ -35,7 +35,6 @@ function App() {
 
   return (
     <BrowserRouter>
-      {/* <NavBar /> */}
       <Switch>
         <Route path='/' exact={true}>
           <Main />
@@ -45,6 +44,12 @@ function App() {
         </Route>
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
+        </Route>
+        <Route path='/search' exact={true}>
+          <Search/>
+        </Route>
+        <Route path='/mylibrary' exact={true}>
+          <MyLibrary/>
         </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>

@@ -1,0 +1,60 @@
+#sessionButtons {
+  display: flex;
+  min-width: 300px;
+  justify-content: flex-end;
+}
+#navLoginButton {
+  border-radius: 500px;
+  background-color:white;
+  color: black;
+  cursor: pointer;
+  height: 32px;
+  padding: 8px 34px;
+  font-size: 12px;
+  text-transform: uppercase;
+  border-width: 0;
+  margin-right: 10px;
+}
+
+#navSignUpButton {
+    border-radius: 500px;
+    background-color: rgb(13, 13, 14);
+    color: white;
+    cursor: pointer;
+    height: 32px;
+    padding: 8px 34px;
+    font-size: 12px;
+    text-transform: uppercase;
+    border-width: 0;
+    margin-left: 5px;
+    margin-right: 5px;
+
+}
+
+#logoutButton {
+    border-radius: 500px;
+    background-color: rgb(13, 13, 14);
+    color: white;
+    cursor: pointer;
+    height: 32px;
+    padding: 8px 34px;
+    font-size: 12px;
+    text-transform: uppercase;
+    border-width: 0;
+    margin-right: 10px;
+}
+
+#searchBar {
+  border: 0;
+  border-radius: 500px;
+  color: #000;
+  height: 40px;
+  padding: 6px 48px;
+  width: 350px;
+  text-overflow: ellipsis;
+  margin-left: 40px;
+}
+
+#searchBar:focus {
+  outline: none;
+}
