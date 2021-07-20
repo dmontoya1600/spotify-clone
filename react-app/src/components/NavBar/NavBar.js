@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from "react-redux";
 import { NavLink, useLocation } from 'react-router-dom';
-import LogoutButton from '../Auth/LogoutButton';
+import LogoutButton from '../auth/LogoutButton';
 import "./NavBar.css";
 
 const NavBar = () => {
@@ -12,9 +12,9 @@ const NavBar = () => {
       <div className="navigation__container">
 
         <div id="search">
-       {isSearch.pathname === "/search" && 
+       {isSearch.pathname === "/search" &&
        <input id="searchBar" type="search" placeholder="Search Artists, Songs, or Playlists" />
-       } 
+       }
        <input id="searchBar" type="search" placeholder="Search Artists, Songs, or Playlists" />
        </div>
 
@@ -26,7 +26,7 @@ const NavBar = () => {
       </>
       }
       </div>
-      
+
       </div>
     );
 }
