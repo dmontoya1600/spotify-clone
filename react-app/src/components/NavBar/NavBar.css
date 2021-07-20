@@ -52,7 +52,7 @@
   padding: 6px 48px;
   width: 350px;
   text-overflow: ellipsis;
-  margin-left: 20px;
+  margin-left: 40px;
 }
 
 #searchBar:focus {
