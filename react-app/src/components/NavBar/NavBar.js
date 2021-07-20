@@ -10,12 +10,13 @@ const NavBar = () => {
 
   return (
       <div className="navigation__container">
-
+        <div id="search">
        {isSearch.pathname === "/search" && 
-       <div id="searchBar">
-       <input type="search"/>
-       </div>
+       <input id="searchBar" type="search" placeholder="Search Artists, Songs, or Playlists" />
        } 
+       <input id="searchBar" type="search" placeholder="Search Artists, Songs, or Playlists" />
+       </div>
+       <div id="sessionButtons">
       {user ? <LogoutButton />
       :
       <>
@@ -23,6 +24,7 @@ const NavBar = () => {
       <NavLink to='/login' exact={true} activeClassName='active'><button id="navLoginButton">Login</button></NavLink>
       </>
       }
+      </div>
       </div>
     );
 }
