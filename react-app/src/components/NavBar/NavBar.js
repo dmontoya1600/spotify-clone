@@ -1,23 +1,29 @@
-
 import React from 'react';
 import { useSelector } from "react-redux";
-import { NavLink } from 'react-router-dom';
-import LogoutButton from '../auth/LogoutButton';
+import { NavLink, useLocation } from 'react-router-dom';
+import LogoutButton from '../Auth/LogoutButton';
 import "./NavBar.css";
 
 const NavBar = () => {
   const user = useSelector(state => state.session.user);
+  const isSearch = useLocation();
 
   return (
-    <div className="sessionButtons">
-      {user ? <div><button id="logoutButton" type="button">{user.username}</button><LogoutButton /></div>
+      <div className="navigation__container">
+
+       {isSearch.pathname === "/search" && 
+       <div id="searchBar">
+       <input type="search"/>
+       </div>
+       } 
+      {user ? <LogoutButton />
       :
       <>
-      <button id="navLoginButton"><NavLink to='/login' exact={true} activeClassName='active'>Login</NavLink></button> 
-      <button id="navSignUpButton"><NavLink to='/sign-up' exact={true} activeClassName='active'>Sign Up</NavLink></button>
+      <NavLink to='/login' exact={true} activeClassName='active'><button id="navLoginButton">Login</button></NavLink>
+      <NavLink to='/sign-up' exact={true} activeClassName='active'><button id="navSignUpButton">Sign Up</button></NavLink>
       </>
       }
-    </div>
+      </div>
     );
 }
 

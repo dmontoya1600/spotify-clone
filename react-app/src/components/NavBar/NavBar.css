@@ -1,33 +1,38 @@
-.sessionButtons {
-  justify-self: flex-end;
-}
+
 
 #navLoginButton {
-  background-color: white;
-  border: 0;
-  border-radius: 5px;
+  border-radius: 500px;
   color: black;
   cursor: pointer;
   height: 32px;
-  padding: 2px;
+  padding: 8px 34px;
+  font-size: 12px;
+  text-transform: uppercase;
+  border-width: 0;
+
 }
 
 #navSignUpButton {
-  background-color: white;
-  border: 0;
-  border-radius: 5px;
-  color: black;
-  cursor: pointer;
-  height: 32px;
-  padding: 2px;
+    border-radius: 500px;
+    color: black;
+    cursor: pointer;
+    height: 32px;
+    padding: 8px 34px;
+    font-size: 12px;
+    text-transform: uppercase;
+    border-width: 0;
+
 }
 
 #logoutButton {
-  background-color: white;
-  border: 0;
-  border-radius: 5px;
-  color: black;
-  cursor: pointer;
-  height: 32px;
-  padding: 2px;
+    border-radius: 500px;
+    color: black;
+    cursor: pointer;
+    height: 32px;
+    padding: 8px 34px;
+    font-size: 12px;
+    text-transform: uppercase;
+    border-width: 0;
+
 }
+
