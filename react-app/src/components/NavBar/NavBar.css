@@ -2,6 +2,7 @@
 
 #navLoginButton {
   border-radius: 500px;
+  background-color:white;
   color: black;
   cursor: pointer;
   height: 32px;
@@ -9,30 +10,35 @@
   font-size: 12px;
   text-transform: uppercase;
   border-width: 0;
-
+  margin-right: 10px;
 }
 
 #navSignUpButton {
     border-radius: 500px;
-    color: black;
+    background-color: rgb(13, 13, 14);
+    color: white;
     cursor: pointer;
     height: 32px;
     padding: 8px 34px;
     font-size: 12px;
     text-transform: uppercase;
     border-width: 0;
+    margin-left: 5px;
+    margin-right: 5px;
 
 }
 
 #logoutButton {
     border-radius: 500px;
-    color: black;
+    background-color: rgb(13, 13, 14);
+    color: white;
     cursor: pointer;
     height: 32px;
     padding: 8px 34px;
     font-size: 12px;
     text-transform: uppercase;
     border-width: 0;
+    margin-right: 10px;
 
 }
 

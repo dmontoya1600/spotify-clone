@@ -22,24 +22,24 @@ a {
     "player player player";
 }
 .navigation__container {
-  border: 4px solid red;
   grid-area: nav;
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  background-color: rgb(13, 13, 14);
 }
 .sideBar__container {
-  border: 4px solid red;
-
   width: 240px;
   grid-area: side;
+  background-color: black;
 }
 .MainContent__container {
-  border: 4px solid red;
   grid-area: main;
+  background-color: rgb(28, 28, 29);
+
 }
 .MusicPlayer__container {
-  border: 4px solid red;
-
   grid-area: player;
+  background-color: rgb(13, 13, 14);
+  border-top: 1px solid gray;
 }

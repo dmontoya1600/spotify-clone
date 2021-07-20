@@ -105,6 +105,8 @@ a {
 }
 
 #signUpButton {
+  background-color: limegreen;
+  color: black;
   height: 48px;
   font-size: 14px;
   line-height: 1;

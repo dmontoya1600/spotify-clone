@@ -81,7 +81,7 @@ const LoginForm = () => {
     </form>
     <div className="signUp__container">
       <div className="noAccount">Don't have an account?</div>
-      <button type="button" className="signUpButton" onClick={handleSignUp}>SIGN UP FOR SPOTIFY</button>
+      <button type="button" id="loginSignUpButton" onClick={handleSignUp}>SIGN UP FOR SPOTIFY</button>
     </div>
     </div>
     </div>

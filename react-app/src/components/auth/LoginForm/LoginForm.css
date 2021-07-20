@@ -71,6 +71,8 @@
 }
 
 .demoButton {
+  background-color: dodgerblue;
+  color: white;
   height: 48px;
   font-size: 14px;
   line-height: 1;
@@ -87,6 +89,8 @@
 }
 
 .loginButton {
+  background-color: limegreen;
+  color: black;
   height: 48px;
   font-size: 14px;
   line-height: 1;
@@ -116,10 +120,12 @@
   margin-top: 30px;
 }
 
-.signUpButton {
+#loginSignUpButton {
   height: 48px;
   font-size: 14px;
   line-height: 1;
+  background-color: white;
+  box-shadow: 0 0 0 1px;
   border-radius: 500px;
   padding: 16px 48px 18px;
   transition-property: background-color, border-color, color, box-shadow, filter;
