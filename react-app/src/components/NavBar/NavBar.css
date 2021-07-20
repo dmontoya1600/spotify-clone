@@ -54,3 +54,6 @@
   margin-left: 20px;
 }
 
+#searchBar:focus {
+  outline: none;
+}
