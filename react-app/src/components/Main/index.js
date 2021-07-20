@@ -4,6 +4,8 @@ import SideBar from "../SideBar"
 import MainContent from '../MainContent';
 import MusicPlayer from '../MusicPlayer';
 import Navigation from '../Navigation';
+import "./Main.css"
+
 
 const Main = () => {
 

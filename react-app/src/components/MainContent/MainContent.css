@@ -1,0 +1,5 @@
+.MainContent__container {
+    position: relative;
+    background-color: #1d1d1d;
+    background-image: linear-gradient(to bottom, #313131, #0f0f0f);
+}
