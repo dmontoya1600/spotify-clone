@@ -1,0 +1,33 @@
+.sessionButtons {
+  justify-self: flex-end;
+}
+
+#navLoginButton {
+  background-color: white;
+  border: 0;
+  border-radius: 5px;
+  color: black;
+  cursor: pointer;
+  height: 32px;
+  padding: 2px;
+}
+
+#navSignUpButton {
+  background-color: white;
+  border: 0;
+  border-radius: 5px;
+  color: black;
+  cursor: pointer;
+  height: 32px;
+  padding: 2px;
+}
+
+#logoutButton {
+  background-color: white;
+  border: 0;
+  border-radius: 5px;
+  color: black;
+  cursor: pointer;
+  height: 32px;
+  padding: 2px;
+}

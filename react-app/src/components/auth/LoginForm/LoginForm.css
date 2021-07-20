@@ -42,16 +42,16 @@ a {
 }
 
 .orDivider {
-    display: flex;
-    justify-content: space-evenly;
-    margin-top: 15px;
-    margin-bottom: 15px;
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 .line {
-    height: 1px;
-    background-color: black;
-    align-self: center;
+  height: 1px;
+  background-color: black;
+  align-self: center;
 }
 
 .emailLabel {
