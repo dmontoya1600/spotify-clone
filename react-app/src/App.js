@@ -10,6 +10,7 @@ import User from './components/User';
 import MyLibrary from './components/MyLibrary';
 import { authenticate } from './store/session';
 import { getToken } from './store/accessToken';
+import { client_id, client_secret } from './config';
 import Main from "./components/Main"
 
 function App() {
@@ -18,7 +19,7 @@ function App() {
 
   useEffect(() => {
     (async() => {
-      await dispatch(getToken())
+      await dispatch(getToken(client_id, client_secret))
     })()
   }, [])
   useEffect(() => {
@@ -44,9 +45,6 @@ function App() {
         </Route>
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
-        </Route>
-        <Route path='/mylibrary' exact={true}>
-          <MyLibrary/>
         </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>

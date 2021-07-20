@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const SET_ACCESS_TOKEN = 'api/SET_ACCESS_TOKEN'
 
 const setToken = (token) => ({
@@ -5,9 +7,13 @@ const setToken = (token) => ({
     token
 })
 
-export const getToken = () => async (dispatch) => {
-    console.log('this is the env var', process.env.CLIENT_ID )
-    console.log('Basic ' + btoa('3b064be5e1e04116a6e7cc2045936601' + ':' + 'a3ccce441963430693b5679de78469ad'))
+export const getToken = (client_id, client_secret) => async (dispatch) => {
+    let key = {
+        client_id: process.env.REACT_APP_CLIENT_ID,
+        client_secret: process.env.REACT_APP_CLIENT_ID
+    }
+    console.log('this is the env var', key )
+    console.log('Basic ' + btoa(key.client_id + ':' + key.client_secret))
     const response = await fetch('https://accounts.spotify.com/api/token', {
       method: 'POST',
       headers: {
