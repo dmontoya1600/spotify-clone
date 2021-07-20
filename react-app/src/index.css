@@ -1,36 +1,45 @@
 /* TODO Add site wide styles */
 
 body {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat", sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 .Main__container {
-    display: grid;
-    height: 100vh;
-    grid-template-columns: 240px 1fr;
-    grid-template-rows: 100px 1fr 100px;
-    grid-template-areas:
+  display: grid;
+  height: 100vh;
+  grid-template-columns: 240px 1fr;
+  grid-template-rows: 100px 1fr 100px;
+  grid-template-areas:
     "side nav nav"
     "side main main"
     "player player player";
 }
 .navigation__container {
-    border: 4px solid red;
-    grid-area: nav;
+  grid-area: nav;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgb(13, 13, 14);
 }
 .sideBar__container {
-    border: 4px solid red;
-
-    width: 240px;
-    grid-area: side;
+  width: 240px;
+  grid-area: side;
+  background-color: black;
 }
 .MainContent__container {
-    border: 4px solid red;
-    grid-area: main;
+  grid-area: main;
+  background-color: rgb(28, 28, 29);
+
 }
 .MusicPlayer__container {
-    border: 4px solid red;
-
-    grid-area: player;
+  grid-area: player;
+  background-color: rgb(13, 13, 14);
+  border-top: 1px solid gray;
 }

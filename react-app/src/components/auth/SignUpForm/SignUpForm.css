@@ -1,0 +1,158 @@
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.signUpForm__container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  font-family: "Montserrat", sans-serif;
+}
+
+.signUpForm__header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  font-size: 48px;
+  font-weight: bold;
+  border-bottom: 1px solid lightgray;
+}
+
+.signUpForm__main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.signUpForm {
+  display: flex;
+  flex-direction: column;
+  width: 450px;
+  border-bottom: 1px solid lightgray;
+}
+
+.signUpForFree {
+  align-self: center;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.orDivider {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.usernameLabel {
+  font-weight: bold;
+}
+
+#usernameInput {
+  padding: 8px 12px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+#emailLabel {
+  font-weight: bold;
+}
+
+#emailInput {
+  padding: 8px 12px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+#passwordLabel {
+  font-weight: bold;
+}
+
+#passwordInput {
+  padding: 8px 12px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+#repeatePasswordLabel {
+  font-weight: bold;
+}
+
+#repeatePasswordInput {
+  padding: 8px 12px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.demoButton {
+  height: 48px;
+  font-size: 14px;
+  line-height: 1;
+  border-radius: 500px;
+  padding: 16px 48px 18px;
+  /* transition-property: background-color, border-color, color, box-shadow, filter; */
+  transition-duration: 0.3s;
+  border-width: 0;
+  letter-spacing: 2px;
+  min-width: 160px;
+  text-transform: uppercase;
+  white-space: normal;
+  cursor: pointer;
+}
+
+.demoButton:hover {
+  box-shadow: 0 0 0 1px black;
+}
+
+#signUpButton {
+  background-color: limegreen;
+  color: black;
+  height: 48px;
+  font-size: 14px;
+  line-height: 1;
+  border-radius: 500px;
+  padding: 16px 48px 18px;
+  /* transition-property: background-color, border-color, color, box-shadow, filter; */
+  transition-duration: 0.3s;
+  border-width: 0;
+  letter-spacing: 2px;
+  min-width: 160px;
+  text-transform: uppercase;
+  white-space: normal;
+  margin-top: 15px;
+  margin-bottom: 30px;
+  cursor: pointer;
+}
+#signUpButton:hover {
+  box-shadow: 0 0 0 1px black;
+}
+.noAccount {
+  align-self: center;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.signUp__container {
+  display: flex;
+  flex-direction: column;
+  width: 450px;
+  margin-top: 30px;
+}
+
+.signUpButton {
+  height: 48px;
+  font-size: 14px;
+  line-height: 1;
+  border-radius: 500px;
+  padding: 16px 48px 18px;
+  transition-property: background-color, border-color, color, box-shadow, filter;
+  transition-duration: 0.3s;
+  border-width: 0;
+  letter-spacing: 2px;
+  min-width: 160px;
+  text-transform: uppercase;
+  white-space: normal;
+}
