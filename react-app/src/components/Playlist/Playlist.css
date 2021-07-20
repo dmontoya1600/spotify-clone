@@ -24,6 +24,7 @@
     object-fit: contain;
     max-height: 180px;
     margin-top: 12px;
+    /* box-shadow: 0 3px 10px rgb(0 0 0 / 0.5); */
 }
 
 .playlist__h3 {
@@ -35,7 +36,7 @@
     color: rgb(172, 168, 168);
     font-family: Helvetica, sans-serif;
     margin: 7px 0 0 0;
-    font-size: small;
+    font-size: 13px;
 }
 .playlist__buttonImg {
     background-image: url("../../icons/play.png");
