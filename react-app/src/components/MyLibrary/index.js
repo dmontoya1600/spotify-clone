@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import * as picActions from '../../store/uploadPic'
+import MyProfile from './MyProfile'
 
 
 function MyLibrary() {
@@ -31,9 +32,7 @@ function uploadFile(e) {
 
   return (
     <div className='page'>
-        <form>
-            <input  type='file' placeholder='Update Picture' onChange={uploadFile}/>
-        </form>
+        <MyProfile />
     </div>
   );
 }
