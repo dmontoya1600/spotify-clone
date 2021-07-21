@@ -12,8 +12,7 @@ export const getToken = (client_id, client_secret) => async (dispatch) => {
         client_id: process.env.REACT_APP_CLIENT_ID,
         client_secret: process.env.REACT_APP_CLIENT_ID
     }
-    console.log('this is the env var', key )
-    console.log('Basic ' + btoa(key.client_id + ':' + key.client_secret))
+
     const response = await fetch('https://accounts.spotify.com/api/token', {
       method: 'POST',
       headers: {
@@ -23,7 +22,6 @@ export const getToken = (client_id, client_secret) => async (dispatch) => {
       body: 'grant_type=client_credentials',
     })
     const res = await response.json()
-    console.log('THIS IS THE ACCESS TOKEN', res)
     dispatch(setToken(res.access_token))
     return res
   }
