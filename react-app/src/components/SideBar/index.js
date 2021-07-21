@@ -3,6 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import {NavLink, useParams, Redirect } from 'react-router-dom';
 import playlistReducer, {getPlaylists, makePlaylist} from '../../store/playlist'
 import "./SideBar.css"
+import {AiFillHome} from "react-icons/ai"
+import {BsSearch, BsHeartFill} from "react-icons/bs"
+import {VscLibrary} from "react-icons/vsc"
+import {GoDiffAdded} from "react-icons/go"
 
 const SideBar = () => {
     const dispatch = useDispatch();
@@ -38,35 +42,51 @@ const SideBar = () => {
 
     return (
         <div className="sideBar__container">
-            <div className="logo">
-                Logo
+
+            <div className="sideBar__main">
+
+            <div className="sideBar__header">
+            <NavLink to="/" className="logo">
+                Audify
+            </NavLink>
             </div>
-            <div className="navigation">
-                <div>
-                    <NavLink to="/">Home</NavLink>
-                </div>
-                <div>
-                    <NavLink to="/search">Search</NavLink>
-                </div>
-                <div>
-                    <NavLink to="/mylibrary">My Library</NavLink>
-                </div>
-                <div>
-                    <button onClick={handleCreate}>Create Playlist</button>
-                </div>
-                <div>
-                    <NavLink to="/likedplaylists">
-                        Liked Playlists
+
+            <div className="sideBar__menu">
+                
+                   <NavLink to="/" className="menuItem">
+                       <div className="icon"><AiFillHome/></div>
+                       <div className="menuItemTitle">Home</div>
+                   </NavLink> 
+                    <NavLink to="/search" className="menuItem">
+                        <div className="icon"><BsSearch/></div>
+                        <div className="menuItemTitle">Search</div>
                     </NavLink>
-                </div>
+                    
+                    <NavLink to="/mylibrary" className="menuItem">
+                        <div className="icon"><VscLibrary/></div>
+                        <div className="menuTitle">My Library</div>
+                    </NavLink>
+        
+                <NavLink to="/playlists/:id" className="menuItem" onClick={handleCreate}>
+                <div className="icon"><GoDiffAdded /></div>
+                <div className="menuItemTitle">Create Playlist</div>
+                </NavLink>
+
+                <NavLink to="/likedplaylists" className="menuItem">
+                        <div className="icon"><BsHeartFill/></div>
+                        <div className="menuItemTitle">Liked Playlists</div>
+                </NavLink>
 
             </div>
-            <div className="playlistList">
+
+            <div className="playlists__container">
                 {playlists.map(playlist => (
-                    <div key={playlist.id}>
+                    <div key={playlist.id} className="playlistItem">
                         <NavLink to={`/playlists/${playlist.id}`}>{playlist.name}</NavLink>
                     </div>
                 ))}
+            </div>
+
             </div>
 
         </div>
