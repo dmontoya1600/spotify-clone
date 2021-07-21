@@ -5,7 +5,7 @@ import "./Search.css"
 
 const Search = () => {
     const token = useSelector(state => state.access.access_token)
-
+    
 
     useEffect(()=> {
         if (token) {
