@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import {useSelector, useDispatch} from "react-redux";
 import { useParams } from 'react-router-dom';
+import {BsPlayFill} from "react-icons/bs";
+
 import "./Song.css"
 
 export default function Song({ track }) {
@@ -11,6 +14,10 @@ export default function Song({ track }) {
     //     }
     // }, [])
 
+    const currentSong = useSelector(state => state.currentSong);
+    const dispatch = useDispatch();
+
+
     function formatMillis(millis) {
         var mins = Math.floor(millis / 60000);
         var secs = ((millis % 60000) / 1000).toFixed(0);
@@ -21,6 +28,7 @@ export default function Song({ track }) {
         <div className="song__container">
             <div className="song__imageDiv">
                 <img src={track.album.images[0].url} className="song__image"/>
+                <div className="playButton">Play</div>
             </div>
             <div className="song__text">
                 <h4>{track.name}</h4>
