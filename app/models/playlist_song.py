@@ -2,7 +2,7 @@ from sqlalchemy.sql.schema import ForeignKey
 from app.models.user import User
 from .db import db
 
-saved_songs = db.Table(
+playlist_songs = db.Table(
     'saved_songs',
     db.Model.metadata,
     db.Column("song_id", db.Integer, db.ForeignKey("songs.id"), primary_key=True),
@@ -16,17 +16,6 @@ follow_playlist = db.Table(
     db.Column("playlist_id", db.Integer, db.ForeignKey("playlists.id"), primary_key=True)
 )
 
-class Song(db.Model):
-    __tablename__ = 'songs'
-
-    id = db.Column(db.Integer, primary_key=True)
-    api_id = db.Column(db.String(255), nullable=False, unique=True)
-    song_name = db.Column(db.String(40), nullable=False)
-    artist_name = db.Column(db.String(40), nullable=False)
-
-    playlists = db.relationship('Playlist', secondary=saved_songs, back_populates='songs')
-
-
 class Playlist(db.Model):
     __tablename__ = 'playlists'
 
@@ -36,4 +25,4 @@ class Playlist(db.Model):
     user_id = db.Column(db.Integer, nullable=False)
 
     users = db.relationship('User', secondary=follow_playlist, back_populates='playlists')
-    songs = db.relationship('Song', secondary=saved_songs, back_populates='playlists')
+    songs = db.relationship('Song', secondary=playlist_songs, back_populates='playlists')
