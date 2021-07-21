@@ -5,14 +5,15 @@ import access from './accessToken'
 import playlists from './playlist'
 import pageUser from './userPage'
 import featurePlaylists from './featurePlaylist'
-
+import searchRes from './search'
 
 const rootReducer = combineReducers({
   session,
   access,
   playlists,
   pageUser,
-  featurePlaylists
+  featurePlaylists,
+  searchRes
 });
 
 

@@ -2,29 +2,24 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import "./Search.css"
+import Song from '../Song';
+
 
 const Search = () => {
     const token = useSelector(state => state.access.access_token)
-    
-
-    useEffect(()=> {
-        if (token) {
-            fetchSearch(token)
-
-        }
-    }, [token])
-
-    async function fetchSearch(token, name) {
-        const res = await fetch(`https://api.spotify.com/v1/search?q=${"future"}&type=track,album,artist`, {
-            method: "GET",
-            headers: { "Authorization" : "Bearer " + token}
-        })
-        const data = await res.json()
-        console.log(data)
-    }
+    const searchRes = useSelector(state => state.searchRes.tracks)
+    // console.log(searchRes)
 
     return (
         <div className="Search__container">
+            <div className="search__title">
+                <h2>Songs</h2>
+            </div>
+            <div className="Search__songsContainer">
+                {searchRes?.items?.map(track => (
+                    <Song key={track.id} track={track} />
+                ))}
+            </div>
         </div>
     )
 }
