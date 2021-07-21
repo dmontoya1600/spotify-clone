@@ -3,11 +3,14 @@ import thunk from 'redux-thunk';
 import session from './session'
 import access from './accessToken'
 import pageUser from './userPage'
+import featurePlaylists from './featurePlaylist'
+
 
 const rootReducer = combineReducers({
   session,
   access,
   pageUser,
+  featurePlaylists
 });
 
 
