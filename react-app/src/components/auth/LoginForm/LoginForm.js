@@ -33,7 +33,7 @@ const LoginForm = () => {
   }
 
   const handleDemo = async () => {
-    const data = await dispatch(login("demo@aa.io", "password"));
+    const data = await dispatch(login("demo@aa.io", "demopassword"));
     if (data) {
       setErrors(data);
     }
