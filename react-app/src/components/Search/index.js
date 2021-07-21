@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import "./Search.css"
 
 const Search = () => {
     const token = useSelector(state => state.access.access_token)

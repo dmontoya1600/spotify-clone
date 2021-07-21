@@ -1,0 +1,60 @@
+.profile_banner{
+    display: grid;
+    grid-template: 25px 250px 25px / 50px 250px 1fr;
+    overflow: hidden;
+    background: rgb(43,43,43);
+    background: linear-gradient(90deg, rgba(43,43,43,1) 0%, rgba(55,48,0,1) 57%, rgba(232,200,0,1) 100%);
+    grid-template-areas:
+    ". . ."
+    ". icon name"
+    ". . .";
+
+    width: 100vw;
+
+    background-color: black;
+}
+
+.profile_icon{
+    position: relative;
+    grid-area: icon;
+    display: flex;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.overlay_image{
+    height: 75%;
+    width: 75%;
+}
+
+.overlay {
+    position: absolute;
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.5); /* Black see-through */
+    color: #f1f1f1;
+    width: 100%;
+    height: 100%;
+    transition: .5s ease;
+    opacity:0;
+    color: white;
+    font-size: 20px;
+    padding: 35px;
+  }
+
+  .profile_icon:hover .overlay {
+    opacity: 1;
+  }
+
+.profile_image{
+    height: 100%;
+    width: 100%;
+}
+
+.profile_name{
+    grid-area: name;
+    color: white;
+    font-size: 90px;
+    margin-left: 20px;
+    align-self: end;
+}
