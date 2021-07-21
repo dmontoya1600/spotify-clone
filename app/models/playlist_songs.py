@@ -21,8 +21,9 @@ class Song(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     api_id = db.Column(db.String(255), nullable=False, unique=True)
-    song_name = db.Column(db.String(40), nullable=False)
-    artist_name = db.Column(db.String(40), nullable=False)
+    song_name = db.Column(db.String(255), nullable=False)
+    artist_name = db.Column(db.String(255), nullable=False)
+    image_url = db.Column(db.String(500), nullable=False)
 
     playlists = db.relationship('Playlist', secondary=saved_songs, back_populates='songs')
 
@@ -31,8 +32,8 @@ class Playlist(db.Model):
     __tablename__ = 'playlists'
 
     id = db.Column(db.Integer, primary_key=True)
-    playlist_name = db.Column(db.String(40), nullable=False, unique=True)
-    playlist_image_url = db.Column(db.String(255), nullable=True)
+    playlist_name = db.Column(db.String(255), nullable=False, unique=True)
+    playlist_image_url = db.Column(db.String(500), nullable=True)
     user_id = db.Column(db.Integer, nullable=False)
 
     users = db.relationship('User', secondary=follow_playlist, back_populates='playlists')

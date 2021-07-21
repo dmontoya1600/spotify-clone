@@ -17,9 +17,10 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
-    user_image = db.Column(db.String(255), nullable=True)
+    user_image = db.Column(db.String(500), nullable=True)
 
-    playlists = db.relationship('Playlist', secondary='follow_playlist', back_populates='users')
+    playlists = db.relationship(
+        'Playlist', secondary='follow_playlist', back_populates='users')
     followers = db.relationship(
         'User',
         secondary=follow_user,
