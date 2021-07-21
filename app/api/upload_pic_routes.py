@@ -64,8 +64,8 @@ def create_presigned_post(bucket_name, object_name,
     return response
 
 
-@upload_pic_routes.route('/testrun', methods=['POST'])
-def upload_profile_pic():
+@upload_pic_routes.route('/profile/<user_id>', methods=['POST'])
+def upload_profile_pic(user_id):
     form = UploadFile()
     s3 = boto3.client('s3')
     if request.files:
@@ -75,8 +75,17 @@ def upload_profile_pic():
                                 'ACL': 'public-read',
                                 'ContentType': file_data.content_type
                             })
-        response = create_presigned_post('spotify-clone-project', 'test_file')
-        print(f'THIS IS THE RESPONSE {response}')
+        response = create_presigned_post('spotify-clone-project', file_data.filename)
+        image_url = response["url"] + response["fields"]["key"]
+        print(f'THIS IS THE RESPONSE {image_url} and the REAL RESPONSE {response}')
+        user = User.query.filter_by(id=user_id).first()
+        user.user_image = image_url
+        db.session.commit()
         # FINISHED SETTING UP AWS. STILL NEED TO MAKE A LITTLE MORE DYNAMIC
         # MAKE SURE THE RESPONSE IS WORKING AS PLANNED
-        return response
+        return jsonify(image_url)
+
+@upload_pic_routes.route('/profile/<user_id>')
+def load_profile_pic(user_id):
+    user = User.query.filter_by(id=user_id).first()
+    return jsonify(user.user_image)
