@@ -5,11 +5,11 @@ export const setFeaturePlaylist = (payload) => ({
     payload
 })
 
-  export default function reducer(state = {}, action) {
-      switch (action.type) {
-          case SET_FEATURE:
-              return {...state, ...action.payload.playlists.items}
-          default:
-              return state;
-      }
-  }
+export default function reducer(state = {}, action) {
+    switch (action.type) {
+        case SET_FEATURE:
+            return {...state, ...action.payload.playlists.items}
+        default:
+            return state;
+    }
+}

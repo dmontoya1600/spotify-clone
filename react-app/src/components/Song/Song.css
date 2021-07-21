@@ -1,0 +1,48 @@
+.song__container {
+    position: relative;
+    display: flex;
+    /* padding-left: 28px;
+    padding-right: 40px; */
+    height: 50px;
+    width: 90%;
+    align-items: center;
+    border-radius: 4px;
+}
+.song__container:hover {
+    background-color: #4b4949;
+}
+
+.song__imageDiv {
+    width: 40px;
+    height: 40px;
+    margin-left: 5px ;
+}
+
+.song__image {
+    object-fit: contain;
+    width: 100%;
+    max-height: 40px;
+}
+.song__text {
+    margin-left: 20px;
+}
+.song__text * {
+    margin: 0;
+    padding: 0;
+}
+.song__text p {
+    color: rgb(192, 185, 185);
+    font-size: 12px;
+}
+.song__text h4 {
+    color: white;
+}
+
+.song__duration {
+    position: absolute;
+    color: white;
+    font-family: fantasy;
+    /* font-weight: 400; */
+    right: 35px;
+
+}
