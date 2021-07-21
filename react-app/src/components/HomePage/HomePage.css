@@ -1,0 +1,10 @@
+.homePage__container {
+    width: 95%;
+}
+.homePage__fPlaylistContainer {
+    display: flex;
+    flex-wrap: wrap;
+}
+.homePage__h2 {
+    color: white;
+}
