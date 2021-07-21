@@ -8,6 +8,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import MyLibrary from './components/MyLibrary';
+import SinglePlaylist from './components/SinglePlaylist';
 import { authenticate } from './store/session';
 import { getToken } from './store/accessToken';
 import { client_id, client_secret } from './config';
@@ -56,6 +57,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
+        </ProtectedRoute>
+        <ProtectedRoute path='/playlists/:playlistId' exact={true} >
+          <SinglePlaylist />
         </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>
