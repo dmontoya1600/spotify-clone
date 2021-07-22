@@ -13,6 +13,7 @@ import { authenticate } from './store/session';
 import { getToken } from './store/accessToken';
 import { client_id, client_secret } from './config';
 import Main from "./components/Main"
+import NavBar from './components/NavBar/NavBar';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -35,6 +36,8 @@ function App() {
   }
 
   return (
+
+    
     <BrowserRouter>
       <Switch>
         <Route path='/' exact={true}>
@@ -47,7 +50,7 @@ function App() {
           <SignUpForm />
         </Route>
         <Route path='/search' exact={true}>
-          <Search/>
+        <Main />
         </Route>
         <Route path='/mylibrary' exact={true}>
           <MyLibrary/>
