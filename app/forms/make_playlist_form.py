@@ -5,3 +5,5 @@ class PlaylistForm(FlaskForm):
     playlist_name = StringField('playlist_name')
     playlist_image_url = StringField('image')
     user_id = IntegerField('user_id')
+
+

@@ -9,15 +9,17 @@ const SideBar = () => {
 
     const sessionUser = useSelector(state => state.session.user);
     const sessionPlaylists = useSelector(state => state.playlists);
+    const userId = sessionUser.id
 
     useEffect(() => {
-        dispatch(getPlaylists());
+        dispatch(getPlaylists( userId));
     }, [dispatch]);
 
 
     let num = 0;
     const handleCreate = async(e) => {
         e.preventDefault();
+        let playlist;
         num++
         let newPlaylist = {
             playlist_name : `New Playlist `,
@@ -26,15 +28,24 @@ const SideBar = () => {
         }
         if(newPlaylist){
             newPlaylist = await dispatch(makePlaylist(newPlaylist));
-            Redirect(`/mylibrary`);
+            console.log("NEWnew: ", newPlaylist.playlists);
         }
+        for(const [key, value] of Object.entries(newPlaylist.playlists)){
+            playlist=value
+        }
+        
+        return(
+
+            <>
+            <Redirect to exact ={`/playlists/${playlist.id}`} />
+            </>
+        )
     }
 
     let playlists = []
     for(const [key, value] of Object.entries(sessionPlaylists)){
-        playlists.push(value)
+            playlists.push(value)
     }
-    console.log("PLAY: ", playlists)
 
     return (
         <div className="sideBar__container">
