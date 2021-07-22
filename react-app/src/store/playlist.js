@@ -28,6 +28,7 @@ const removePlaylist = (playlistId) => {
 
 export const getPlaylists = (userId) => async(dispatch) =>{
     const response = await fetch('/api/playlists/');
+
     if(response.ok){
         if(userId === undefined){
             const playlist = await response.json();
@@ -35,6 +36,8 @@ export const getPlaylists = (userId) => async(dispatch) =>{
             return response
         } else {
             const playlist = await response.json();
+
+
             const userPlaylists = []
             const filteredPlaylists = {"playlists" : userPlaylists}
             playlist.playlists.forEach(playlist => {
