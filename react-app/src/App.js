@@ -12,7 +12,10 @@ import SinglePlaylist from './components/SinglePlaylist';
 import { authenticate } from './store/session';
 import { getToken } from './store/accessToken';
 import { client_id, client_secret } from './config';
-import Main from "./components/Main"
+import NavBar from './components/NavBar/NavBar';
+import SideBar from './components/SideBar';
+import MusicPlayer from './components/MusicPlayer';
+import HomePage from './components/HomePage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -38,32 +41,54 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path='/' exact={true}>
-          <Main />
-        </Route>
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
+        <Route path='/' exact={true}>
+          <div className='Main__container'>
+            <NavBar />
+            <SideBar />
+            <MusicPlayer />
+            <div className='MainContent__container'>
+              <HomePage/>
+            </div>
+          </div>
+        </Route>
         <Route path='/search' exact={true}>
-          <Search/>
+          <div className='Main__container'>
+            <NavBar />
+            <SideBar />
+            <MusicPlayer />
+            <div className='MainContent__container'>
+            <Search/>
+            </div>
+          </div>
         </Route>
         <Route path='/mylibrary' exact={true}>
-          <MyLibrary/>
+          <div className='Main__container'>
+            <NavBar />
+            <SideBar />
+            <MusicPlayer />
+            <div className='MainContent__container'>
+              <MyLibrary/>
+            </div>
+          </div>
         </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
         </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' exact={true} >
-          <User />
-        </ProtectedRoute>
         <ProtectedRoute path='/playlists/:playlistId' exact={true} >
-          <SinglePlaylist />
-        </ProtectedRoute>
-        <ProtectedRoute path='/' exact={true} >
-          <h1>My Home Page</h1>
+        <div className='Main__container'>
+            <NavBar />
+            <SideBar />
+            <MusicPlayer />
+            <div className='MainContent__container'>
+              <SinglePlaylist />
+            </div>
+          </div>
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
