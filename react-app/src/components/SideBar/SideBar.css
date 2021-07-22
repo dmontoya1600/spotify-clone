@@ -34,7 +34,7 @@
   align-items: center;
 }
 
-.logo {
+#sideBarLogo {
   align-self: center;
   font-size: 24px;
   font-weight: bold;

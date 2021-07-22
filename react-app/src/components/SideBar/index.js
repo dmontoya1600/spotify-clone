@@ -46,7 +46,7 @@ const SideBar = () => {
             <div className="sideBar__main">
 
             <div className="sideBar__header">
-            <NavLink to="/" className="logo">
+            <NavLink to="/" id="sideBarLogo">
                 Audify
             </NavLink>
             </div>
