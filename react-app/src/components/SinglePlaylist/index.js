@@ -18,6 +18,23 @@ export default function SinglePlaylist () {
         await dispatch(getPlaylists(userId))
     }, [setShowEditPlaylist ,dispatch]);
 
+    useEffect(() => {
+        console.log(playlistId)
+        const getSongs = async(playlistId) => {
+            let data = await fetch("/api/playlist-songs/", {
+                method:'POST',
+                headers: { 'Content-Type': 'application/json'},
+                body: JSON.stringify({playlistId})
+            }
+             )
+            let songs = await data.json()
+            return songs
+        }
+
+
+        getSongs(playlistId)
+    }, [dispatch]);
+
     let editContent;
     if(showEditPlaylist){
         editContent = (
@@ -26,6 +43,7 @@ export default function SinglePlaylist () {
             playlistId={playlistId}
             />
         )
+
     }
     let editButton
         if(playlistId === sessionUser?.id){
