@@ -45,4 +45,21 @@ a {
   grid-area: player;
   background-color: rgb(13, 13, 14);
   border-top: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  background-color: #1d1d1d;
+  background-image: linear-gradient(to bottom, #313131, #0f0f0f);
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  overflow-y: overlay;
+}
+
+.MainContent__container {
+    position: relative;
+    background-color: #1d1d1d;
+    background-image: linear-gradient(to bottom, #313131, #0f0f0f);
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    overflow-y: overlay;
 }
