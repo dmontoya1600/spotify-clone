@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, session, request
 from app.forms import PlaylistForm, UpdatePlaylistForm
 from app.models import db, User, Playlist, Song
+from app.models.playlist_songs import saved_songs
 
 playlist_routes = Blueprint('playlists', __name__)
 
@@ -37,7 +38,9 @@ def get_playlist(playlist_id):
     data = Playlist.query.get(playlist_id)
     if data is None:
         return jsonify({'message': 'Playlist not found'}), 404
-    return {"playlists" :[ data.to_dict()]}
+    
+    songs = saved_songs.query.all()
+    return [{"playlists" :[ data.to_dict()]}, [songs]]
 
 
 @playlist_routes.route('/<int:playlist_id>', methods=['DELETE'])

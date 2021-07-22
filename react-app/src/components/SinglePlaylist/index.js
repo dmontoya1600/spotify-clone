@@ -17,6 +17,10 @@ export default function SinglePlaylist () {
         await dispatch(getPlaylists())
     }, [setShowEditPlaylist ,dispatch]);
 
+    // Get songs in the playlist.
+    // fetch to back end.
+    // collect songs.
+    // render to page as map.
 
 
     let editContent;
