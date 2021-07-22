@@ -11,3 +11,5 @@ song_routes = Blueprint("song", __name__)
 @song_routes.route("/", methods=["post", "patch"])
 def addSong():
     pass
+
+
