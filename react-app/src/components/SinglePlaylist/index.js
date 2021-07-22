@@ -18,6 +18,13 @@ export default function SinglePlaylist () {
     }, [setShowEditPlaylist ,dispatch]);
 
 
+    useEffect(() => {
+        const getSongs = async (id) => {
+            const response = await fetch(`/api/songs`);
+
+        }
+    }, [dispatch])
+
 
     let editContent;
     if(showEditPlaylist){
