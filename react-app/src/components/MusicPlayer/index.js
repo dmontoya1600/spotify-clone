@@ -9,7 +9,7 @@ const MusicPlayer = () => {
 
     return (
         <div className="MusicPlayer__container">
-        <SpotifyPlayer
+        {/* <SpotifyPlayer
         token="BQBPEUAIgm_BfdgoZH9pBfq1NYw9ZDzaf2Jy09fwgN4fihEGX4Qc_3UdNfTzJpua5rvtMJ2jQfw_H4S4SNPb4OuTMmR00nQtOYtVRo7quHhd479ykawam5VSOnn0aXpRSNrwAHTQBHEkAf2YguoYAIbH-0I_nkYwJER3rriHvn0CA1K1-6A-knonnTAHsroo4Qvu2lZI5vScUM175w"
         uris={['spotify:track:4iJyoBOLtHqaGxP12qzhQI']}
         styles={{
@@ -22,7 +22,7 @@ const MusicPlayer = () => {
             trackNameColor: '#fff',
             width: "100%",
           }}
-        />
+        /> */}
         </div>
     )
 }
