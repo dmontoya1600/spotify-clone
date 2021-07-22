@@ -4,14 +4,14 @@ import "./MusicPlayer.css"
 import SpotifyPlayer from 'react-spotify-web-playback';
 
 
-const MusicPlayer = () => {
+const MusicPlayer = ({songId}) => {
 
 
     return (
         <div className="MusicPlayer__container">
         <SpotifyPlayer
-        token="BQBPEUAIgm_BfdgoZH9pBfq1NYw9ZDzaf2Jy09fwgN4fihEGX4Qc_3UdNfTzJpua5rvtMJ2jQfw_H4S4SNPb4OuTMmR00nQtOYtVRo7quHhd479ykawam5VSOnn0aXpRSNrwAHTQBHEkAf2YguoYAIbH-0I_nkYwJER3rriHvn0CA1K1-6A-knonnTAHsroo4Qvu2lZI5vScUM175w"
-        uris={['spotify:track:4iJyoBOLtHqaGxP12qzhQI']}
+        token="BQBUtCpx69YfYGJbxHf7S0h-CD1tawB8-cNVp_zZEV4K8P4EQj-pliPIW9zTtVy6iMyGzFPMZsTaGCowhO7Icfz-LfV56V62y6nNRGRLQSsQtbj_A1Kw0NsgrKiJaieVA564bvenY_TjPX_5mBmwJSO4-qLnYENMzFdNMyy-Z_LCc-3JBjft0UY4IJIa6z3lop4KuT5yY6bRbssLzg"
+        uris={[`spotify:track:${songId}`]}
         styles={{
             activeColor: '#fff',
             bgColor: '#333',

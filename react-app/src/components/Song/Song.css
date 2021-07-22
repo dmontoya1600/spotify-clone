@@ -10,6 +10,7 @@
 }
 .song__container:hover {
     background-color: #4b4949;
+    cursor: pointer;
 }
 
 .song__imageDiv {
