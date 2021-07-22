@@ -82,3 +82,7 @@
     width: 80px;
     height: 100%;
 }
+.song_addForm {
+    position: absolute;
+    right: 39px;
+}
