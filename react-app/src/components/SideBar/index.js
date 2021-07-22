@@ -13,7 +13,8 @@ const SideBar = () => {
     const history = useHistory();
     const sessionUser = useSelector(state => state.session.user);
     const sessionPlaylists = useSelector(state => state.playlists);
-    const userId = sessionUser.id
+
+    const userId = sessionUser?.id
 
     useEffect(() => {
         dispatch(getPlaylists( userId));
@@ -31,8 +32,7 @@ const SideBar = () => {
             user_id : sessionUser.id,
         }
         if(newPlaylist){
-            newPlaylist = await dispatch(makePlaylist(newPlaylist));
-            console.log("NEWnew: ", newPlaylist.playlists);
+            newPlaylist = await dispatch(makePlaylist(userId, newPlaylist));
         }
         for(const [key, value] of Object.entries(newPlaylist.playlists)){
             playlist=value
@@ -41,10 +41,23 @@ const SideBar = () => {
     }
 
     let playlists = []
+    let i = 0
     for(const [key, value] of Object.entries(sessionPlaylists)){
+        if( i < 10){
             playlists.push(value)
+            i++
+        }
     }
 
+    let button;
+    if(sessionUser){
+        button = (
+            <NavLink to="/playlists/:id" className="menuItem" onClick={handleCreate}>
+                <div className="icon"><GoDiffAdded /></div>
+                <div className="menuItemTitle">Create Playlist</div>
+                </NavLink>
+        )
+    }
     return (
         <div className="sideBar__container">
 
@@ -52,7 +65,7 @@ const SideBar = () => {
 
             <div className="sideBar__header">
             <NavLink to="/" className="logo">
-                
+
             </NavLink>
             </div>
 
@@ -72,10 +85,9 @@ const SideBar = () => {
                         <div className="menuTitle">My Library</div>
                     </NavLink>
 
-                <NavLink to="/playlists/:id" className="menuItem" onClick={handleCreate}>
-                <div className="icon"><GoDiffAdded /></div>
-                <div className="menuItemTitle">Create Playlist</div>
-                </NavLink>
+                    <div>
+                        {button}
+                    </div>
 
                 <NavLink to="/likedplaylists" className="menuItem">
                         <div className="icon"><BsHeartFill/></div>
@@ -86,10 +98,11 @@ const SideBar = () => {
 
             <div className="playlists__container">
                 {playlists.map(playlist => (
-                    <div key={playlist.id} className="playlistItem">
+                        <div key={playlist.id} className="playlistItem">
                         <NavLink to={`/playlists/${playlist.id}`}>{playlist.name}</NavLink>
-                    </div>
-                ))}
+                        </div>
+                    )
+                )}
             </div>
 
             </div>
