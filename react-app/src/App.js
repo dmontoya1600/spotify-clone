@@ -16,6 +16,8 @@ import NavBar from './components/NavBar/NavBar';
 import SideBar from './components/SideBar';
 import MusicPlayer from './components/MusicPlayer';
 import HomePage from './components/HomePage';
+import EditPlaylist from './components/SinglePlaylist/editPlaylist';
+
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -89,6 +91,9 @@ function App() {
               <SinglePlaylist />
             </div>
           </div>
+        </ProtectedRoute>
+        <ProtectedRoute path='/playlists/:playlistId/edit' exact={true} >
+          <EditPlaylist />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
