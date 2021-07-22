@@ -10,7 +10,7 @@ const HomePage = () => {
     const accessToken = useSelector(state => state.access.access_token)
     const dispatch = useDispatch()
     const featurePlaylists = useSelector(state => Object.values(state.featurePlaylists))
-    console.log("Feature Playlists from the state", featurePlaylists)
+
 
     useEffect(()=> {
         if (accessToken) {
@@ -38,10 +38,12 @@ const HomePage = () => {
 
     return (
         <div className="homePage__container">
-            {/* <Playlist feature={testingInfo}/> */}
-            {featurePlaylists?.map(list => (
-               <Playlist key={list.id} feature={list} />
-            ))}
+            <div className="homePage__h2"><h2>Featured Playlist</h2></div>
+            <div className="homePage__fPlaylistContainer">
+                {featurePlaylists?.map(list => (
+                <Playlist key={list.id} feature={list} />
+                ))}
+            </div>
 
         </div>
     )
