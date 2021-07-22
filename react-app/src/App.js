@@ -13,6 +13,7 @@ import { authenticate } from './store/session';
 import { getToken } from './store/accessToken';
 import { client_id, client_secret } from './config';
 import Main from "./components/Main"
+import EditPlaylist from './components/SinglePlaylist/editPlaylist';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -64,6 +65,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>
+        </ProtectedRoute>
+        <ProtectedRoute path='/playlists/:playlistId/edit' exact={true} >
+          <EditPlaylist />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {NavLink, useParams, Redirect } from 'react-router-dom';
+import {NavLink, useParams, Redirect,useHistory } from 'react-router-dom';
 import playlistReducer, {getPlaylists, makePlaylist} from '../../store/playlist'
 import "./SideBar.css"
 import {AiFillHome} from "react-icons/ai"
@@ -10,18 +10,20 @@ import {GoDiffAdded} from "react-icons/go"
 
 const SideBar = () => {
     const dispatch = useDispatch();
-
+    const history = useHistory();
     const sessionUser = useSelector(state => state.session.user);
     const sessionPlaylists = useSelector(state => state.playlists);
+    const userId = sessionUser.id
 
     useEffect(() => {
-        dispatch(getPlaylists());
+        dispatch(getPlaylists( userId));
     }, [dispatch]);
 
 
     let num = 0;
     const handleCreate = async(e) => {
         e.preventDefault();
+        let playlist;
         num++
         let newPlaylist = {
             playlist_name : `New Playlist `,
@@ -30,15 +32,18 @@ const SideBar = () => {
         }
         if(newPlaylist){
             newPlaylist = await dispatch(makePlaylist(newPlaylist));
-            Redirect(`/mylibrary`);
+            console.log("NEWnew: ", newPlaylist.playlists);
         }
+        for(const [key, value] of Object.entries(newPlaylist.playlists)){
+            playlist=value
+        }
+        history.push(`/playlists/${parseInt(playlist.id)}`);
     }
 
     let playlists = []
     for(const [key, value] of Object.entries(sessionPlaylists)){
-        playlists.push(value)
+            playlists.push(value)
     }
-    console.log("PLAY: ", playlists)
 
     return (
         <div className="sideBar__container">
