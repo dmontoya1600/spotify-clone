@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {useDispatch} from "react-redux";
 import { useParams } from 'react-router-dom';
 import "./Song.css"
 
@@ -16,6 +17,9 @@ export default function Song({ track }) {
         var secs = ((millis % 60000) / 1000).toFixed(0);
         return mins + ":" + (secs < 10 ? '0' : '') + secs;
       }
+
+    const dispatch = useDispatch();
+ 
 
     return (
         <div className="song__container">
