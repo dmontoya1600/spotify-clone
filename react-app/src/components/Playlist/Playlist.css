@@ -37,6 +37,7 @@
     font-family: Helvetica, sans-serif;
     margin: 7px 0 0 0;
     font-size: 13px;
+    overflow: hidden;
 }
 .playlist__buttonImg {
     background-image: url("../../icons/play.png");

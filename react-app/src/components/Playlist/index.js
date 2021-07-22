@@ -4,7 +4,7 @@ import "./Playlist.css"
 
 
 export default function Playlist({feature}) {
-    console.log("This IS THE IND PLALIST", feature)
+    
     return (
         <div className="playlist__mainContainer">
             <div className="playlist__container">
