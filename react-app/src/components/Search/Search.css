@@ -1,3 +1,7 @@
+.Search__container {
+    width: 100%;
+}
+
 .Search__songsContainer {
     width: 100%;
     display: flex;

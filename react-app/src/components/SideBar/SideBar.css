@@ -35,6 +35,11 @@
 }
 
 .logo {
+  background-image: url("../../icons/AudifyTransparent.png");
+  width: 200px;
+  height: 50px;
+  background-size: contain;
+  background-repeat: no-repeat;
   align-self: center;
   font-size: 24px;
   font-weight: bold;

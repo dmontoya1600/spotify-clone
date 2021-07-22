@@ -7,7 +7,7 @@ import "./MainContent.css"
 
 
 const MainContent = () => {
-    const [activeComp, setActiveComp] = useState("HomePage")
+    const [activeComp, setActiveComp] = useState("Search")
 
     // useEffect(() => {
 

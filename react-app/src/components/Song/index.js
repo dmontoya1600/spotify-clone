@@ -19,10 +19,11 @@ export default function Song({ track }) {
       }
 
     const dispatch = useDispatch();
- 
+
 
     return (
         <div className="song__container">
+            <button className="song__playBtn"><div className="song__playbtnImage"></div></button>
             <div className="song__imageDiv">
                 <img src={track.album.images[0].url} className="song__image"/>
             </div>
@@ -30,7 +31,10 @@ export default function Song({ track }) {
                 <h4>{track.name}</h4>
                 <p>{track.album.name}</p>
             </div>
-            <div className="song__duration">{track.duration_ms && formatMillis(track.duration_ms)}</div>
+            <div className="song__durationDiv">
+                <div className="song__duration">{track.duration_ms && formatMillis(track.duration_ms)}</div>
+                <button className="song__addBtn"><div className="song__btnImage"></div></button>
+            </div>
         </div>
     )
 }

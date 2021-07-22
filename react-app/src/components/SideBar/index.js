@@ -47,26 +47,26 @@ const SideBar = () => {
 
             <div className="sideBar__header">
             <NavLink to="/" className="logo">
-                Audify
+                
             </NavLink>
             </div>
 
             <div className="sideBar__menu">
-                
+
                    <NavLink to="/" className="menuItem">
                        <div className="icon"><AiFillHome/></div>
                        <div className="menuItemTitle">Home</div>
-                   </NavLink> 
+                   </NavLink>
                     <NavLink to="/search" className="menuItem">
                         <div className="icon"><BsSearch/></div>
                         <div className="menuItemTitle">Search</div>
                     </NavLink>
-                    
+
                     <NavLink to="/mylibrary" className="menuItem">
                         <div className="icon"><VscLibrary/></div>
                         <div className="menuTitle">My Library</div>
                     </NavLink>
-        
+
                 <NavLink to="/playlists/:id" className="menuItem" onClick={handleCreate}>
                 <div className="icon"><GoDiffAdded /></div>
                 <div className="menuItemTitle">Create Playlist</div>
