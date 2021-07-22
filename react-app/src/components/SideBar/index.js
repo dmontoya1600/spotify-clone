@@ -13,7 +13,7 @@ const SideBar = () => {
     const history = useHistory();
     const sessionUser = useSelector(state => state.session.user);
     const sessionPlaylists = useSelector(state => state.playlists);
-    const userId = sessionUser.id
+    const userId = sessionUser?.id
 
     useEffect(() => {
         dispatch(getPlaylists( userId));
