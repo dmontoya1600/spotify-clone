@@ -35,7 +35,7 @@ const removePlaylist = (playlistId) => {
 
 export const getPlaylists = (userId) => async(dispatch) =>{
     const response = await fetch('/api/playlists/');
-
+console.log("response: ", response)
     if(response.ok){
         console.log("USER: ",userId)
         if(userId === undefined){
@@ -82,11 +82,11 @@ export const makePlaylist = (playlist) => async(dispatch) =>{
         headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify({playlist_name, playlist_image_url, user_id})
     });
-    console.log("Exit Fetch: Make Playlist")
+    console.log("Exit Fetch: Make Playlist: ", response )
 
     if(response.ok){
         const data = await response.json();
-        console.log(data)
+        console.log("data: ",data)
         dispatch(loadOnePlaylist(data));
         return data;
     }
@@ -171,7 +171,7 @@ const playlistReducer = (state = initialState, action) => {
             }
             case REMOVE_PLAYLIST: {
                 let newState =action.playlists
-                return newState
+                return null
             }
             default:
                 return state;

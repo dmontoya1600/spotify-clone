@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {NavLink, useParams, Redirect } from 'react-router-dom';
+import {NavLink, useParams, Redirect,useHistory } from 'react-router-dom';
 import playlistReducer, {getPlaylists, makePlaylist} from '../../store/playlist'
 import "./SideBar.css"
 
 const SideBar = () => {
     const dispatch = useDispatch();
-
+    const history = useHistory();
     const sessionUser = useSelector(state => state.session.user);
     const sessionPlaylists = useSelector(state => state.playlists);
     const userId = sessionUser.id
@@ -33,13 +33,7 @@ const SideBar = () => {
         for(const [key, value] of Object.entries(newPlaylist.playlists)){
             playlist=value
         }
-        
-        return(
-
-            <>
-            <Redirect to exact ={`/playlists/${playlist.id}`} />
-            </>
-        )
+        history.push(`/playlists/${parseInt(playlist.id)}`);
     }
 
     let playlists = []
