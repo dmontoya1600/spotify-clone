@@ -9,15 +9,16 @@ export const EditPlaylist = ({ playlistId, hideForm }) => {
     let id = data.playlistId
     let history = useHistory();
     const dispatch = useDispatch();
-    const sessionUser = useSelector(state => state.session.user);
+    const userId = useSelector(state => state.session.user.id);
     const sessionPlaylists = useSelector(state => state.playlists);
 
 
     let playlist;
     if(sessionPlaylists && sessionPlaylists[id]) playlist = sessionPlaylists[id];
+    console.log("playlist: ", playlist);
 
     useEffect(() => {
-        dispatch(getOnePlaylist(id))
+        // dispatch(getPlaylist(id))
     }, [dispatch, id])
 
     const [playlistName, setPlaylistName] = useState('');
@@ -48,11 +49,16 @@ export const EditPlaylist = ({ playlistId, hideForm }) => {
         }
 
 
-        console.log("updatedPlaylist", updatedPlaylist)
+
         if(updatedPlaylist){
-            updatedPlaylist = await dispatch(editOnePlaylist(updatedPlaylist));
-            console.log("New updatedPlaylist", updatedPlaylist)
-            // history.push(`/playlists/${id}`)
+            console.log("updatedPlaylist: ", updatedPlaylist)
+            updatedPlaylist = await dispatch(editOnePlaylist(userId, updatedPlaylist));
+            console.log("All the way up: ", updatedPlaylist);
+            // let playlist;
+            // for(const [key, value] of Object.entries(updatedPlaylist.playlists)){
+            //     playlist=value
+            // }
+            // history.push(`/playlists/${playlist.id}`)
             hideForm();
         }
     }
@@ -66,13 +72,8 @@ export const EditPlaylist = ({ playlistId, hideForm }) => {
 
     const handleDelete =  async (e) => {
         e.preventDefault();
-        console.log("Before delete: ")
-        data = await dispatch(deletePlaylist(id))
-        console.log("After delete: ")
-        return(
-        <>
-        <Redirect path='/'/>
-        </>)
+        data = await dispatch(deletePlaylist(userId, id))
+        history.push(`/`)
     }
 
 
