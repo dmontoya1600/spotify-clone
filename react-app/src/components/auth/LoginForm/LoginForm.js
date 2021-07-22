@@ -33,7 +33,7 @@ const LoginForm = () => {
   }
 
   const handleDemo = async () => {
-    const data = await dispatch(login("demo@aa.io", "password"));
+    const data = await dispatch(login("demo@aa.io", "demopassword"));
     if (data) {
       setErrors(data);
     }
@@ -49,7 +49,7 @@ const LoginForm = () => {
       <div className="loginForm__header"><NavLink to="/" exact={true}><div className="logo">Audify</div></NavLink></div>
 
       <div className="loginForm__main">
-        
+
         <form onSubmit={onLogin} className="loginForm">
           <div className="toContinue">To continue, log in to Audify.</div>
           <button type="button" className="demoButton" onClick={handleDemo}>CONTINUE WITH DEMO</button>

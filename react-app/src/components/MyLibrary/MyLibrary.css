@@ -57,4 +57,112 @@
     font-size: 90px;
     margin-left: 20px;
     align-self: end;
+    cursor: pointer;
 }
+
+.profile_name:hover{
+    color: rgb(151, 151, 151);
+}
+
+.edit_form input{
+    color: white;
+    background-color: rgb(147, 147, 147);
+}
+.edit_form label{
+    color: white;
+    font-weight: bold;
+}
+
+.edit_form {
+    position: relative;
+    width: 50%;
+    margin: 0 auto;
+    height: auto;
+    max-height: 70vh;
+    margin-top: calc(100vh - 85vh - 20px);
+    background-color: rgb(69, 69, 69);
+    color:black;
+    border-radius: 10px;
+    padding: 20px;
+    overflow: auto;
+}
+
+.popup-background{
+    position: fixed;
+    background: #0000007d;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index:5;
+}
+
+input[type=text], select, textarea {
+    width: 100%; /* Full width */
+    padding: 12px; /* Some padding */
+    border: 1px solid rgb(147, 147, 147); /* Gray border */
+    border-radius: 4px; /* Rounded borders */
+    box-sizing: border-box; /* Make sure that padding and width stays in place */
+    margin-top: 6px; /* Add a top margin */
+    margin-bottom: 16px; /* Bottom margin */
+    resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+  }
+
+  input[type=password], select, textarea {
+    width: 100%; /* Full width */
+    padding: 12px; /* Some padding */
+    border: 1px solid #ccc; /* Gray border */
+    border-radius: 4px; /* Rounded borders */
+    box-sizing: border-box; /* Make sure that padding and width stays in place */
+    margin-top: 6px; /* Add a top margin */
+    margin-bottom: 16px; /* Bottom margin */
+    resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+  }
+  .submit {
+    background-color: rgb(255, 187, 0);
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .submit:hover {
+    background-color: rgb(159, 117, 0);
+
+  }
+
+  .delete {
+    margin-left: 5px;
+    background-color: rgb(255, 187, 0);
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .delete:hover {
+    background-color: rgb(159, 117, 0);
+  }
+
+  .exit{
+    background-color: rgb(255, 187, 0);
+    color: white;
+    /* padding: 5%; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    height: 20px;
+    width: 20px;
+
+    border-radius: 4px;
+
+    cursor: pointer;
+    margin-left: auto;
+}
+
+.exit:hover {
+    background-color: rgb(159, 117, 0);
+  }
