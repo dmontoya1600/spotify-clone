@@ -23,6 +23,7 @@ function App() {
       await dispatch(getToken(client_id, client_secret))
     })()
   }, [])
+
   useEffect(() => {
     (async() => {
       await dispatch(authenticate());

@@ -24,11 +24,13 @@ function MyProfile() {
         await dispatch(picActions.loadPic(currentUser.id))
 
       })();
-  }, [])
+  }, [activeForm])
 
   async function uploadFile(e) {
     await dispatch(picActions.uploadPic(e.target.files[0], currentUser.id))
 }
+
+
 
 function handleIconClick(){
   document.getElementById('file').click()
@@ -40,14 +42,14 @@ function handleIconClick(){
   return (
     <div className='profile_banner'>
       {activeForm ? <EditForm setActiveForm={setActiveForm} /> : null}
-        <div className='profile_icon' onClick={handleIconClick}>
+        <div className='profile_icon' onClick={(e) => {handleIconClick(e)} }>
             {currentUser.user_image ? <img className='profile_image' src={currentUser.user_image}/> : <img className='profile_image' src={'https://community.e-spirit.com/images/jive-profile-default-portrait.png'}/>}
             <div className='overlay'>
               <img className='overlay_image' src='https://cdn.iconscout.com/icon/free/png-256/edit-2653317-2202989.png'/>
             </div>
             <input id='file' type='file' hidden placeholder='Update Picture' onChange={uploadFile}/>
         </div>
-        <div className='profile_name'>{currentUser.username}</div>
+        <div className='profile_name' onClick={(e) => setActiveForm(!activeForm)}>{currentUser.username}</div>
     </div>
   );
 }

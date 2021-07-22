@@ -1,6 +1,6 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import User
+from app.models import User, db
 from werkzeug.datastructures import ImmutableMultiDict
 
 
@@ -24,3 +24,21 @@ def user(id):
 def loadUser(id):
     user = User.query.get(id)
     return user.to_dict()
+
+@user_routes.route('update/<int:id>', methods=['POST'])
+def updateUser(id):
+    user = User.query.get(id)
+    content = request.json
+    print(f'THIS IS CONTENT', content)
+    username = content['username']
+    email = content['email']
+    user.username = username
+    user.email = email
+    db.session.commit()
+    return user.to_dict()
+
+@user_routes.route('delete/<int:id>', methods=['DELETE'])
+def deleteUser(id):
+    User.query.filter_by(id=id).delete()
+    db.session.commit()
+    return 'complete'
