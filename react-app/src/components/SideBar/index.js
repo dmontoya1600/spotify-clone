@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {NavLink, useParams, Redirect } from 'react-router-dom';
+import {NavLink, useParams, Redirect,useHistory } from 'react-router-dom';
 import playlistReducer, {getPlaylists, makePlaylist} from '../../store/playlist'
 import "./SideBar.css"
 import {AiFillHome} from "react-icons/ai"
@@ -10,18 +10,21 @@ import {GoDiffAdded} from "react-icons/go"
 
 const SideBar = () => {
     const dispatch = useDispatch();
-
+    const history = useHistory();
     const sessionUser = useSelector(state => state.session.user);
     const sessionPlaylists = useSelector(state => state.playlists);
 
+    const userId = sessionUser?.id
+
     useEffect(() => {
-        dispatch(getPlaylists());
+        dispatch(getPlaylists( userId));
     }, [dispatch]);
 
 
     let num = 0;
     const handleCreate = async(e) => {
         e.preventDefault();
+        let playlist;
         num++
         let newPlaylist = {
             playlist_name : `New Playlist `,
@@ -29,17 +32,32 @@ const SideBar = () => {
             user_id : sessionUser.id,
         }
         if(newPlaylist){
-            newPlaylist = await dispatch(makePlaylist(newPlaylist));
-            Redirect(`/mylibrary`);
+            newPlaylist = await dispatch(makePlaylist(userId, newPlaylist));
         }
+        for(const [key, value] of Object.entries(newPlaylist.playlists)){
+            playlist=value
+        }
+        history.push(`/playlists/${parseInt(playlist.id)}`);
     }
 
     let playlists = []
+    let i = 0
     for(const [key, value] of Object.entries(sessionPlaylists)){
-        playlists.push(value)
+        if( i < 10){
+            playlists.push(value)
+            i++
+        }
     }
-    console.log("PLAY: ", playlists)
 
+    let button;
+    if(sessionUser){
+        button = (
+            <NavLink to="/playlists/:id" className="menuItem" activeClassName='activated' onClick={handleCreate}>
+                <div className="icon"><GoDiffAdded /></div>
+                <div className="menuItemTitle">Create Playlist</div>
+                </NavLink>
+        )
+    }
     return (
         <div className="sideBar__container">
 
@@ -67,10 +85,9 @@ const SideBar = () => {
                         <div className="menuTitle">My Library</div>
                     </NavLink>
 
-                <NavLink to="/playlists/:id" activeClassName='activated' className="menuItem" onClick={handleCreate}>
-                <div className="icon"><GoDiffAdded /></div>
-                <div className="menuItemTitle">Create Playlist</div>
-                </NavLink>
+                    <div>
+                        {button}
+                    </div>
 
                 <NavLink to="/likedplaylists" activeClassName='activated' className="menuItem">
                         <div className="icon"><BsHeartFill/></div>
@@ -81,10 +98,11 @@ const SideBar = () => {
 
             <div className="playlists__container">
                 {playlists.map(playlist => (
-                    <div key={playlist.id} className="playlistItem">
+                        <div key={playlist.id} className="playlistItem">
                         <NavLink to={`/playlists/${playlist.id}`}>{playlist.name}</NavLink>
-                    </div>
-                ))}
+                        </div>
+                    )
+                )}
             </div>
 
             </div>

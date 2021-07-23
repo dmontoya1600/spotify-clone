@@ -53,6 +53,7 @@
   flex-direction: column;
   margin-top: 10px;
   color: lightgray;
+  overflow-y: hidden;
 }
 
 .playlistItem {

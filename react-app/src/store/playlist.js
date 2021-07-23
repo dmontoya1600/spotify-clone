@@ -1,18 +1,20 @@
 const ADD_PLAYLIST = 'ADD_PLAYLIST';
 const LOAD_PLAYLIST = 'GET_PLAYLIST';
 const REMOVE_PLAYLIST = 'REMOVE_PLAYLIST';
+const ONE_PLAYLIST = 'ONE_PLAYLIST';
 
-const addPlaylist = (playlist) => {
-  return {
-    type: ADD_PLAYLIST,
-    playlist
-  };
-}
 
 const loadPlaylists = (playlists) => {
     return {
       type: LOAD_PLAYLIST,
       playlists
+    };
+}
+
+const loadOnePlaylist = (playlist) => {
+    return {
+      type: ONE_PLAYLIST,
+      playlist
     };
 }
 
@@ -23,70 +25,94 @@ const removePlaylist = (playlistId) => {
     };
 }
 
-export const getPlaylists = () => async(dispatch) =>{
+
+export const getPlaylists = (userId) => async(dispatch) =>{
     const response = await fetch('/api/playlists/');
 
     if(response.ok){
-        const playlist = await response.json();
-        dispatch(loadPlaylists(playlist));
-        return response
+        if(userId === undefined){
+            const playlist = await response.json();
+            dispatch(loadPlaylists(playlist));
+            return response
+        } else {
+            const playlist = await response.json();
+
+
+            const userPlaylists = []
+            const filteredPlaylists = {"playlists" : userPlaylists}
+            playlist.playlists.forEach(playlist => {
+                if(playlist.user === userId){
+                    userPlaylists.push(playlist)
+                }
+            })
+            dispatch(loadPlaylists(filteredPlaylists));
+            return response
+        }
     }
 }
 
 export const getOnePlaylist = (playlistId) => async(dispatch) =>{
-    console.log(
-        "Into the thunk: ",
-        playlistId)
         let id = parseInt(playlistId);
     const response = await fetch(`/api/playlists/${id}`)
-        console.log("GOT THUNKED")
     if(response.ok){
-        console.log(response)
         const data = await response.json();
-        dispatch(loadPlaylists(data));
+        dispatch(loadOnePlaylist(data));
         return response;
     }
 
 }
 
-export const makePlaylist = (playlist) => async(dispatch) =>{
-    console.log("Enter the thunk")
+export const makePlaylist = (userId, playlist) => async(dispatch) =>{
     const {playlist_name, playlist_image_url, user_id} = playlist;
     const response = await fetch(`/api/playlists/`,{
         method: 'POST',
         headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify({playlist_name, playlist_image_url, user_id})
     });
-    console.log("Exit Thunk")
 
     if(response.ok){
-        const data = await response.json();
-        dispatch(addPlaylist(data));
-        return data;
+        const playlist = await response.json();
+        dispatch(getPlaylists(userId));
+        return playlist;
+        
     }
 }
 
-export const editOnePlaylist = (editedPlaylist) => async(dispatch) =>{
-    const response = await fetch(`/api/playlists/${editedPlaylist.id}`,{
+export const editOnePlaylist = (userId, editedPlaylist) => async(dispatch) =>{
+    const {id, img, name, user} = editedPlaylist;
+    const playlist = {playlist_id:id,playlist_name:name, playlist_image_url:img, user_id:user}
+
+    const response = await fetch(`/api/playlists/${id}`,{
         method: 'PUT',
         headers: { 'Content-Type': 'application/json'},
-        body: JSON.stringify(editedPlaylist)
+        body: JSON.stringify( {playlist_id:id,playlist_name:name, playlist_image_url:img, user_id:user})
     });
 
     if(response.ok){
-        const data = await response.json();
-        dispatch(addPlaylist(data));
-        return data;
+
+        const playlist = await response.json();
+        const userPlaylists = []
+        const filteredPlaylists = {"playlists" : userPlaylists}
+        playlist.playlists.forEach(playlist => {
+            if(playlist.user === userId){
+                userPlaylists.push(playlist)
+            }
+        })
+        dispatch(loadPlaylists(filteredPlaylists));
+        return response
     }
 }
 
-export const deletePlaylist = (playlistId) => async(dispatch) =>{
+export const deletePlaylist = (userId, playlistId) => async(dispatch) =>{
+
     let thisId = parseInt(playlistId);
     const response = await fetch(`/api/playlists/${thisId}`,{
         method: 'DELETE'});
+
     if(response.ok){
+
         const playlist = await response.json();
-        dispatch(removePlaylist(playlistId));
+        dispatch(getPlaylists(userId));
         return playlist;
     }
 }
@@ -102,12 +128,21 @@ const initialState = { };
 const playlistReducer = (state = initialState, action) => {
     switch(action.type){
         case LOAD_PLAYLIST:{
-            console.log("Hello there: ", action.playlists)
             const allPlaylists = {}
             action.playlists.playlists.forEach(playlist => {
                 allPlaylists[playlist.id] = playlist;
             })
             return {
+                ...allPlaylists
+            }
+        }
+        case ONE_PLAYLIST:{
+            const allPlaylists = {}
+            action.playlist.playlists.forEach(playlist => {
+                allPlaylists[playlist.id] = playlist;
+            })
+            return {
+
                 ...allPlaylists
             }
         }
@@ -127,7 +162,7 @@ const playlistReducer = (state = initialState, action) => {
             }
             case REMOVE_PLAYLIST: {
                 let newState =action.playlists
-                return newState
+                return state
             }
             default:
                 return state;

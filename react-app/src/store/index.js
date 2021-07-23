@@ -6,6 +6,7 @@ import playlists from './playlist'
 import pageUser from './userPage'
 import featurePlaylists from './featurePlaylist'
 import searchRes from './search'
+import currentSong from "./currentSong";
 
 const rootReducer = combineReducers({
   session,
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
   playlists,
   pageUser,
   featurePlaylists,
-  searchRes
+  searchRes,
+  currentSong
 });
 
 

@@ -1,0 +1,62 @@
+/* .playlist_banner{
+    display: grid;
+
+    grid-template: 25px 250px 25px / 50px 250px 1fr;
+    overflow: hidden;
+    background: rgb(43,43,43);
+    background: linear-gradient(90deg, rgba(43,43,43,1) 0%, rgba(55,48,0,1) 57%, rgba(232,200,0,1) 100%);
+    grid-template-areas:
+    ". . ."
+    ". icon name"
+    ". . .";
+
+    width: 100vw;
+
+    background-color: black;
+} */
+
+.banner {
+    height: 300px;
+    display: flex;
+    color: white;
+}
+
+.bannerImage {
+    max-width: 600px;
+    height: 100%;
+    padding: 25px;
+}
+
+.bannerText {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.playlistTitle {
+    font-weight: bold;
+    font-size: 48px;
+}
+
+.songsContainer {
+    width: 100%;
+    margin-left: 20px;
+}
+
+.Search__songsContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.songsTitle {
+        color:white;
+        padding-top: 20px;
+        padding-bottom: 20px;
+}
+
+#imageButton {
+    cursor: pointer;
+}

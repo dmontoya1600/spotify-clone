@@ -38,7 +38,8 @@ a {
 }
 .MainContent__container {
   grid-area: main;
-  background-color: rgb(28, 28, 29);
+  background-color: rgb(131, 240, 98);
+  
 
 }
 .MusicPlayer__container {
