@@ -32,17 +32,14 @@ export default function SinglePlaylist () {
         }
 
 
-<<<<<<< HEAD
     useEffect(() => {
         const getSongs = async (id) => {
             const response = await fetch("/api/songs");
         }
     }, [dispatch])
 
-=======
         getSongs(playlistId)
     }, [dispatch]);
->>>>>>> origin/main
 
     let editContent;
     if(showEditPlaylist){
