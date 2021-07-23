@@ -5,15 +5,19 @@ from .db import db
 saved_songs = db.Table(
     'saved_songs',
     db.Model.metadata,
-    db.Column("song_id", db.Integer, db.ForeignKey("songs.id"), primary_key=True),
-    db.Column("playlist_id", db.Integer, db.ForeignKey("playlists.id"), primary_key=True)
+    db.Column("song_id", db.Integer, db.ForeignKey(
+        "songs.id"), primary_key=True),
+    db.Column("playlist_id", db.Integer, db.ForeignKey(
+        "playlists.id"), primary_key=True)
 )
 
 follow_playlist = db.Table(
     'follow_playlist',
     db.Model.metadata,
-    db.Column("user_id", db.Integer, db.ForeignKey("users.id"), primary_key=True),
-    db.Column("playlist_id", db.Integer, db.ForeignKey("playlists.id"), primary_key=True)
+    db.Column("user_id", db.Integer, db.ForeignKey(
+        "users.id"), primary_key=True),
+    db.Column("playlist_id", db.Integer, db.ForeignKey(
+        "playlists.id"), primary_key=True)
 )
 
 
@@ -27,7 +31,8 @@ class Song(db.Model):
     image_url = db.Column(db.String(500), nullable=False)
     duration_ms = db.Column(db.Integer)
 
-    playlists = db.relationship('Playlist', secondary=saved_songs, back_populates='songs')
+    playlists = db.relationship(
+        'Playlist', secondary=saved_songs, back_populates='songs')
 
     def to_dict(self):
         return {
@@ -36,6 +41,7 @@ class Song(db.Model):
             "song_name": self.song_name,
             "artist_name": self.artist_name,
             "img": self.image_url,
+            "duration_ms": self.duration_ms
         }
 
 
@@ -47,8 +53,10 @@ class Playlist(db.Model):
     playlist_image_url = db.Column(db.String(255))
     user_id = db.Column(db.Integer, nullable=False)
 
-    users = db.relationship('User', secondary=follow_playlist, back_populates='playlists')
-    songs = db.relationship('Song', secondary=saved_songs, back_populates='playlists')
+    users = db.relationship(
+        'User', secondary=follow_playlist, back_populates='playlists')
+    songs = db.relationship('Song', secondary=saved_songs,
+                            back_populates='playlists')
 
     def to_dict(self):
         return {

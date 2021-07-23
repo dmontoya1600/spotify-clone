@@ -87,6 +87,12 @@ export default function SinglePlaylist () {
         await dispatch(setCurrentSong(id))
     }
 
+    function formatMillis(millis) {
+        var mins = Math.floor(millis / 60000);
+        var secs = ((millis % 60000) / 1000).toFixed(0);
+        return mins + ":" + (secs < 10 ? '0' : '') + secs;
+    }
+
     return (
 
         <div className="songsContainer">
@@ -115,7 +121,7 @@ export default function SinglePlaylist () {
                         <p>{song.artist_name}</p>
                         </div>
                         <div className="song__durationDiv">
-                            <div className="song__duration">2:00</div>
+                            <div className="song__duration">{formatMillis(song.duration_ms)}</div>
                             <button className="song__addBtn" >
                                 <div className="song__btnImage" />
                             </button>
