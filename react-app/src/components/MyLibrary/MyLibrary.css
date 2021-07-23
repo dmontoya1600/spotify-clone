@@ -5,8 +5,7 @@
     display: grid;
     grid-template: 25px 250px 25px / 50px 250px 1fr;
     overflow: hidden;
-    background: rgb(43,43,43);
-    background: linear-gradient(90deg, rgba(43,43,43,1) 0%, rgba(55,48,0,1) 57%, rgba(232,200,0,1) 100%);
+    
     grid-template-areas:
     ". . ."
     ". icon name"
