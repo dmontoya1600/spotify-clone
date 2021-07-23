@@ -54,4 +54,5 @@ class Playlist(db.Model):
             'name': self.playlist_name,
             'img': self.playlist_image_url,
             'user': self.user_id,
+            'songs': self.songs,
         }
