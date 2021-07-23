@@ -1,5 +1,5 @@
 import {SET_PIC} from './uploadPic'
-import { UPDATE_USER, DELETE_USER } from './userPage';
+import { UPDATE_USER, DELETE_USER, LOAD_PLAYLISTS } from './userPage';
 // constants
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
@@ -112,8 +112,12 @@ export default function reducer(state = initialState, action) {
       }
     case UPDATE_USER:
       return { user: action.user }
-      case DELETE_USER:
+    case DELETE_USER:
         return { user: null }
+    case LOAD_PLAYLISTS:
+      return {
+        user: { ...state.user, playlists: action.playlists }
+      }
     default:
       return state;
   }

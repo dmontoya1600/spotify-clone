@@ -52,7 +52,7 @@ const SideBar = () => {
     let button;
     if(sessionUser){
         button = (
-            <NavLink to="/playlists/:id" className="menuItem" onClick={handleCreate}>
+            <NavLink to="/playlists/:id" className="menuItem" activeClassName='activated' onClick={handleCreate}>
                 <div className="icon"><GoDiffAdded /></div>
                 <div className="menuItemTitle">Create Playlist</div>
                 </NavLink>
@@ -71,16 +71,16 @@ const SideBar = () => {
 
             <div className="sideBar__menu">
 
-                   <NavLink to="/" className="menuItem">
+                   <NavLink exact to="/" activeClassName='activated' className="menuItem">
                        <div className="icon"><AiFillHome/></div>
                        <div className="menuItemTitle">Home</div>
                    </NavLink>
-                    <NavLink to="/search" className="menuItem">
+                    <NavLink to="/search" activeClassName='activated' className="menuItem">
                         <div className="icon"><BsSearch/></div>
                         <div className="menuItemTitle">Search</div>
                     </NavLink>
 
-                    <NavLink to="/mylibrary" className="menuItem">
+                    <NavLink to="/mylibrary" activeClassName='activated' className="menuItem">
                         <div className="icon"><VscLibrary/></div>
                         <div className="menuTitle">My Library</div>
                     </NavLink>
@@ -89,7 +89,7 @@ const SideBar = () => {
                         {button}
                     </div>
 
-                <NavLink to="/likedplaylists" className="menuItem">
+                <NavLink to="/likedplaylists" activeClassName='activated' className="menuItem">
                         <div className="icon"><BsHeartFill/></div>
                         <div className="menuItemTitle">Liked Playlists</div>
                 </NavLink>

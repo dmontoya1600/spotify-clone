@@ -5,7 +5,9 @@ import EditPlaylist from './editPlaylist';
 import Song from '../Song';
 import Search from '../Search';
 import playlistReducer, {getOnePlaylist, getPlaylists, makePlaylist} from '../../store/playlist'
-// import "./SinglePlaylist.css"
+import { setCurrentSong } from '../../store/currentSong';
+import "./SinglePlaylist.css"
+import "../Song/Song.css"
 
 export default function SinglePlaylist () {
     const dispatch = useDispatch();
@@ -14,9 +16,15 @@ export default function SinglePlaylist () {
     const playlistId = useParams().playlistId;
     const userId = sessionUser.id
     const [showEditPlaylist, setShowEditPlaylist] = useState(false);
-    const [ourSongs, setGetSongs] = useState({});
-    let playlist
-    let songs
+
+
+    const [songList, setSongList] = useState([]);
+
+
+    const currentPlaylist = sessionPlaylists[playlistId]
+
+
+
     useEffect(async() => {
         setShowEditPlaylist(false)
         await dispatch(getPlaylists(userId))
@@ -25,21 +33,23 @@ export default function SinglePlaylist () {
 
 
     useEffect(() => {
+
         const getSongs = async(playlistId) => {
             let data = await fetch("/api/playlist-songs/", {
                 method:'POST',
                 headers: { 'Content-Type': 'application/json'},
                 body: JSON.stringify({playlistId})
-            }
-             )
-            let res = await data.json()
-            console.log("RES: ", res)
-            setGetSongs(res )
-            return res
+            })
+            let songs = await data.json()
+            return songs;
         }
-        getSongs(playlistId)
 
-    }, [dispatch]);
+       getSongs(playlistId).then((songs) => {
+           let songList = songs.songs
+           setSongList(songList)
+       });
+    }, [dispatch])
+
 
     console.log("BIG! : ", ourSongs.songs)
 
@@ -72,44 +82,48 @@ export default function SinglePlaylist () {
         playlists=value
         }
     }
+    if (!currentPlaylist) return null;
+
+    async function playsong(id) {
+        await dispatch(setCurrentSong(id))
+    }
 
     return (
-        <div className="playlist_p">
-            <div className="playlist_banner">
-                <div className="playlist__imageDiv">
-                    <img className="playlist__image" src={playlists?.img} alt="something"/>
-                </div>
-                <div className="playlist__name">
-                    <h1 className="playlist_name">{playlists?.name}</h1>
-                    <div>
-                       {editButton}
-                        {editContent}
-                    </div>
-                </div>
 
+        <div className="songsContainer">
+        <div className="banner">
+            <div className="playlistImage">
+                <img className="bannerImage" src={currentPlaylist.img}/>
             </div>
-            <div className="List">
-                <div className="song_container">
-                    {ourSongs?.songs?.map(track => (
-                        <>
-                        <button className="song__playBtn"> Button<div className="song__playbtnImage"></div></button>
-                        <div className="song__imageDiv">
-                            <img src={track.img} className="song__image"/>
-                        </div>
-                        <div className="song__text">
-                            <h4>{track.song_name}</h4>
-                            <p>{track.artist_name}</p>
-                        </div>
-                        </>
-
-                    ))}
-                </div>
+            <div className="bannerText">
+            <div className="playlistTitle">
+                {currentPlaylist.name}
             </div>
-            <div className="searchcontainer">
-
-                <Search />
-
+            <div className="username">
+                {sessionUser.username}
+            </div>
             </div>
         </div>
-    )
+            <h2 className="songsTitle">Songs</h2>
+            {songList && songList.map((song, index) => {
+            return <div className="song__container" key={index}>
+                <button className="song__playBtn" id="imageButton" onClick={() => playsong(song.api_id)}><div className="song__playbtnImage"></div></button>
+                <div className="song__imageDiv" >
+                    <img src={song.image_url} className="song__image"/>
+                    </div>
+                    <div className="song__text">
+                        <h4>{song.song_name}</h4>
+                        <p>{song.artist_name}</p>
+                        </div>
+                        <div className="song__durationDiv">
+                            <div className="song__duration">2:00</div>
+                            <button className="song__addBtn" >
+                                <div className="song__btnImage" />
+                            </button>
+                        </div>
+                    </div>
+                })}
+        </div>
+     )
+
 }

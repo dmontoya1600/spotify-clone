@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import * as picActions from '../../store/uploadPic'
 import {loadUser} from '../../store/userPage'
 import './MyLibrary.css';
-import EditForm from './EditProfile';
+import {formContext} from './Context'
 
 // WITHOUT USE PARAMS, WE'RE GOING TO NEED TO ACCESS THE USER_ID A DIFFERENT WAY
 // MAYBE WE CAN POSSIBLY PASS USER ID THROUGH CHILDREN OR CONTEXT
@@ -15,7 +15,7 @@ function MyProfile() {
   let [editProfilePicId, setEditProfilePicId] = useState(null)
   const dispatch = useDispatch();
   const pageUser = useSelector(state => state.pageUser.page_user)
-  let [activeForm, setActiveForm] = useState(false)
+  let [ activeForm, setActiveForm ] = useContext(formContext)
 
 
   useEffect(() => {
@@ -41,7 +41,6 @@ function handleIconClick(){
 
   return (
     <div className='profile_banner'>
-      {activeForm ? <EditForm setActiveForm={setActiveForm} /> : null}
         <div className='profile_icon' onClick={(e) => {handleIconClick(e)} }>
             {currentUser.user_image ? <img className='profile_image' src={currentUser.user_image}/> : <img className='profile_image' src={'https://community.e-spirit.com/images/jive-profile-default-portrait.png'}/>}
             <div className='overlay'>
@@ -49,7 +48,7 @@ function handleIconClick(){
             </div>
             <input id='file' type='file' hidden placeholder='Update Picture' onChange={uploadFile}/>
         </div>
-        <div className='profile_name' onClick={(e) => setActiveForm(!activeForm)}>{currentUser.username}</div>
+        <div className='profile_name' onClick={(e) => setActiveForm(true)}>{currentUser.username}</div>
     </div>
   );
 }
