@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, session, request
+from flask import Blueprint, json, jsonify, session, request
 from app.models import User, Song, Playlist, db
 from app.models.playlist_songs import saved_songs
 from app.forms import LoginForm
@@ -18,29 +18,28 @@ def addSong():
     id = request.json['playlist']['id']
     indicator = False
 
+    song = Song.query.get(id)
+    playlist = Playlist.query.get(id)
 
     for s in songDicts:
         if s['api_id'] == api_id:
             indicator = True
 
     if indicator:
-        song = Song.query.filter_by(api_id = api_id).first()
-        playlist = Playlist.query.get(id)
-
-        # db.session.execute(saved_songs.insert().values(song_id=song['id'], playlist_id=id))
-        # db.session.add(song)
-        # db.session.commit()
-        # playlist = Playlist.query.get(id)
-        # return jsonify(playlist)
-        pass
+        song = Song.query.filter_by(api_id = so['id']).first()
+        playlist.songs.append(song)
+        db.session.add(playlist)
+        db.session.commit()
+        return jsonify(playlist)
     else:
-        pass
-        # song = Song(
-        #     api_id = so['id'],
-        #     song_name = so['name'],
-        #     artist_name = so['artists'][0]['name'],
-        #     image_url = so['album']['images'][0]['url'],
-        #     )
-
-    print("THIS IS THE INDICATOR ", indicator, id)
-    return api_id
+        song = Song(
+            api_id=so['id'],
+            song_name=so['name'],
+            artist_name=so['artists'][0]['name'],
+            image_url=so['album']['images'][0]['url'],
+            )
+        db.session.add(song)
+        playlist.songs.append(song)
+        db.session.add(playlist)
+        db.session.commit()
+        return jsonify(playlist)

@@ -12,6 +12,8 @@ export const addSongThunk = (obj) => async (dispatch) => {
       body: JSON.stringify(obj),
     })
     const data = await res.json()
+    console.log("THIS IS RES", res)
+    console.log("THIS IS Data", data)
     // dispatch(addSong(data))
     // return data
   }
