@@ -13,7 +13,6 @@ song_routes = Blueprint("song", __name__)
 def addSong():
     songs = Song.query.all()
     songDicts = [so.to_dict() for so in songs]
-    api_id = request.json['song']['id']
     so = request.json['song']
     id = request.json['playlist']['id']
     indicator = False
@@ -22,7 +21,7 @@ def addSong():
     playlist = Playlist.query.get(id)
 
     for s in songDicts:
-        if s['api_id'] == api_id:
+        if s['api_id'] == so['id']:
             indicator = True
 
     if indicator:
@@ -30,17 +29,17 @@ def addSong():
         playlist.songs.append(song)
         db.session.add(playlist)
         db.session.commit()
-        return jsonify(playlist)
+        return playlist.to_dict()
     else:
         song = Song(
             api_id=so['id'],
             song_name=so['name'],
             artist_name=so['artists'][0]['name'],
             image_url=so['album']['images'][0]['url'],
-            duration_ms=so['duration_ms']
+            duration_ms=so['duration_ms'],
             )
         db.session.add(song)
         playlist.songs.append(song)
         db.session.add(playlist)
         db.session.commit()
-        return jsonify(playlist)
+        return playlist.to_dict()
