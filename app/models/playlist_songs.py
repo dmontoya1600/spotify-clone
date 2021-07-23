@@ -25,6 +25,7 @@ class Song(db.Model):
     song_name = db.Column(db.String(255), nullable=False)
     artist_name = db.Column(db.String(255), nullable=False)
     image_url = db.Column(db.String(500), nullable=False)
+    duration_ms = db.Column(db.Integer)
 
     playlists = db.relationship('Playlist', secondary=saved_songs, back_populates='songs')
 
