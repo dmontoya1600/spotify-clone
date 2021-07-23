@@ -12,6 +12,8 @@ export default function SinglePlaylist () {
     const playlistId = useParams().playlistId;
     const userId = sessionUser.id
     const [showEditPlaylist, setShowEditPlaylist] = useState(false);
+    
+    const [songList, setSongList] = useState([]);
 
     useEffect(async() => {
         setShowEditPlaylist(false)
@@ -19,28 +21,25 @@ export default function SinglePlaylist () {
     }, [setShowEditPlaylist ,dispatch]);
 
     useEffect(() => {
-        console.log(playlistId)
+
         const getSongs = async(playlistId) => {
             let data = await fetch("/api/playlist-songs/", {
                 method:'POST',
                 headers: { 'Content-Type': 'application/json'},
                 body: JSON.stringify({playlistId})
-            }
-             )
+            })
             let songs = await data.json()
-            return songs
+            return songs;
         }
 
-
-    useEffect(() => {
-        const getSongs = async (id) => {
-            const response = await fetch("/api/songs");
-        }
+       getSongs(playlistId).then((songs) => {
+           console.log("SONG MCSONGOS", songs)
+           let songList = songs.songs
+           console.log("songie LISTO", songList)
+           setSongList(songList)
+       });
     }, [dispatch])
-
-        getSongs(playlistId)
-    }, [dispatch]);
-
+    
     let editContent;
     if(showEditPlaylist){
         editContent = (
@@ -71,8 +70,16 @@ export default function SinglePlaylist () {
     }
 
     return (
-        <>
-            <div className="playlist_banner">
+        
+        <div className="containerbot">
+            <h2>SONGS</h2>
+            {songList && songList.map((song, index) => {
+            return <div key={index}>{song.song_name}</div>
+        })} 
+        </div>
+      
+    
+            /* <div className="playlist_banner">
                 <div className="playlistImg">
                     <img src={playlists?.img} alt="something"/>
                 </div>
@@ -89,13 +96,13 @@ export default function SinglePlaylist () {
 
             </div>
             <div className="songList">
-                <h1>Songs box</h1>
-
-            </div>
+                <h1>Songs box</h1> */
+                
+            /* </div>
             <div className="searccontainer">
                 Search
-
-            </div>
-        </>
+            </div> */
+         
+        
     )
-}
+    }

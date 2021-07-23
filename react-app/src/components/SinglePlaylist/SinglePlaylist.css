@@ -1,4 +1,4 @@
-.playlist_banner{
+/* .playlist_banner{
     display: grid;
 
     grid-template: 25px 250px 25px / 50px 250px 1fr;
@@ -13,4 +13,10 @@
     width: 100vw;
 
     background-color: black;
+} */
+
+
+.container_bot {
+    display: flex;
+    flex-direction: column;
 }
