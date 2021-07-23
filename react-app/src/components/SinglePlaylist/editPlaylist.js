@@ -54,11 +54,6 @@ export const EditPlaylist = ({ playlistId, hideForm }) => {
             console.log("updatedPlaylist: ", updatedPlaylist)
             updatedPlaylist = await dispatch(editOnePlaylist(userId, updatedPlaylist));
             console.log("All the way up: ", updatedPlaylist);
-            // let playlist;
-            // for(const [key, value] of Object.entries(updatedPlaylist.playlists)){
-            //     playlist=value
-            // }
-            // history.push(`/playlists/${playlist.id}`)
             hideForm();
         }
     }
@@ -78,28 +73,28 @@ export const EditPlaylist = ({ playlistId, hideForm }) => {
 
 
     return (
+
         <div>
-            <div>
-                <form id="editPlaylistForm"
-                onSubmit={handleSubmit}
-                >
-                    <input className="editFormNameInput"
-                        required
-                        value={playlistName}
-                        placeholder="Add Playlist Name"
-                        onChange={(e)=>setPlaylistName(e.target.value)}
-                    />
-                    <input className="editFormImgInput"
-                        value={playlistImg}
-                        placeholder="Choose Photo"
-                        onChange={(e)=>setPlaylistImg(e.target.value)}
-                    />
-                    <button type="submit" >Save</button>
-                    <button type="reset" onClick={handleCancel} className="editFormCancelButton">Cancel</button>
-                    <button type="button" onClick={handleDelete} className="editFormDeleteButton">Delete</button>
-                </form>
-            </div>
+            <form id="editPlaylistForm"onSubmit={handleSubmit}>
+            <div className='exit' onClick={handleCancel}>X</div>
+                <input className="editFormNameInput"
+                    type="text"
+                    required
+                    value={playlistName}
+                    placeholder="Add Playlist Name"
+                    onChange={(e)=>setPlaylistName(e.target.value)}
+                />
+                <input className="editFormImgInput"
+                type="text"
+                    value={playlistImg}
+                    placeholder="Choose Photo URL"
+                    onChange={(e)=>setPlaylistImg(e.target.value)}
+                />
+                <button className="submit" >update</button>
+                <button className="delete" onClick={handleDelete} >Delete Playlist</button>
+            </form>
         </div>
+
     )
 }
 
