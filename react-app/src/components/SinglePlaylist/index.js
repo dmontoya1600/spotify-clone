@@ -5,7 +5,7 @@ import EditPlaylist from './editPlaylist';
 import Song from '../Song';
 import Search from '../Search';
 import playlistReducer, {getOnePlaylist, getPlaylists, makePlaylist} from '../../store/playlist'
-import "./SinglePlaylist.css"
+// import "./SinglePlaylist.css"
 
 export default function SinglePlaylist () {
     const dispatch = useDispatch();
@@ -74,7 +74,7 @@ export default function SinglePlaylist () {
     }
 
     return (
-        <div className="playlist_box">
+        <div className="playlist_p">
             <div className="playlist_banner">
                 <div className="playlist__imageDiv">
                     <img className="playlist__image" src={playlists?.img} alt="something"/>
@@ -88,7 +88,7 @@ export default function SinglePlaylist () {
                 </div>
 
             </div>
-            <div className="songList">
+            <div className="List">
                 <div className="song_container">
                     {ourSongs?.songs?.map(track => (
                         <>
@@ -106,7 +106,7 @@ export default function SinglePlaylist () {
                 </div>
             </div>
             <div className="searchcontainer">
-                
+
                 <Search />
 
             </div>
