@@ -3,7 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import {NavLink, useParams, Redirect } from 'react-router-dom';
 import EditPlaylist from './editPlaylist';
 import playlistReducer, {getOnePlaylist, getPlaylists, makePlaylist} from '../../store/playlist'
+import { setCurrentSong } from '../../store/currentSong';
 import "./SinglePlaylist.css"
+import "../Song/Song.css"
 
 export default function SinglePlaylist () {
     const dispatch = useDispatch();
@@ -14,6 +16,10 @@ export default function SinglePlaylist () {
     const [showEditPlaylist, setShowEditPlaylist] = useState(false);
     
     const [songList, setSongList] = useState([]);
+
+
+    const currentPlaylist = sessionPlaylists[playlistId]
+
 
     useEffect(async() => {
         setShowEditPlaylist(false)
@@ -33,9 +39,7 @@ export default function SinglePlaylist () {
         }
 
        getSongs(playlistId).then((songs) => {
-           console.log("SONG MCSONGOS", songs)
            let songList = songs.songs
-           console.log("songie LISTO", songList)
            setSongList(songList)
        });
     }, [dispatch])
@@ -69,40 +73,48 @@ export default function SinglePlaylist () {
         }
     }
 
+    if (!currentPlaylist) return null;
+
+   let currentSong = "";
+
     return (
         
-        <div className="containerbot">
-            <h2>SONGS</h2>
-            {songList && songList.map((song, index) => {
-            return <div key={index}>{song.song_name}</div>
-        })} 
-        </div>
-      
-    
-            /* <div className="playlist_banner">
-                <div className="playlistImg">
-                    <img src={playlists?.img} alt="something"/>
-                </div>
-                <div>
-                    <div>
-                        <h1>{playlists?.name}</h1>
-                    </div>
-                    <div>
-                       {editButton}
-                        {editContent}
-                    </div>
-                </div>
-
-
+        <div className="songsContainer">
+        <div className="banner">
+            <div className="playlistImage">
+                <img className="bannerImage" src={currentPlaylist.img}/>
             </div>
-            <div className="songList">
-                <h1>Songs box</h1> */
-                
-            /* </div>
-            <div className="searccontainer">
-                Search
-            </div> */
+            <div className="bannerText">
+            <div className="playlistTitle">
+                {currentPlaylist.name}
+            </div>
+            <div className="username">
+                {sessionUser.username}
+            </div>
+            </div>
+        </div>
+            <h2 className="songsTitle">Songs</h2>
+            {songList && songList.map((song, index) => {
+            return <div className="song__container" key={index}>
+                <button className="song__playBtn" id="imageButton" onClick={() => dispatch(setCurrentSong(song.api_id))}><div className="song__playbtnImage"></div></button>
+                <div className="song__imageDiv" >
+                    <img src={song.image_url} className="song__image"/>
+                    </div>
+                    <div className="song__text">
+                        <h4>{song.song_name}</h4>
+                        <p>{song.artist_name}</p>
+                        </div>
+                        <div className="song__durationDiv">
+                            <div className="song__duration">2:00</div>
+                            <button className="song__addBtn" >
+                                <div className="song__btnImage" />
+                            </button>
+                        </div>
+                    </div>
+                })}
+        </div>
+     )
+}
          
         
-    )
-    }
+ 

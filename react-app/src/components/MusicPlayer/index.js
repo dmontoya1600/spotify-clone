@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import React from 'react';
+import {useSelector} from "react-redux";
 import "./MusicPlayer.css";
 import SpotifyPlayer from 'react-spotify-player';
 
 
 const MusicPlayer = () => {
+
+    const {currentSong} = useSelector(state => state.currentSong)
     
     const size = {
     width: '100%',
@@ -17,7 +19,7 @@ const MusicPlayer = () => {
     return (
         <div className="MusicPlayer__container">
             <SpotifyPlayer
-            uri="spotify:album:1TIUsv8qmYLpBEhvmBmyBk"
+            uri={`spotify:track:${currentSong}`}
             size={size}
             view={view}
             theme={theme}
