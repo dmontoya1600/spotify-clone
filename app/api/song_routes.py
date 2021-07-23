@@ -37,6 +37,7 @@ def addSong():
             song_name=so['name'],
             artist_name=so['artists'][0]['name'],
             image_url=so['album']['images'][0]['url'],
+            duration_ms=so['duration_ms']
             )
         db.session.add(song)
         playlist.songs.append(song)
