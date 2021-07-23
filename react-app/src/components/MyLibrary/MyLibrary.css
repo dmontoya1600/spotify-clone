@@ -1,3 +1,6 @@
+.page {
+    width: 100%;;
+}
 .profile_banner{
     display: grid;
     grid-template: 25px 250px 25px / 50px 250px 1fr;
@@ -9,7 +12,7 @@
     ". icon name"
     ". . .";
 
-    width: 100vw;
+    width: 100%;
 
     background-color: black;
 }
@@ -27,6 +30,7 @@
     height: 75%;
     width: 75%;
 }
+
 
 .overlay {
     position: absolute;
@@ -58,6 +62,7 @@
     margin-left: 20px;
     align-self: end;
     cursor: pointer;
+
 }
 
 .profile_name:hover{
@@ -166,3 +171,57 @@ input[type=text], select, textarea {
 .exit:hover {
     background-color: rgb(159, 117, 0);
   }
+
+  .all__playlists{
+    margin-top: 10px;
+    grid-gap: 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 210px);
+  }
+
+  .individual__playlist{
+    background-color: rgba(77, 74, 74, 0.3);
+    height: 290px;
+    width: 210px;
+    display: grid;
+    grid-template: 12px 180px 38px 37px 1fr / 1fr 180px 1fr;
+    grid-template-areas:
+    ". . ."
+    ". image ."
+    ". playlist_name ."
+    ". user_name ."
+    ". . .";
+    cursor: pointer;
+  }
+
+.individual__playlist__image{
+    grid-area: image;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.individual__playlist__name{
+    grid-area: playlist_name;
+    bottom: 0px;
+    align-self: end;
+    color: white;
+    font-family: Helvetica, sans-serif;
+}
+
+.individual__playlist__creator{
+    grid-area: user_name;
+    color: white;
+    align-self: end;
+    color: rgb(172, 168, 168);
+    font-family: Helvetica, sans-serif;
+
+}
+
+.individual__playlist:hover{
+    background-color: rgba(34, 34, 34, 0.3);
+}
+
+.individual__playlist:hover .individual__playlist__image{
+    opacity: .6;
+}

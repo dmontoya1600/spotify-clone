@@ -82,7 +82,7 @@ function App() {
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
         </ProtectedRoute>
-        <ProtectedRoute path='/playlists/:playlistId' exact={true} >
+        <Route path='/playlists/:playlistId' exact={true} >
         <div className='Main__container'>
             <NavBar />
             <SideBar />
@@ -91,7 +91,7 @@ function App() {
               <SinglePlaylist />
             </div>
           </div>
-        </ProtectedRoute>
+        </Route>
         <ProtectedRoute path='/playlists/:playlistId/edit' exact={true} >
           <EditPlaylist />
         </ProtectedRoute>

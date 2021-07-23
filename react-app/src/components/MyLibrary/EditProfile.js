@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import * as picActions from '../../store/uploadPic'
 import { updateUser, deleteUser } from '../../store/userPage';
+import {formContext} from './Context'
 
 import './MyLibrary.css';
 
 
-function EditForm({setActiveForm}) {
+function EditForm() {
+    const [activeForm, setActiveForm] = useContext(formContext)
     const history = useHistory()
     const dispatch = useDispatch()
     const currentUser = useSelector(state => state.session.user)
