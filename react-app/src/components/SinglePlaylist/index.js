@@ -20,8 +20,7 @@ export default function SinglePlaylist () {
 
     useEffect(() => {
         const getSongs = async (id) => {
-            const response = await fetch(`/api/songs`);
-
+            const response = await fetch("/api/songs");
         }
     }, [dispatch])
 
