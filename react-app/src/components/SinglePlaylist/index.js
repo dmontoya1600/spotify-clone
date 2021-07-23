@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {NavLink, useParams, Redirect } from 'react-router-dom';
 import EditPlaylist from './editPlaylist';
+import Song from '../Song';
+import Search from '../Search';
 import playlistReducer, {getOnePlaylist, getPlaylists, makePlaylist} from '../../store/playlist'
 import { setCurrentSong } from '../../store/currentSong';
 import "./SinglePlaylist.css"
@@ -15,16 +17,20 @@ export default function SinglePlaylist () {
     const userId = sessionUser.id
     const [showEditPlaylist, setShowEditPlaylist] = useState(false);
 
+
     const [songList, setSongList] = useState([]);
 
 
     const currentPlaylist = sessionPlaylists[playlistId]
 
 
+
     useEffect(async() => {
         setShowEditPlaylist(false)
         await dispatch(getPlaylists(userId))
     }, [setShowEditPlaylist ,dispatch]);
+
+
 
     useEffect(() => {
 
@@ -43,6 +49,10 @@ export default function SinglePlaylist () {
            setSongList(songList)
        });
     }, [dispatch])
+
+
+    console.log("BIG! : ", ourSongs.songs)
+
 
     let editContent;
     if(showEditPlaylist){
@@ -72,7 +82,6 @@ export default function SinglePlaylist () {
         playlists=value
         }
     }
-
     if (!currentPlaylist) return null;
 
     async function playsong(id) {
@@ -116,4 +125,5 @@ export default function SinglePlaylist () {
                 })}
         </div>
      )
+
 }

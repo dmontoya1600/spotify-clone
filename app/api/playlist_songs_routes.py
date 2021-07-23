@@ -12,5 +12,3 @@ def get_songs():
     # print("OBJECTOIDS", songs)
     return {"songs": songs}
 
-# {song.id, song.api_id, song.artist_name,
-            #   song.song_name, song.image_url} 

@@ -6,13 +6,12 @@ const addSong = (payload) => ({
 })
 
 export const addSongThunk = (obj) => async (dispatch) => {
-    console.log(obj)
-    // const res = await fetch('/api/song', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify(obj),
-    // })
-    // const data = await res.json()
+    const res = await fetch('/api/song/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(obj),
+    })
+    const data = await res.json()
     // dispatch(addSong(data))
     // return data
   }

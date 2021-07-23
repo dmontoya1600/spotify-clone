@@ -27,6 +27,15 @@ class Song(db.Model):
 
     playlists = db.relationship('Playlist', secondary=saved_songs, back_populates='songs')
 
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "api_id": self.api_id,
+            "song_name": self.song_name,
+            "artist_name": self.artist_name,
+            "img": self.image_url,
+        }
+
 
 class Playlist(db.Model):
     __tablename__ = 'playlists'
@@ -45,4 +54,9 @@ class Playlist(db.Model):
             'name': self.playlist_name,
             'img': self.playlist_image_url,
             'user': self.user_id,
+            'songs': self.songs,
         }
+
+
+    def get_songs(self):
+        return self.songs
