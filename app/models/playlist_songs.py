@@ -30,9 +30,9 @@ class Song(db.Model):
     def to_dict(self):
         return {
             "id": self.id,
-            "api id": self.api_id,
-            "song name": self.song_name,
-            "artist name" : self.artist_name,
+            "api_id": self.api_id,
+            "song_name": self.song_name,
+            "artist_name" : self.artist_name,
             "img" : self.image_url,
         }
 

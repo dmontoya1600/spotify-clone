@@ -8,7 +8,8 @@ import Song from '../Song';
 const Search = () => {
     const token = useSelector(state => state.access.access_token)
     const searchRes = useSelector(state => state.searchRes.tracks)
-
+    console.log("SEARCH: ", searchRes)
+ 
     return (
         <div className="Search__container">
             <div className="search__title">

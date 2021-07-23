@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {NavLink, useParams, Redirect } from 'react-router-dom';
 import EditPlaylist from './editPlaylist';
+import Song from '../Song';
+import Search from '../Search';
 import playlistReducer, {getOnePlaylist, getPlaylists, makePlaylist} from '../../store/playlist'
 import "./SinglePlaylist.css"
 
@@ -12,14 +14,17 @@ export default function SinglePlaylist () {
     const playlistId = useParams().playlistId;
     const userId = sessionUser.id
     const [showEditPlaylist, setShowEditPlaylist] = useState(false);
-
+    const [ourSongs, setGetSongs] = useState({});
+    let playlist
+    let songs
     useEffect(async() => {
         setShowEditPlaylist(false)
         await dispatch(getPlaylists(userId))
     }, [setShowEditPlaylist ,dispatch]);
 
+
+
     useEffect(() => {
-        console.log(playlistId)
         const getSongs = async(playlistId) => {
             let data = await fetch("/api/playlist-songs/", {
                 method:'POST',
@@ -27,14 +32,17 @@ export default function SinglePlaylist () {
                 body: JSON.stringify({playlistId})
             }
              )
-            let songs = await data.json()
-            console.log("songs: ",songs)
-            return songs
+            let res = await data.json()
+            console.log("RES: ", res)
+            setGetSongs(res )
+            return res
         }
-
-
         getSongs(playlistId)
+
     }, [dispatch]);
+
+    console.log("BIG! : ", ourSongs.songs)
+
 
     let editContent;
     if(showEditPlaylist){
@@ -66,31 +74,42 @@ export default function SinglePlaylist () {
     }
 
     return (
-        <>
+        <div className="playlist_box">
             <div className="playlist_banner">
-                <div className="playlistImg">
-                    <img src={playlists?.img} alt="something"/>
+                <div className="playlist__imageDiv">
+                    <img className="playlist__image" src={playlists?.img} alt="something"/>
                 </div>
-                <div>
-                    <div>
-                        <h1>{playlists?.name}</h1>
-                    </div>
+                <div className="playlist__name">
+                    <h1 className="playlist_name">{playlists?.name}</h1>
                     <div>
                        {editButton}
                         {editContent}
                     </div>
                 </div>
 
-
             </div>
             <div className="songList">
-                <h1>Songs box</h1>
+                <div className="song_container">
+                    {ourSongs?.songs?.map(track => (
+                        <>
+                        <button className="song__playBtn"> Button<div className="song__playbtnImage"></div></button>
+                        <div className="song__imageDiv">
+                            <img src={track.img} className="song__image"/>
+                        </div>
+                        <div className="song__text">
+                            <h4>{track.song_name}</h4>
+                            <p>{track.artist_name}</p>
+                        </div>
+                        </>
+
+                    ))}
+                </div>
+            </div>
+            <div className="searchcontainer">
+                
+                <Search />
 
             </div>
-            <div className="searccontainer">
-                Search
-
-            </div>
-        </>
+        </div>
     )
 }
