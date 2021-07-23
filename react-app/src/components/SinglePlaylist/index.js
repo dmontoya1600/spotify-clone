@@ -75,7 +75,9 @@ export default function SinglePlaylist () {
 
     if (!currentPlaylist) return null;
 
-   let currentSong = "";
+    const playsong = async (id) => {
+        await dispatch(setCurrentSong(id))
+    }
 
     return (
         
@@ -96,7 +98,7 @@ export default function SinglePlaylist () {
             <h2 className="songsTitle">Songs</h2>
             {songList && songList.map((song, index) => {
             return <div className="song__container" key={index}>
-                <button className="song__playBtn" id="imageButton" onClick={() => dispatch(setCurrentSong(song.api_id))}><div className="song__playbtnImage"></div></button>
+                <button className="song__playBtn" id="imageButton" onClick={() => playsong(song.api_id)}><div className="song__playbtnImage"></div></button>
                 <div className="song__imageDiv" >
                     <img src={song.image_url} className="song__image"/>
                     </div>
