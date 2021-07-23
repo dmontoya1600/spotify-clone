@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import "./MusicPlayer.css"
-import SpotifyPlayer from 'react-spotify-web-playback';
+// import SpotifyPlayer from 'react-spotify-web-playback';
 
 
 const MusicPlayer = () => {

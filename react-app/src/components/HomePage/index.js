@@ -27,7 +27,6 @@ const HomePage = () => {
         const data = await res.json()
         dispatch(setFeaturePlaylist(data))
 
-        // console.log(data.playlists.items)
     }
     const testingInfo = {
         imgSrc: "https://upload.wikimedia.org/wikipedia/commons/b/b8/FEQ_July_2018_The_Weeknd_%2844778856382%29_%28cropped%29.jpg",
