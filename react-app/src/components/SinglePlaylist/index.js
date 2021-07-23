@@ -28,6 +28,7 @@ export default function SinglePlaylist () {
             }
              )
             let songs = await data.json()
+            console.log("songs: ",songs)
             return songs
         }
 

@@ -11,6 +11,7 @@ playlist_songs_routes = Blueprint("playlist-songs", __name__)
 @playlist_songs_routes.route("/", methods=['POST'])
 def get_songs():
     id = request.json['playlistId']
-    songs = Playlist.query.find_by(id).songs.all()
+    songs = Playlist.query.get(id).songs
     print("STUFFF: ", songs)
-    return None
+    return {'songs': [song.to_dict() for song in songs]}
+
