@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import User, db
+from app.models import User, db, Playlist
 from werkzeug.datastructures import ImmutableMultiDict
 
 
@@ -25,11 +25,25 @@ def loadUser(id):
     user = User.query.get(id)
     return user.to_dict()
 
+@user_routes.route('all-playlists/<int:id>')
+def loadPlaylists(id):
+    rawPlaylists = Playlist.query.filter_by(user_id=id).all()
+    user = User.query.get(id)
+    playlists = map(lambda x: x.to_dict(), rawPlaylists)
+    newPlaylist = []
+
+    for playlist in playlists:
+        playlist['username'] = user.username
+        newPlaylist.append(playlist)
+
+    return jsonify({'playlists': newPlaylist})
+
+
+
 @user_routes.route('update/<int:id>', methods=['POST'])
 def updateUser(id):
     user = User.query.get(id)
     content = request.json
-    print(f'THIS IS CONTENT', content)
     username = content['username']
     email = content['email']
     user.username = username

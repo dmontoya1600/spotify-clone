@@ -1,11 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import * as picActions from '../../store/uploadPic'
 import MyProfile from './MyProfile'
+import Library from './Library';
+import EditForm from './EditProfile';
+import {formContext} from './Context'
+
 
 
 function MyLibrary() {
+  let [activeForm, setActiveForm] = useState(false)
   const [user, setUser] = useState({});
   const { userId }  = useParams();
   const [editProfilePicId, setEditProfilePicId] = useState(null)
@@ -22,9 +27,6 @@ function MyLibrary() {
     })();
   }, [userId]);
 
-function uploadFile(e) {
-    dispatch(picActions.uploadPic(e.target.files[0], userId))
-}
 
   if (!user) {
     return null;
@@ -32,7 +34,12 @@ function uploadFile(e) {
 
   return (
     <div className='page'>
-        <MyProfile />
+        <formContext.Provider value={[activeForm, setActiveForm]}>
+            <MyProfile />
+            {activeForm ? <EditForm /> : null}
+
+            <Library />
+        </formContext.Provider>
     </div>
   );
 }

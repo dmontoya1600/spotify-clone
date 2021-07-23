@@ -47,32 +47,32 @@ const SideBar = () => {
 
             <div className="sideBar__header">
             <NavLink to="/" className="logo">
-                
+
             </NavLink>
             </div>
 
             <div className="sideBar__menu">
 
-                   <NavLink to="/" className="menuItem">
+                   <NavLink exact to="/" activeClassName='activated' className="menuItem">
                        <div className="icon"><AiFillHome/></div>
                        <div className="menuItemTitle">Home</div>
                    </NavLink>
-                    <NavLink to="/search" className="menuItem">
+                    <NavLink to="/search" activeClassName='activated' className="menuItem">
                         <div className="icon"><BsSearch/></div>
                         <div className="menuItemTitle">Search</div>
                     </NavLink>
 
-                    <NavLink to="/mylibrary" className="menuItem">
+                    <NavLink to="/mylibrary" activeClassName='activated' className="menuItem">
                         <div className="icon"><VscLibrary/></div>
                         <div className="menuTitle">My Library</div>
                     </NavLink>
 
-                <NavLink to="/playlists/:id" className="menuItem" onClick={handleCreate}>
+                <NavLink to="/playlists/:id" activeClassName='activated' className="menuItem" onClick={handleCreate}>
                 <div className="icon"><GoDiffAdded /></div>
                 <div className="menuItemTitle">Create Playlist</div>
                 </NavLink>
 
-                <NavLink to="/likedplaylists" className="menuItem">
+                <NavLink to="/likedplaylists" activeClassName='activated' className="menuItem">
                         <div className="icon"><BsHeartFill/></div>
                         <div className="menuItemTitle">Liked Playlists</div>
                 </NavLink>
