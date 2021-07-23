@@ -20,7 +20,7 @@ const SideBar = () => {
         dispatch(getPlaylists( userId));
     }, [sessionUser]);
 
-
+    
     let num = 0;
     const handleCreate = async(e) => {
         e.preventDefault();
