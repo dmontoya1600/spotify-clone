@@ -33,6 +33,7 @@ const SideBar = () => {
         }
         if(newPlaylist){
             newPlaylist = await dispatch(makePlaylist(userId, newPlaylist));
+            console.log("inside if condition", newPlaylist)
         }
         for(const [key, value] of Object.entries(newPlaylist.playlists)){
             playlist=value

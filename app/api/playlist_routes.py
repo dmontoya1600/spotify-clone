@@ -11,10 +11,10 @@ def get_playlists():
     return {'playlists': [playlist.to_dict() for playlist in playlists]}
 
 
-@playlist_routes.route('/', methods=['GET'])
-def get_user_playlists(user_id):
-    playlists = Playlist.query.all()
-    return {'playlists': [playlist.to_dict() for playlist in playlists]}
+# @playlist_routes.route('/', methods=['GET'])
+# def get_user_playlists(user_id):
+    # playlists = Playlist.query.all()
+    # return {'playlists': [playlist.to_dict() for playlist in playlists]}
 
 
 @playlist_routes.route('/', methods=['POST'])
