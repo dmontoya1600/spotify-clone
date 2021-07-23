@@ -14,27 +14,34 @@ def addSong():
     songs = Song.query.all()
     songDicts = [so.to_dict() for so in songs]
     api_id = request.json['song']['id']
+    # so = request.json['song']
     id = request.json['playlist']['id']
     indicator = False
 
-    for so in songDicts:
-        if so['api_id'] == api_id:
+    for s in songDicts:
+        if s['api_id'] == api_id:
             indicator = True
 
-
-    print("-"*40)
-    print("THIS IS THE SONG", song)
-    print("-"*40)
     if indicator:
         song = Song.query.filter_by(api_id = api_id).first()
-        db.session.execute(saved_songs.insert().values(song_id=song['id'], playlist_id=id))
+        playlist = Playlist.query.get(id)
+
+        # db.session.execute(saved_songs.insert().values(song_id=song['id'], playlist_id=id))
         # db.session.add(song)
         # db.session.commit()
         # playlist = Playlist.query.get(id)
         # return jsonify(playlist)
         pass
     else:
-        song = Song()
+        pass
+        # song = Song(
+        #     id = so['id'],
+        #     api_id = so,
+        #     song_name = so,
+        #     artist_name = so,
+        #     image_url = so,
+        #     playlists = so,
+        #     )
 
     print("THIS IS THE INDICATOR ", indicator, id)
     return api_id
