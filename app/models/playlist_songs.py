@@ -16,6 +16,7 @@ follow_playlist = db.Table(
     db.Column("playlist_id", db.Integer, db.ForeignKey("playlists.id"), primary_key=True)
 )
 
+
 class Song(db.Model):
     __tablename__ = 'songs'
 
@@ -54,9 +55,7 @@ class Playlist(db.Model):
             'name': self.playlist_name,
             'img': self.playlist_image_url,
             'user': self.user_id,
-            'songs': self.songs,
         }
-
 
     def get_songs(self):
         return self.songs

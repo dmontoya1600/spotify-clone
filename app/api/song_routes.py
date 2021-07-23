@@ -24,7 +24,7 @@ def addSong():
 
     if indicator:
         song = Song.query.filter_by(api_id = api_id).first()
-        playlist = Playlist.query.get(id)
+        # playlist = Playlist.query.get(id)
 
         # db.session.execute(saved_songs.insert().values(song_id=song['id'], playlist_id=id))
         # db.session.add(song)

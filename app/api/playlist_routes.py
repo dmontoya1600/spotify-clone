@@ -4,6 +4,7 @@ from app.models import db, User, Playlist, Song
 
 playlist_routes = Blueprint('playlists', __name__)
 
+
 @playlist_routes.route('/', methods=['GET'])
 def get_playlists():
     playlists = Playlist.query.all()

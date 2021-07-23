@@ -28,7 +28,7 @@ const removePlaylist = (playlistId) => {
 
 export const getPlaylists = (userId) => async(dispatch) =>{
     const response = await fetch('/api/playlists/');
-
+    console.log(response)
     if(response.ok){
         if(userId === undefined){
             const playlist = await response.json();
@@ -74,7 +74,7 @@ export const makePlaylist = (userId, playlist) => async(dispatch) =>{
         const playlist = await response.json();
         dispatch(getPlaylists(userId));
         return playlist;
-        
+
     }
 }
 

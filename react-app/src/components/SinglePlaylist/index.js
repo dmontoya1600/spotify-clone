@@ -51,7 +51,6 @@ export default function SinglePlaylist () {
     }, [dispatch])
 
 
-    console.log("BIG! : ", ourSongs.songs)
 
 
     let editContent;

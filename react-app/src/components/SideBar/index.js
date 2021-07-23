@@ -18,7 +18,7 @@ const SideBar = () => {
 
     useEffect(() => {
         dispatch(getPlaylists( userId));
-    }, [dispatch]);
+    }, [sessionUser]);
 
 
     let num = 0;
