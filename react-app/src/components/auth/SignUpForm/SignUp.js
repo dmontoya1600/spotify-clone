@@ -53,10 +53,10 @@ const SignUpForm = () => {
   return (
     <div className="signUpForm__container">
 
-      <div className="signUpForm__header"><NavLink to="/" exact={true}><div className="logo">Audify</div></NavLink></div>
+      <div className="signUpForm__header"><NavLink to="/" exact={true}><div className="logo"></div></NavLink></div>
 
       <div className="signUpForm__main">
-        
+
         <form onSubmit={onSignUp} className="signUpForm">
           <div className="signUpForFree">Sign up for free to start listening.</div>
           <button type="button" className="demoButton" onClick={handleDemo}>CONTINUE WITH DEMO</button>

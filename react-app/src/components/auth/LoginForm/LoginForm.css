@@ -5,6 +5,10 @@
   height: 100vh;
   width: 100vw;
   font-family: "Montserrat", sans-serif;
+  background-image: linear-gradient(to bottom, #313131, #0f0f0f);  ;
+}
+.loginForm__container div {
+  color: white;
 }
 
 .loginForm__header {
@@ -15,6 +19,8 @@
   font-size: 48px;
   font-weight: bold;
   border-bottom: 1px solid lightgray;
+  background-image: linear-gradient(to top, #313131, #0f0f0f);
+
 }
 
 .loginForm__main {
@@ -93,7 +99,7 @@
 
 .loginButton {
   background-color: limegreen;
-  color: black;
+  color: white;
   height: 48px;
   font-size: 14px;
   line-height: 1;

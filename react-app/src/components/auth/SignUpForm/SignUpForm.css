@@ -9,8 +9,11 @@ a {
   height: 100vh;
   width: 100vw;
   font-family: "Montserrat", sans-serif;
+  background-image: linear-gradient(to bottom, #313131, #0e0d0d);  ;
 }
-
+.signUpForm__container {
+  color:white;
+}
 .signUpForm__header {
   display: flex;
   justify-content: center;
@@ -19,6 +22,8 @@ a {
   font-size: 48px;
   font-weight: bold;
   border-bottom: 1px solid lightgray;
+  background-image: linear-gradient(to top, #313131, #0e0d0d);  ;
+
 }
 
 .signUpForm__main {

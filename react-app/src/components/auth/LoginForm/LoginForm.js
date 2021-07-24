@@ -46,7 +46,7 @@ const LoginForm = () => {
   return (
     <div className="loginForm__container">
 
-      <div className="loginForm__header"><NavLink to="/" exact={true}><div className="logo">Audify</div></NavLink></div>
+      <div className="loginForm__header"><NavLink to="/" exact={true}><div className="logo"></div></NavLink></div>
 
       <div className="loginForm__main">
 
