@@ -3,6 +3,7 @@ import { useDispatch, useSelector} from "react-redux";
 import { useParams } from 'react-router-dom';
 import "./Song.css"
 import { addSongThunk } from '../../store/song';
+import { setCurrentSong } from '../../store/currentSong';
 
 
 export default function Song({ track }) {
@@ -36,10 +37,13 @@ export default function Song({ track }) {
     const openForm = () => setShowForm(true);
     const closeForm = () => setShowForm(false);
 
+    async function playsong(id) {
+        await dispatch(setCurrentSong(`track/${id}`))
+    }
 
     return (
         <div className="song__container">
-            <button className="song__playBtn"><div className="song__playbtnImage"></div></button>
+            <button className="song__playBtn" onClick={() => playsong((track.id))}><div className="song__playbtnImage"></div></button>
             <div className="song__imageDiv">
                 <img src={track.album.images[0].url} className="song__image"/>
             </div>
