@@ -84,7 +84,7 @@ export default function SinglePlaylist () {
     if (!currentPlaylist) return null;
 
     async function playsong(id) {
-        await dispatch(setCurrentSong(id))
+        await dispatch(setCurrentSong(`track/${id}`))
     }
 
     function formatMillis(millis) {

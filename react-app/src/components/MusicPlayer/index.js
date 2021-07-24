@@ -18,25 +18,13 @@ const MusicPlayer = () => {
 
   if (currentSong) {
       return (<div className="MusicPlayer__container">
-      <SpotifyPlayer
-      uri={`spotify:track:${currentSong}`}
-      size={size}
-      view={view}
-      theme={theme}
-      /> 
+  <iframe src={`https://open.spotify.com/embed/${currentSong}`} view="list" width="100%" height="100%" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
   </div>
-  )}
-
-  return (
-    <div className="MusicPlayer__container">
-    <SpotifyPlayer
-    uri={`spotify:track:60ynsPSSKe6O3sfwRnIBRf`}
-    size={size}
-    view={view}
-    theme={theme}
-    />
-    </div>
-  )
+  )} else {
+    // return <div className="MusicPlayer__container"></div>
+    return <div className="MusicPlayer__container">
+      </div>
+  }
 }
 
 export default MusicPlayer

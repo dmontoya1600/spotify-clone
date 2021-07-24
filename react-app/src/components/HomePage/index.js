@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux"
 import Playlist from '../Playlist';
 import { setFeaturePlaylist } from '../../store/featurePlaylist';
+import { setCurrentSong } from '../../store/currentSong';
 import "./HomePage.css"
 
 
@@ -34,13 +35,16 @@ const HomePage = () => {
         songs: "Save Your Tears, Blinding Lights, I feel it coming"
     }
 
+    async function playsong(id) {
+        await dispatch(setCurrentSong(`playlist/${id}`))
+    }
 
     return (
         <div className="homePage__container">
             <div className="homePage__h2"><h2>Featured Playlist</h2></div>
             <div className="homePage__fPlaylistContainer">
                 {featurePlaylists?.map(list => (
-                <Playlist key={list.id} feature={list} />
+                <div onClick={() => playsong(list.id)}><Playlist key={list.id} feature={list} onClick={() => playsong(list.id)} /></div>
                 ))}
             </div>
 
