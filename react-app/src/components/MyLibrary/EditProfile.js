@@ -45,7 +45,7 @@ function EditForm() {
     return (
         <div className='popup-background'>
             <div className='edit_form'>
-            <div className='exit' onClick={handleClose}>X</div>
+                <div className='exit' onClick={handleClose}>X</div>
                 <label>Username
                     <input type='text' value={username} onChange={(e) => {setUsername(e.target.value)}} />
                 </label>

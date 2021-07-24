@@ -28,7 +28,7 @@ const SideBar = () => {
         num++
         let newPlaylist = {
             playlist_name : `New Playlist `,
-            playlist_image_url: "MOO",
+            playlist_image_url: "https://www.pngfind.com/pngs/m/137-1378394_music-note-free-png-image-outline-of-music.png",
             user_id : sessionUser.id,
         }
         if(newPlaylist){
@@ -50,15 +50,33 @@ const SideBar = () => {
         }
     }
 
-    let button;
+    let buttons;
+    let list
     if(sessionUser){
-        button = (
+        buttons = (
+            <>
+            <NavLink to="/mylibrary" activeClassName='activated' className="menuItem">
+                <div className="icon"><VscLibrary/></div>
+                <div className="menuTitle">My Library</div>
+            </NavLink>
             <NavLink to="/playlists/:id" className="menuItem" activeClassName='activated' onClick={handleCreate}>
                 <div className="icon"><GoDiffAdded /></div>
                 <div className="menuItemTitle">Create Playlist</div>
-                </NavLink>
+            </NavLink>
+            </>
+        )
+        list = (
+            <div className="playlists__container">
+                {playlists.map(playlist => (
+                        <div key={playlist.id} className="playlistItem">
+                        <NavLink to={`/playlists/${playlist.id}`}>{playlist.name}</NavLink>
+                        </div>
+                    )
+                )}
+            </div>
         )
     }
+
     return (
         <div className="sideBar__container">
 
@@ -81,13 +99,8 @@ const SideBar = () => {
                         <div className="menuItemTitle">Search</div>
                     </NavLink>
 
-                    <NavLink to="/mylibrary" activeClassName='activated' className="menuItem">
-                        <div className="icon"><VscLibrary/></div>
-                        <div className="menuTitle">My Library</div>
-                    </NavLink>
-
                     <div>
-                        {button}
+                        {buttons}
                     </div>
 
                 <NavLink to="/likedplaylists" activeClassName='activated' className="menuItem">
@@ -96,15 +109,9 @@ const SideBar = () => {
                 </NavLink>
 
             </div>
+            { list}
 
-            <div className="playlists__container">
-                {playlists.map(playlist => (
-                        <div key={playlist.id} className="playlistItem">
-                        <NavLink to={`/playlists/${playlist.id}`}>{playlist.name}</NavLink>
-                        </div>
-                    )
-                )}
-            </div>
+            
 
             </div>
 

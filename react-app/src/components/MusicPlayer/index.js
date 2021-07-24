@@ -11,21 +11,20 @@ const MusicPlayer = () => {
     const size = {
     width: '100%',
     height: 300,
-  };
+};
   
-  const view = 'list'; // or 'coverart'
-  const theme = 'black'; // or 'white'
-   
-    return (
-        <div className="MusicPlayer__container">
-            <SpotifyPlayer
-            uri={`spotify:track:${currentSong}`}
-            size={size}
-            view={view}
-            theme={theme}
-            />
-        </div>
-    )
+  const view = 'coverart';
+  const theme = 'black';
+
+  if (currentSong) {
+      return (<div className="MusicPlayer__container">
+  <iframe src={`https://open.spotify.com/embed/${currentSong}`} view="list" width="100%" height="100%" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+  </div>
+  )} else {
+    // return <div className="MusicPlayer__container"></div>
+    return <div className="MusicPlayer__container">
+      </div>
+  }
 }
 
 export default MusicPlayer
