@@ -7,10 +7,10 @@ import { setSearch } from '../../store/search';
 
 const NavBar = () => {
   const user = useSelector(state => state.session.user);
-  const isSearch = useLocation();
   const token = useSelector((state) => state.access.access_token)
   const [searchInput, setSearchInput] = useState("")
   const dispatch = useDispatch()
+  const location = useLocation().pathname
 
   useEffect(async()=> {
     if (token && searchInput) {
@@ -30,14 +30,15 @@ const NavBar = () => {
   return (
       <div className="navigation__container">
 
-        <div id="search">
-       {/* {isSearch.pathname === "/search" &&
-       <input id="searchBar" type="search" placeholder="Search Artists, Songs, or Playlists" />
-       } */}
-       <input id="searchBar" value={searchInput} onChange={(e) => setSearchInput(e.target.value)} type="search" placeholder="Search Artists, Songs, or Playlists" />
-       </div>
+      <div id="search">
+        <input id="searchBar" value={searchInput} type="search"
+                onChange={(e) => setSearchInput(e.target.value)}
+                placeholder="Search Artists, Songs, or Playlists"
+                style={{visibility: location === "/search" || location.startsWith("/playlists") ? "visible" : "hidden" }}
+                />
+      </div>
 
-       <div id="sessionButtons">
+      <div id="sessionButtons">
       {user ? <LogoutButton /> :
       <>
       <NavLink to='/sign-up' exact={true} activeClassName='active'><button id="navSignUpButton">Sign Up</button></NavLink>
