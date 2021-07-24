@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import * as picActions from '../../store/uploadPic'
 import {loadUser} from '../../store/userPage'
@@ -62,6 +62,13 @@ function MyProfile() {
   let [backgroundColor, setBackgroundColor] = useState('rgb(0, 0, 0)')
 
   useEffect(() => {
+
+    if (!user || !currentUser) {
+      return (
+      <Redirect to="/"/>
+      )
+    }
+
       (async () => {
         await dispatch(loadUser(currentUser.id))
         await dispatch(picActions.loadPic(currentUser.id))
@@ -77,6 +84,11 @@ function MyProfile() {
 }
 
 useEffect( async () => {
+  if (!user || !currentUser) {
+    return (
+    <Redirect to="/"/>
+    )
+  }
   console.log('SECOND TRIGGER')
   await fetch(currentUser.user_image)
   let rgbObj = JSON.parse(JSON.stringify(getAverageRGB(document.getElementById('i'))))
@@ -98,9 +110,10 @@ useEffect( async () => {
 function handleIconClick(){
   document.getElementById('file').click()
 }
-  if (!user) {
-    return null;
+  if (!user || !currentUser) {
+    return <Redirect to="/" />;
   }
+
 
   return (
     <div style={{backgroundImage: `linear-gradient(${backgroundColor}, black)`}} className='profile_banner'>

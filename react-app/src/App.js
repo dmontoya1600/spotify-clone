@@ -42,61 +42,40 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Switch>
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
-        <Route path='/' exact={true}>
-          <div className='Main__container'>
-            <NavBar />
-            <SideBar />
-            <MusicPlayer />
-            <div className='MainContent__container'>
+      <div className='Main__container'>
+        <NavBar />
+        <SideBar />
+        <MusicPlayer />
+        <div className='MainContent__container'>
+        <Switch>
+          <Route path='/' exact={true}>
               <HomePage/>
-            </div>
-          </div>
-        </Route>
-        <Route path='/search' exact={true}>
-          <div className='Main__container'>
-            <NavBar />
-            <SideBar />
-            <MusicPlayer />
-            <div className='MainContent__container'>
+            </Route>
+          <Route path='/search' exact={true}>
             <Search/>
-            </div>
-          </div>
-        </Route>
-        <Route path='/mylibrary' exact={true}>
-          <div className='Main__container'>
-            <NavBar />
-            <SideBar />
-            <MusicPlayer />
-            <div className='MainContent__container'>
-              <MyLibrary/>
-            </div>
-          </div>
-        </Route>
-        <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
-        </ProtectedRoute>
-        <Route path='/playlists/:playlistId' exact={true} >
-        <div className='Main__container'>
-            <NavBar />
-            <SideBar />
-            <MusicPlayer />
-            <div className='MainContent__container'>
-              <SinglePlaylist />
-            </div>
-          </div>
-        </Route>
-        <ProtectedRoute path='/playlists/:playlistId/edit' exact={true} >
-          <EditPlaylist />
-        </ProtectedRoute>
-      </Switch>
-    </BrowserRouter>
+            </Route>
+          <Route path='/mylibrary' exact={true}>
+            <MyLibrary/>
+          </Route>
+          <ProtectedRoute path='/users' exact={true} >
+            <UsersList/>
+          </ProtectedRoute>
+          <Route path='/playlists/:playlistId' exact={true} >
+            <SinglePlaylist />
+          </Route>
+          <ProtectedRoute path='/playlists/:playlistId/edit' exact={true} >
+            <EditPlaylist />
+          </ProtectedRoute>
+        </Switch>
+      </div>
+    </div>
+  </BrowserRouter>
   );
 }
 

@@ -63,6 +63,10 @@ const SideBar = () => {
                 <div className="icon"><GoDiffAdded /></div>
                 <div className="menuItemTitle">Create Playlist</div>
             </NavLink>
+            <NavLink to="/likedplaylists" activeClassName='activated' className="menuItem">
+                        <div className="icon"><BsHeartFill/></div>
+                        <div className="menuItemTitle">Liked Playlists</div>
+            </NavLink>
             </>
         )
         list = (
@@ -102,11 +106,6 @@ const SideBar = () => {
                     <div>
                         {buttons}
                     </div>
-
-                <NavLink to="/likedplaylists" activeClassName='activated' className="menuItem">
-                        <div className="icon"><BsHeartFill/></div>
-                        <div className="menuItemTitle">Liked Playlists</div>
-                </NavLink>
 
             </div>
             { list}
