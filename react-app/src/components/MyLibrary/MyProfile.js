@@ -21,7 +21,9 @@ function getAverageRGB(imgEl) {
       length,
       rgb = {r:0,g:0,b:0},
       count = 0;
-
+    if (!imgEl){
+      return defaultRGB
+    }
     console.log('COUNT:', doCount)
     doCount++
   height = canvas.height = imgEl.naturalHeight || imgEl.offsetHeight || imgEl.height;
