@@ -43,8 +43,12 @@ export default function DbSong({ song, playlistId }) {
                         {showMenu &&
                             <div className="song_removeForm">
                                     <button
-                                    onClick={(e)=> {
-                                        dispatch(delSongThunk({"song": song, 'playlistId': playlistId}))
+                                    onClick={async(e)=> {
+                                        const res = await dispatch(delSongThunk({"song": song, 'playlistId': playlistId}))
+                                        console.log("THIS IS THE DISPATCH RES", res)
+                                        if (res.ok == true) {
+                                            history.push(location)
+                                        }
                                     }}>Remove Song</button>
                             </div>
                         }

@@ -29,7 +29,7 @@ def addSong():
         playlist.songs.append(song)
         db.session.add(playlist)
         db.session.commit()
-        return playlist.to_dict()
+        return song.to_dict()
     else:
         song = Song(
             api_id=so['id'],
@@ -42,7 +42,7 @@ def addSong():
         playlist.songs.append(song)
         db.session.add(playlist)
         db.session.commit()
-        return playlist.to_dict()
+        return song.to_dict()
 
 
 @song_routes.route("/", methods=["DELETE"])
@@ -51,11 +51,11 @@ def delSong():
     playlistId = request.json['playlistId']
     song = Song.query.get(songId)
     playlist = Playlist.query.get(playlistId)
-    print("-"*40)
-    print(song, playlist)
-    print("-"*40)
+    # print("-"*40)
+    # print(song, playlist)
+    # print("-"*40)
     playlist.songs.remove(song)
     db.session.add(playlist)
     db.session.commit()
 
-    return playlist.to_dict()
+    return song.to_dict()

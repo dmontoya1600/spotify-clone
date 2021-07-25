@@ -69,7 +69,10 @@ export default function Song({ track }) {
                             {userPlaylists?.map(list => (
                                 <button key={list.id}
                                     value={list}
-                                    onClick={() => dispatch(addSongThunk({playlist: list, song: track}))}>
+                                    onClick={() =>{
+                                        dispatch(addSongThunk({playlist: list, song: track}))
+                                        closeMenu()
+                                        }}>
                                     {list.name}
                                 </button>
                             ))}

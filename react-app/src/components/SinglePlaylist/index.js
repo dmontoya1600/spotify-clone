@@ -9,6 +9,7 @@ import { setCurrentSong } from '../../store/currentSong';
 import "./SinglePlaylist.css"
 import "../Song/Song.css"
 import DbSong from '../DbSong';
+import { getSongsThunk } from '../../store/song';
 
 export default function SinglePlaylist () {
     let history = useHistory();
@@ -18,41 +19,21 @@ export default function SinglePlaylist () {
     const playlistId = useParams().playlistId;
     const userId = sessionUser?.id
     const [showEditPlaylist, setShowEditPlaylist] = useState(false);
+    const songList = useSelector(state => Object.values(state.songs))
 
     if(!sessionUser){
         history.push("/")
     }
 
-    const [songList, setSongList] = useState([]);
-
-
     const currentPlaylist = sessionPlaylists[playlistId]
-
-
 
     useEffect(async() => {
         setShowEditPlaylist(false)
         await dispatch(getPlaylists(userId))
     }, [setShowEditPlaylist ,dispatch]);
 
-
-
     useEffect(() => {
-
-        const getSongs = async(playlistId) => {
-            let data = await fetch("/api/playlist-songs/", {
-                method:'POST',
-                headers: { 'Content-Type': 'application/json'},
-                body: JSON.stringify({playlistId})
-            })
-            let songs = await data.json()
-            return songs;
-        }
-
-        getSongs(playlistId).then((songs) => {
-            let songList = songs.songs
-            setSongList(songList)
-        });
+        dispatch(getSongsThunk(playlistId))
     }, [playlistId, dispatch])
 
 
@@ -72,8 +53,6 @@ export default function SinglePlaylist () {
         }
     }
 
-
-
     if(showEditPlaylist){
         content = (
             <div className="banner">
@@ -84,7 +63,6 @@ export default function SinglePlaylist () {
             />
             </div>
         )
-
     }
     function handleIconClick(){
         document.getElementById('file').click()
