@@ -52,13 +52,13 @@ export const delSongThunk = (obj) => async (dispatch) => {
     })
     if (res.ok) {
       const data = await res.json()
-
+      dispatch(delSong(data))
+      return data
     }
-    // console.log("THIS IS RES", res)
-    return res
   }
 
   export default function reducer(state = {}, action) {
+      let newState = {}
       switch (action.type) {
           case GET_SONGS:
             action.payload.songs.forEach(song => {
@@ -66,7 +66,11 @@ export const delSongThunk = (obj) => async (dispatch) => {
             });
             return state
           case ADD_SONG:
-              let newState = {...state, [action.payload.id] : action.payload }
+              newState = {...state, [action.payload.id] : action.payload }
+              return newState
+          case DEL_SONG:
+              newState = {...state}
+              delete newState[action.payload.id]
               return newState
           default:
               return state;
