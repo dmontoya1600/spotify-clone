@@ -35,11 +35,11 @@ function handleIconClick(){
 
   return (
     <div className='all__playlists'>
-        {userPlaylists?.map(ele => (
-            <div className='individual__playlist' key={ele.id}>
-                <img className='individual__playlist__image' src={ele.img.length > 10 ? ele.img: 'https://www.westernheights.k12.ok.us/wp-content/uploads/2020/01/No-Photo-Available.jpg'}/>
-                <div className='individual__playlist__name'>{ele.name}</div>
-                <div className='individual__playlist__creator'>By {ele.username}</div>
+        {userPlaylists?.map(playlist => (
+            <div className='individual__playlist' key={playlist.id}>
+                <img className='individual__playlist__image' src={playlist.img.length > 10 ? playlist.img: 'https://www.westernheights.k12.ok.us/wp-content/uploads/2020/01/No-Photo-Available.jpg'}/>
+                <div className='individual__playlist__name'>{playlist.name}</div>
+                <div className='individual__playlist__creator'>By {playlist.username}</div>
             </div>
         ))}
     </div>

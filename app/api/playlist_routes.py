@@ -1,6 +1,10 @@
-from flask import Blueprint, jsonify, session, request
+import os
+from flask import Blueprint, jsonify, session, request, current_app
 from app.forms import PlaylistForm, UpdatePlaylistForm
 from app.models import db, User, Playlist, Song
+from app.models.playlist_songs import saved_songs
+from sqlalchemy import create_engine, MetaData
+from sqlalchemy.orm import sessionmaker
 
 playlist_routes = Blueprint('playlists', __name__)
 
@@ -68,3 +72,24 @@ def edit_playlist(playlist_id):
     playlists = Playlist.query.all()
 
     return {'playlists': [playlist.to_dict() for playlist in playlists]}
+
+@playlist_routes.route('/<int:id>/liked')
+def get_liked_playlists(id):
+    db_uri = current_app.config['SQLALCHEMY_DATABASE_URI']
+    engine = create_engine(db_uri)
+    metadata = MetaData(engine)
+    metadata.reflect()
+    table = metadata.tables['follow_playlist']
+    Session = sessionmaker(bind=engine)
+    session = Session()
+    allLiked = session.query(table).filter_by(user_id = id).all()
+    allLikedPlaylists = []
+    for liked in allLiked:
+        currentPlaylist = Playlist.query.get(liked.playlist_id)
+        playlist_owner = User.query.get(currentPlaylist.user_id)
+        updatedPlaylist = currentPlaylist.to_dict()
+        updatedPlaylist['owner'] = playlist_owner.username
+        allLikedPlaylists.append(updatedPlaylist)
+
+
+    return jsonify({'likedPlaylists': allLikedPlaylists})

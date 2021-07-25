@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import * as picActions from '../../store/uploadPic'
 import {loadUser} from '../../store/userPage'
+import { loadLikedPlaylists } from '../../store/playlist';
 import './MyLibrary.css';
 import {formContext} from './Context'
 
@@ -65,6 +66,8 @@ function MyProfile() {
       (async () => {
         await dispatch(loadUser(currentUser.id))
         await dispatch(picActions.loadPic(currentUser.id))
+      dispatch(loadLikedPlaylists(currentUser.id))
+
 
         // let baseImage = getBase64Image(document.getElementById('i'));
         console.log('FIRST TRIGGER', document.getElementById('i'))

@@ -6,6 +6,7 @@ import MyProfile from './MyProfile'
 import Library from './Library';
 import EditForm from './EditProfile';
 import {formContext} from './Context'
+import { loadLikedPlaylists } from '../../store/playlist';
 
 
 
@@ -23,11 +24,11 @@ function MyLibrary() {
     (async () => {
       const response = await fetch(`/api/users/${userId}`);
       const user = await response.json();
-      setUser(user);
+
     })();
   }, [userId]);
 
- 
+
   if (!user) {
     return null;
   }

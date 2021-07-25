@@ -17,6 +17,7 @@ import SideBar from './components/SideBar';
 import MusicPlayer from './components/MusicPlayer';
 import HomePage from './components/HomePage';
 import EditPlaylist from './components/SinglePlaylist/editPlaylist';
+import LikedPlaylists from './components/LikedPlaylists';
 
 
 function App() {
@@ -76,6 +77,16 @@ function App() {
             <MusicPlayer />
             <div className='MainContent__container'>
               <MyLibrary/>
+            </div>
+          </div>
+        </Route>
+        <Route path='/likedplaylists' exact={true}>
+          <div className='Main__container'>
+            <NavBar />
+            <SideBar />
+            <MusicPlayer />
+            <div className='MainContent__container'>
+              <LikedPlaylists/>
             </div>
           </div>
         </Route>
