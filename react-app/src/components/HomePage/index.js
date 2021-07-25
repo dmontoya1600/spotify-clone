@@ -45,7 +45,7 @@ const HomePage = () => {
 
     return (
         <div className="homePage__container">
-            <div className="homePage__h2"><h2>Featured Playlist</h2></div>
+            <div className="homePage__h2"><h2>Featured Playlists</h2></div>
             <div className="homePage__fPlaylistContainer">
                 {featurePlaylists?.map(list => (
                 <div onClick={() => playsong(list.id)}><Playlist key={list.id} feature={list} onClick={() => playsong(list.id)} /></div>
