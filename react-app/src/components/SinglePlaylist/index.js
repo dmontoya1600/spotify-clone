@@ -103,7 +103,7 @@ export default function SinglePlaylist () {
         <div className="songsContainer">
 
                     {content}
-            <h2 className="songsTitle">Songs</h2>
+            <h2 className="songsTitle">Playlist Songs</h2>
             {songList && songList.map((song, index) => (
                 <DbSong key={index} song={song} playlistId={playlistId}/>
             ))}

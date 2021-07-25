@@ -13,7 +13,7 @@ const Search = () => {
     return (
         <div className="Search__container">
             <div className="search__title">
-                <h2>Songs</h2>
+                {searchRes && <h2>Search Results</h2>}
             </div>
             <div className="Search__songsContainer">
                 {searchRes?.items?.map(track => (
