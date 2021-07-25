@@ -98,7 +98,7 @@ useEffect( async () => {
 function handleIconClick(){
   document.getElementById('file').click()
 }
-  if (!user) {
+  if (!currentUser) {
     return null;
   }
 
