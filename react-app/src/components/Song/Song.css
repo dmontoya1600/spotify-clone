@@ -114,3 +114,40 @@
 .song__btsDiv button:hover {
     background-color: #413f3f;
 }
+
+.song_removeForm {
+    position: absolute;
+    right: 39px;
+    top: 13px;
+    width: 105px;
+    height:22px;
+    background-color: #282828;
+    border-radius: 4px;
+  }
+  .song_removeForm button {
+    border: none;
+    width: 100%;
+    background-color: transparent;
+    color: white;
+    font-family: sans-serif;
+    font-weight: 600;
+  }
+  .song_removeForm button:hover {
+    background-color: #413f3f;
+  }
+
+  .song__delBtnImage {
+    background-image: url("../../icons/delete.svg");
+    width: 22px;
+    height: 22px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.song__delBtn {
+    border: none;
+    background-color: transparent;
+    position: absolute;
+    right: 4px;
+    top: 12px;
+    display: none;
+}

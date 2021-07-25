@@ -145,23 +145,4 @@
     background-color: rgb(159, 117, 0);
   }
 
-.song_removeForm {
-  position: absolute;
-  right: 39px;
-  top: 13px;
-  width: 105px;
-  height:22px;
-  background-color: #282828;
-  border-radius: 4px;
-}
-.song_removeForm button {
-  border: none;
-  width: 100%;
-  background-color: transparent;
-  color: white;
-  font-family: sans-serif;
-  font-weight: 600;
-}
-.song_removeForm button:hover {
-  background-color: #413f3f;
-}
+

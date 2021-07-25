@@ -36,15 +36,15 @@ export default function DbSong({ song, playlistId }) {
                         </div>
                         <div className="song__durationDiv">
                             <div className="song__duration">{formatMillis(song.duration_ms)}</div>
-                            <button className="song__addBtn" onClick={!showMenu ? openMenu : closeMenu }>
-                                <div className="song__btnImage" />
+                            <button className="song__delBtn" onClick={!showMenu ? openMenu : closeMenu }>
+                                <div className="song__delBtnImage" />
                             </button>
                         </div>
                         {showMenu &&
                             <div className="song_removeForm">
                                     <button
-                                    onClick={async(e)=> {
-                                        const res = await dispatch(delSongThunk({"song": song, 'playlistId': playlistId}))
+                                    onClick={(e)=> {
+                                        dispatch(delSongThunk({"song": song, 'playlistId': playlistId}))
                                         closeMenu()
                                     }}>Remove Song</button>
                             </div>
