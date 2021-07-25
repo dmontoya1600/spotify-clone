@@ -2,6 +2,7 @@ const ADD_PLAYLIST = 'ADD_PLAYLIST';
 const LOAD_PLAYLIST = 'GET_PLAYLIST';
 const REMOVE_PLAYLIST = 'REMOVE_PLAYLIST';
 const ONE_PLAYLIST = 'ONE_PLAYLIST';
+const LOAD_LIKED_PLAYLISTS = 'plalyist/loadLikedPlaylists'
 
 
 const loadPlaylists = (playlists) => {
@@ -25,7 +26,22 @@ const removePlaylist = (playlistId) => {
     };
 }
 
+const loadLiked = (playlists) => {
+    return {
+        type: LOAD_LIKED_PLAYLISTS,
+        playlists,
+    }
+}
 
+export const loadLikedPlaylists = (userId) =>  async(dispatch) => {
+    const response = await fetch(`/api/playlists/${userId}/liked`)
+    const data = await response.json()
+
+    dispatch(loadLiked(data))
+    return
+
+
+}
 export const getPlaylists = (userId) => async(dispatch) =>{
     const response = await fetch('/api/playlists/');
 
@@ -163,6 +179,12 @@ const playlistReducer = (state = initialState, action) => {
             case REMOVE_PLAYLIST: {
                 let newState =action.playlists
                 return state
+            }
+            case LOAD_LIKED_PLAYLISTS: {
+                return {
+                    ...state,
+                    liked_playlists: action.playlists.likedPlaylists
+                }
             }
             default:
                 return state;

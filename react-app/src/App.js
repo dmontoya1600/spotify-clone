@@ -20,6 +20,7 @@ import EditPlaylist from './components/SinglePlaylist/editPlaylist';
 import LikedPlaylists from "./components/LikedPlaylists/"
 
 
+
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -77,6 +78,16 @@ function App() {
             <MusicPlayer />
             <div className='MainContent__container'>
               <MyLibrary/>
+            </div>
+          </div>
+        </Route>
+        <Route path='/likedplaylists' exact={true}>
+          <div className='Main__container'>
+            <NavBar />
+            <SideBar />
+            <MusicPlayer />
+            <div className='MainContent__container'>
+              <LikedPlaylists/>
             </div>
           </div>
         </Route>
