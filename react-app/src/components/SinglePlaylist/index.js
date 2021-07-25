@@ -8,6 +8,7 @@ import playlistReducer, {getOnePlaylist, getPlaylists, makePlaylist} from '../..
 import { setCurrentSong } from '../../store/currentSong';
 import "./SinglePlaylist.css"
 import "../Song/Song.css"
+import DbSong from '../DbSong';
 
 export default function SinglePlaylist () {
     let history = useHistory();
@@ -16,6 +17,7 @@ export default function SinglePlaylist () {
     const sessionUser = useSelector(state => state.session.user);
     const playlistId = useParams().playlistId;
     const userId = sessionUser?.id
+    const [showMenu, setShowMenu] = useState(false)
     const [showEditPlaylist, setShowEditPlaylist] = useState(false);
 
     if(!sessionUser){
@@ -120,42 +122,14 @@ export default function SinglePlaylist () {
         await dispatch(setCurrentSong(`track/${id}`))
     }
 
-    function formatMillis(millis) {
-        var mins = Math.floor(millis / 60000);
-        var secs = ((millis % 60000) / 1000).toFixed(0);
-        return mins + ":" + (secs < 10 ? '0' : '') + secs;
-    }
-
     return (
-
         <div className="songsContainer">
 
                     {content}
-
-
-
-
-
             <h2 className="songsTitle">Songs</h2>
-            {songList && songList.map((song, index) => {
-            return (
-            <div className="song__container" key={index}>
-                <button className="song__playBtn" id="imageButton" onClick={() => playsong(song.api_id)}><div className="song__playbtnImage"></div></button>
-                <div className="song__imageDiv" >
-                    <img src={song.image_url} className="song__image"/>
-                    </div>
-                    <div className="song__text">
-                        <h4>{song.song_name}</h4>
-                        <p>{song.artist_name}</p>
-                        </div>
-                        <div className="song__durationDiv">
-                            <div className="song__duration">{formatMillis(song.duration_ms)}</div>
-                            <button className="song__addBtn" >
-                                <div className="song__btnImage" />
-                            </button>
-                        </div>
-                    </div>)
-                })}
+            {songList && songList.map((song, index) => (
+                <DbSong key={index} song={song}/>
+            ))}
             <div>
                 <Search />
             </div>
