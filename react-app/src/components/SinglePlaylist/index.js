@@ -17,7 +17,6 @@ export default function SinglePlaylist () {
     const sessionUser = useSelector(state => state.session.user);
     const playlistId = useParams().playlistId;
     const userId = sessionUser?.id
-    const [showMenu, setShowMenu] = useState(false)
     const [showEditPlaylist, setShowEditPlaylist] = useState(false);
 
     if(!sessionUser){
@@ -69,8 +68,8 @@ export default function SinglePlaylist () {
               )
             }
     if(playlistId === key){
-    playlists=value
-    }
+        playlists=value
+        }
     }
 
 
@@ -118,9 +117,9 @@ export default function SinglePlaylist () {
 
     if (!currentPlaylist) return null;
 
-    async function playsong(id) {
-        await dispatch(setCurrentSong(`track/${id}`))
-    }
+    // async function playsong(id) {
+    //     await dispatch(setCurrentSong(`track/${id}`))
+    // }
 
     return (
         <div className="songsContainer">
@@ -128,12 +127,11 @@ export default function SinglePlaylist () {
                     {content}
             <h2 className="songsTitle">Songs</h2>
             {songList && songList.map((song, index) => (
-                <DbSong key={index} song={song}/>
+                <DbSong key={index} song={song} playlistId={playlistId}/>
             ))}
             <div>
                 <Search />
             </div>
         </div>
      )
-
 }

@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector} from "react-redux";
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation, useHistory } from 'react-router-dom';
 import { addSongThunk } from '../../store/song';
 import { setCurrentSong } from '../../store/currentSong';
+import { delSongThunk } from '../../store/song';
 
-
-export default function DbSong({ song }) {
+export default function DbSong({ song, playlistId }) {
     const dispatch = useDispatch();
     const [showMenu, setShowMenu] = useState(false)
+    const location = useLocation().pathname
+    const history = useHistory()
 
     function formatMillis(millis) {
         var mins = Math.floor(millis / 60000);
@@ -39,12 +41,13 @@ export default function DbSong({ song }) {
                             </button>
                         </div>
                         {showMenu &&
-                <div className="song_removeForm">
-                    <form>
-                        <button onClick={(e)=> e.preventDefault() }>Remove Song</button>
-                    </form>
-                </div>
-            }
+                            <div className="song_removeForm">
+                                    <button
+                                    onClick={(e)=> {
+                                        dispatch(delSongThunk({"song": song, 'playlistId': playlistId}))
+                                    }}>Remove Song</button>
+                            </div>
+                        }
         </div>
     )
 }
