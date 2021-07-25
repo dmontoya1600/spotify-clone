@@ -12,10 +12,20 @@ export const addSongThunk = (obj) => async (dispatch) => {
       body: JSON.stringify(obj),
     })
     const data = await res.json()
-    console.log("THIS IS RES", res)
-    console.log("THIS IS Data", data)
+    // console.log("THIS IS RES", res)
+    // console.log("THIS IS Data", data)
     // dispatch(addSong(data))
     // return data
+  }
+export const delSongThunk = (obj) => async (dispatch) => {
+    const res = await fetch('/api/song/', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(obj),
+    })
+    const data = await res.json()
+    console.log("THIS IS RES", res)
+    console.log("THIS IS Data", data)
   }
 
   export default function reducer(state = {}, action) {
