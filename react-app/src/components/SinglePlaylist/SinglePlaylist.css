@@ -1,156 +1,162 @@
-
 .playlist_banner {
-    height: 300px;
-    display: flex;
-    color: white;
+  height: 300px;
+  display: flex;
+  color: white;
 }
 
 .playlist_image {
-    max-width: 600px;
-    height: 100%;
-    padding: 25px;
+  max-width: 600px;
+  height: 100%;
+  padding: 25px;
 }
 
 .banner_text {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 .playlistTitle {
-    font-weight: bold;
-    font-size: 48px;
+  font-weight: bold;
+  font-size: 48px;
+}
+
+.playlistTitle:hover {
+  cursor: pointer;
 }
 
 .songsContainer {
-    width: 100%;
-    margin-left: 20px;
+  width: 100%;
+  margin-left: 20px;
 }
 
 .Search__songsContainer {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .songsTitle {
-        color:white;
-        padding-top: 20px;
-        padding-bottom: 20px;
+  color: white;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
+
+
 
 #imageButton {
-    cursor: pointer;
+  cursor: pointer;
 }
 
-.profile_icon{
-    position: relative;
-    grid-area: icon;
-    display: flex;
-    width: 250px;
-    height: 250px;
-    border-radius: 50%;
-    overflow: hidden;
+.profile_icon {
+  position: relative;
+  grid-area: icon;
+  display: flex;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  overflow: hidden;
 }
-
-
 
 .overlay {
-    position: absolute;
-    background: rgb(0, 0, 0);
-    background: rgba(0, 0, 0, 0.5); /* Black see-through */
-    color: #f1f1f1;
-    width: 100%;
-    height: 100%;
-    transition: .5s ease;
-    opacity:0;
-    color: white;
-    font-size: 20px;
-    padding: 35px;
-  }
+  position: absolute;
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.5); /* Black see-through */
+  color: #f1f1f1;
+  width: 100%;
+  height: 100%;
+  transition: 0.5s ease;
+  opacity: 0;
+  color: white;
+  font-size: 20px;
+  padding: 35px;
+}
 
-  .profile_icon:hover .overlay {
-    opacity: 1;
-  }
+.profile_icon:hover .overlay {
+  opacity: 1;
+}
 
-  input[type=text], select, textarea {
-    width: 100%; /* Full width */
-    padding: 12px; /* Some padding */
-    border: 1px solid rgb(147, 147, 147); /* Gray border */
-    border-radius: 4px; /* Rounded borders */
-    box-sizing: border-box; /* Make sure that padding and width stays in place */
-    margin-top: 6px; /* Add a top margin */
-    margin-bottom: 16px; /* Bottom margin */
-    resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
-  }
+input[type="text"],
+select,
+textarea {
+  width: 100%; /* Full width */
+  padding: 12px; /* Some padding */
+  border: 1px solid rgb(147, 147, 147); /* Gray border */
+  border-radius: 4px; /* Rounded borders */
+  box-sizing: border-box; /* Make sure that padding and width stays in place */
+  margin-top: 6px; /* Add a top margin */
+  margin-bottom: 16px; /* Bottom margin */
+  resize: vertical; /* Allow the user to vertically resize the textarea (not horizontally) */
+}
 
-  input[type=password], select, textarea {
-    width: 100%; /* Full width */
-    padding: 12px; /* Some padding */
-    border: 1px solid #ccc; /* Gray border */
-    border-radius: 4px; /* Rounded borders */
-    box-sizing: border-box; /* Make sure that padding and width stays in place */
-    margin-top: 6px; /* Add a top margin */
-    margin-bottom: 16px; /* Bottom margin */
-    resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
-  }
-  .submit {
-    background-color: rgb(255, 187, 0);
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
+input[type="password"],
+select,
+textarea {
+  width: 100%; /* Full width */
+  padding: 12px; /* Some padding */
+  border: 1px solid #ccc; /* Gray border */
+  border-radius: 4px; /* Rounded borders */
+  box-sizing: border-box; /* Make sure that padding and width stays in place */
+  margin-top: 6px; /* Add a top margin */
+  margin-bottom: 16px; /* Bottom margin */
+  resize: vertical; /* Allow the user to vertically resize the textarea (not horizontally) */
+}
+.submit {
+  background-color: rgb(255, 187, 0);
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
 
-  .submit:hover {
-    background-color: rgb(159, 117, 0);
+.submit:hover {
+  background-color: rgb(159, 117, 0);
+}
 
-  }
+.delete {
+  margin-left: 5px;
+  background-color: rgb(255, 187, 0);
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
 
-  .delete {
-    margin-left: 5px;
-    background-color: rgb(255, 187, 0);
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
+.delete:hover {
+  background-color: rgb(159, 117, 0);
+}
 
-  .delete:hover {
-    background-color: rgb(159, 117, 0);
-  }
+.exit {
+  background-color: rgb(255, 187, 0);
+  color: white;
+  /* padding: 5%; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  height: 20px;
+  width: 20px;
 
-  .exit{
-    background-color: rgb(255, 187, 0);
-    color: white;
-    /* padding: 5%; */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: none;
-    height: 20px;
-    width: 20px;
+  border-radius: 4px;
 
-    border-radius: 4px;
-
-    cursor: pointer;
-    margin-left: auto;
+  cursor: pointer;
+  margin-left: auto;
 }
 
 .exit:hover {
-    background-color: rgb(159, 117, 0);
-  }
+  background-color: rgb(159, 117, 0);
+}
 
 .song_removeForm {
   position: absolute;
   right: 39px;
   top: 13px;
   width: 105px;
-  height:22px;
+  height: 22px;
   background-color: #282828;
   border-radius: 4px;
 }
