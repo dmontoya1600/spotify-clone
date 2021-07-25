@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import * as picActions from '../../store/uploadPic'
 import {loadUser} from '../../store/userPage'
@@ -101,7 +101,7 @@ useEffect( async () => {
 function handleIconClick(){
   document.getElementById('file').click()
 }
-  if (!user) {
+  if (!currentUser) {
     return null;
   }
 
