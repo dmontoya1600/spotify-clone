@@ -38,7 +38,11 @@ export default function Song({ track }) {
     const closeForm = () => setShowForm(false);
 
     async function playsong(id) {
-        await dispatch(setCurrentSong(`track/${id}`))
+        if (sessionUser) {
+            await dispatch(setCurrentSong(`track/${id}`))
+        } else {
+            return;
+        }
     }
 
     return (

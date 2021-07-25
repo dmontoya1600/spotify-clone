@@ -11,7 +11,7 @@ const HomePage = () => {
     const accessToken = useSelector(state => state.access.access_token)
     const dispatch = useDispatch()
     const featurePlaylists = useSelector(state => Object.values(state.featurePlaylists))
-
+    const user = useSelector(state => state.session.user)
 
     useEffect(()=> {
         if (accessToken) {
@@ -36,7 +36,11 @@ const HomePage = () => {
     }
 
     async function playsong(id) {
-        await dispatch(setCurrentSong(`playlist/${id}`))
+        if (user) {
+            await dispatch(setCurrentSong(`playlist/${id}`))
+        } else {
+            return;
+        }
     }
 
     return (
