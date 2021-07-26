@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux"
 import Playlist from '../Playlist';
 import { setFeaturePlaylist } from '../../store/featurePlaylist';
@@ -48,7 +47,7 @@ const HomePage = () => {
             <div className="homePage__h2"><h2>Featured Playlists</h2></div>
             <div className="homePage__fPlaylistContainer">
                 {featurePlaylists?.map(list => (
-                <div onClick={() => playsong(list.id)}><Playlist key={list.id} feature={list} onClick={() => playsong(list.id)} /></div>
+                <div key={list.id} onClick={() => playsong(list.id)}><Playlist feature={list} onClick={() => playsong(list.id)} /></div>
                 ))}
             </div>
 
