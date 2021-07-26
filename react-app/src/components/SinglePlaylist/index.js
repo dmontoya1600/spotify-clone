@@ -4,7 +4,7 @@ import {NavLink, useParams, Redirect, useHistory } from 'react-router-dom';
 import EditPlaylist from './editPlaylist';
 import Song from '../Song';
 import Search from '../Search';
-import playlistReducer, {getOnePlaylist, getPlaylists, makePlaylist} from '../../store/playlist'
+import playlistReducer, {getOnePlaylist, getPlaylists, makePlaylist, uploadPlaylistPic} from '../../store/playlist'
 import { setCurrentSong } from '../../store/currentSong';
 import "./SinglePlaylist.css"
 import "../Song/Song.css"
@@ -67,16 +67,23 @@ export default function SinglePlaylist () {
     function handleIconClick(){
         document.getElementById('file').click()
       }
+    async function uploadFile(e){
+        await dispatch(uploadPlaylistPic(e.target.files[0], playlistId))
+    }
+    function handleIconClick(){
+        document.getElementById('file').click()
+      }
 
     if(!showEditPlaylist){
         content = (
             <div className="playlist_banner">
-                <div className="playlist_icon" >
+                <div className="playlist_icon" onClick={(e) => handleIconClick(e)}>
                     <img className="playlist_image" src={currentPlaylist?.img}/>
                     <div className='overlay'>
                         <img className='overlay_image' src='https://cdn.iconscout.com/icon/free/png-256/edit-2653317-2202989.png'/>
                     </div>
                 </div>
+                <input id='file' type='file' hidden placeholder='Update Picture' onChange={uploadFile}/>
                 <div className="banner_text" onClick={()=>setShowEditPlaylist(true)}>
                     <div className="playlistTitle" >
                         {currentPlaylist?.name}

@@ -24,7 +24,6 @@ function getAverageRGB(imgEl) {
     if (!imgEl){
       return defaultRGB
     }
-    console.log('COUNT:', doCount)
     doCount++
   height = canvas.height = imgEl.naturalHeight || imgEl.offsetHeight || imgEl.height;
   width = canvas.width = imgEl.naturalWidth || imgEl.offsetWidth || imgEl.width;
@@ -72,8 +71,6 @@ function MyProfile() {
 
 
         // let baseImage = getBase64Image(document.getElementById('i'));
-        console.log('FIRST TRIGGER', document.getElementById('i'))
-        console.log('THIS IS THE RGB', getAverageRGB(document.getElementById('i')))
       })();
   }, [activeForm])
 
@@ -82,19 +79,15 @@ function MyProfile() {
 }
 
 useEffect( async () => {
-  console.log('SECOND TRIGGER')
   await fetch(currentUser.user_image)
   let rgbObj = JSON.parse(JSON.stringify(getAverageRGB(document.getElementById('i'))))
-  console.log(`THIS IS THE RGB${currentUser.user_image}`, rgbObj)
 
   if(rgbObj.r !== 0 && rgbObj.g !== 0){
     let r = rgbObj.r
     let g = rgbObj.g
     let b = rgbObj.b
-    console.log(`rgb(${r}, ${g}, ${b})`)
 
     setBackgroundColor(`rgb(${r}, ${g}, ${b})`)
-    console.log('THIS IS BACKGROUND COLOR', backgroundColor, rgbObj)
   }
 }, [pageUser])
 

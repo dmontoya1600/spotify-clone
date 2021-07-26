@@ -15,7 +15,6 @@ export const EditPlaylist = ({ playlistId, hideForm }) => {
 
     let playlist;
     if(sessionPlaylists && sessionPlaylists[id]) playlist = sessionPlaylists[id];
-    console.log("playlist: ", playlist);
 
     useEffect(() => {
         // dispatch(getPlaylist(id))
@@ -51,9 +50,7 @@ export const EditPlaylist = ({ playlistId, hideForm }) => {
 
 
         if(updatedPlaylist){
-            console.log("updatedPlaylist: ", updatedPlaylist)
             updatedPlaylist = await dispatch(editOnePlaylist(userId, updatedPlaylist));
-            console.log("All the way up: ", updatedPlaylist);
             hideForm();
         }
     }
