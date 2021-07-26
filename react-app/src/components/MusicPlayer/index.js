@@ -1,15 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {useSelector} from "react-redux";
-import "./MusicPlayer.css";
-
 
 const MusicPlayer = () => {
 
   const {currentSong} = useSelector(state => state.currentSong)
   const user = useSelector(state => state.session.user)
-  useEffect(() => {
-    console.log('THIS IS THE CURRENT SONG', currentSong)
-  })
 
   if (currentSong && user) {
       return (<div className="MusicPlayer__container">
