@@ -87,7 +87,7 @@ export const EditPlaylist = ({ playlistId, hideForm }) => {
                     placeholder="Choose Photo URL"
                     onChange={(e)=>setPlaylistImg(e.target.value)}
                 />
-                <button className="submit" >update</button>
+                <button className="submit" >Update</button>
                 <button className="delete" onClick={handleDelete} >Delete Playlist</button>
             </form>
         </div>
