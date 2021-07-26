@@ -28,11 +28,11 @@ const HomePage = () => {
         dispatch(setFeaturePlaylist(data))
 
     }
-    const testingInfo = {
-        imgSrc: "https://upload.wikimedia.org/wikipedia/commons/b/b8/FEQ_July_2018_The_Weeknd_%2844778856382%29_%28cropped%29.jpg",
-        name: "Starboy",
-        songs: "Save Your Tears, Blinding Lights, I feel it coming"
-    }
+//    const testingInfo = {
+//        imgSrc: "https://upload.wikimedia.org/wikipedia/commons/b/b8/FEQ_July_2018_The_Weeknd_%2844778856382%29_%28cropped%29.jpg",
+//        name: "Starboy",
+//        songs: "Save Your Tears, Blinding Lights, I feel it coming"
+//    }
 
     async function playsong(id) {
         if (user) {
