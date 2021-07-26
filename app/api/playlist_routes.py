@@ -5,6 +5,9 @@ from app.models import db, User, Playlist, Song
 from app.models.playlist_songs import saved_songs
 from sqlalchemy import create_engine, MetaData
 from sqlalchemy.orm import sessionmaker
+import logging
+import boto3
+from botocore.exceptions import ClientError
 
 playlist_routes = Blueprint('playlists', __name__)
 
@@ -93,3 +96,40 @@ def get_liked_playlists(id):
 
 
     return jsonify({'likedPlaylists': allLikedPlaylists})
+
+def create_presigned_post(bucket_name, object_name,
+                          fields=None, conditions=None, expiration=3600):
+
+    # Generate a presigned S3 POST URL
+    s3_client = boto3.client('s3')
+    try:
+        response = s3_client.generate_presigned_post(bucket_name,
+                                                     object_name,
+                                                     Fields=fields,
+                                                     Conditions=conditions,
+                                                     ExpiresIn=expiration)
+    except ClientError as e:
+        logging.error(e)
+        return None
+
+    # The response contains the presigned URL and required fields
+    return response
+
+@playlist_routes.route('/<int:id>/updatePic', methods=['POST'])
+def updatePlaylistPic(id):
+    playlist = Playlist.query.get(id)
+    s3 = boto3.client('s3')
+    if request.files:
+        file_data = request.files['image']
+        s3.upload_fileobj(file_data, 'spotify-clone-project', file_data.filename,
+                            ExtraArgs={
+                                'ACL': 'public-read',
+                                'ContentType': file_data.content_type
+                            })
+        response = create_presigned_post('spotify-clone-project', file_data.filename)
+        image_url = response["url"] + response["fields"]["key"]
+        playlist.playlist_image_url = image_url
+        db.session.commit()
+        playlist = Playlist.query.get(id)
+
+        return jsonify(playlist.to_dict())

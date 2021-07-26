@@ -3,6 +3,7 @@ const LOAD_PLAYLIST = 'GET_PLAYLIST';
 const REMOVE_PLAYLIST = 'REMOVE_PLAYLIST';
 const ONE_PLAYLIST = 'ONE_PLAYLIST';
 const LOAD_LIKED_PLAYLISTS = 'plalyist/loadLikedPlaylists'
+const UPDATE_PLAYLIST_IMAGE = 'playlist/updateImage'
 
 
 const loadPlaylists = (playlists) => {
@@ -31,6 +32,29 @@ const loadLiked = (playlists) => {
         type: LOAD_LIKED_PLAYLISTS,
         playlists,
     }
+}
+
+const updateImage = (playlist) => {
+    return {
+        type: UPDATE_PLAYLIST_IMAGE,
+        playlist
+    }
+}
+
+export const uploadPlaylistPic = (image, playlistId) => async(dispatch) => {
+    const formData = new FormData()
+    if (image) {
+        formData.append("image", image)};
+
+    const response = await fetch(`/api/playlists/${playlistId}/updatePic`, {
+        method: 'POST',
+        body: formData,
+
+    });
+
+    let data = await response.json()
+    dispatch(updateImage(data))
+
 }
 
 export const loadLikedPlaylists = (userId) =>  async(dispatch) => {
@@ -184,6 +208,12 @@ const playlistReducer = (state = initialState, action) => {
                 return {
                     ...state,
                     liked_playlists: action.playlists.likedPlaylists
+                }
+            }
+            case UPDATE_PLAYLIST_IMAGE: {
+                return {
+                    ...state,
+                    [action.playlist.id]: action.playlist
                 }
             }
             default:

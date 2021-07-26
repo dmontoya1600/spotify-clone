@@ -19,8 +19,6 @@ function Library() {
   let [editProfilePicId, setEditProfilePicId] = useState(null)
   const dispatch = useDispatch();
   const pageUser = useSelector(state => state.pageUser)
-  console.log(' USER PLAYLISTS', userPlaylists)
-
 
 
 useEffect(() => {
