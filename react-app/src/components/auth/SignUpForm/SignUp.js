@@ -15,6 +15,9 @@ const SignUpForm = () => {
 
   const onSignUp = async (e) => {
     e.preventDefault();
+    if (password !== repeatPassword) {
+      setErrors(["password: Passwords must match."])
+    }
     if (password === repeatPassword) {
       const data = await dispatch(signUp(username, email, password));
       if (data) {
@@ -63,49 +66,49 @@ const SignUpForm = () => {
           <div className="orDivider">OR</div>
           <div>
             {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
+              <div key={ind}>{error}</div>
+            ))}
+          </div>
+          <label htmlFor="username" className="usernameLabel">User Name</label>
+          <input
+            id="usernameInput"
+            type="text"
+            name="username"
+            placeholder="User Name"
+            onChange={updateUsername}
+            value={username}
+          ></input>
+          <label htmlFor="email" id="emailLabel">Email</label>
+          <input
+            id="emailInput"
+            type='text'
+            name='email'
+            onChange={updateEmail}
+            value={email}
+            placeholder="Email"
+          ></input>
+          <label htmlFor="password" id="passwordLabel" >Password</label>
+          <input
+            id="passwordInput"
+            type='password'
+            name='password'
+            onChange={updatePassword}
+            value={password}
+            placeholder="Password"
+          ></input>
+          <label htmlFor="repeat_password" id="repeatePasswordLabel">Repeat Password</label>
+          <input
+            id="repeatePasswordInput"
+            type='password'
+            name='repeat_password'
+            onChange={updateRepeatPassword}
+            value={repeatPassword}
+            required={true}
+            placeholder="Repeat Password"
+          ></input>
+          <button type='submit' id="signUpButton">Sign Up</button>
+        </form>
       </div>
-        <label htmlFor="username" className="usernameLabel">User Name</label>
-        <input
-        id="usernameInput"
-          type="text"
-          name="username"
-          placeholder="User Name"
-          onChange={updateUsername}
-          value={username}
-        ></input>
-        <label htmlFor="email" id="emailLabel">Email</label>
-        <input
-        id="emailInput"
-          type='text'
-          name='email'
-          onChange={updateEmail}
-          value={email}
-          placeholder="Email"
-        ></input>
-        <label htmlFor="password" id="passwordLabel" >Password</label>
-        <input
-        id="passwordInput"
-          type='password'
-          name='password'
-          onChange={updatePassword}
-          value={password}
-          placeholder="Password"
-        ></input>
-        <label htmlFor="repeat_password" id="repeatePasswordLabel">Repeat Password</label>
-        <input
-        id="repeatePasswordInput"
-          type='password'
-          name='repeat_password'
-          onChange={updateRepeatPassword}
-          value={repeatPassword}
-          required={true}
-          placeholder="Repeat Password"
-        ></input>
-      <button type='submit' id="signUpButton">Sign Up</button>
-    </form>
-    </div>
     </div>
   );
 };
