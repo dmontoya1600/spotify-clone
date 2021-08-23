@@ -1,8 +1,8 @@
 # Audify
 
-This is the starter for the Flask React project.
+Audify is an application that utilizes the Spotify-API to stream music and uses full-stack technology to allow for library creations where a user can store songs they like. Inspired by Spotify, the application uses React and Redux to provide the single-page-application experience and Flask in the backend to interact with the PostgreSQL Database.
 
-## Getting started
+Visit and listen at https://audify-app.herokuapp.com/
 
 1. Clone this repository (only this branch)
 
