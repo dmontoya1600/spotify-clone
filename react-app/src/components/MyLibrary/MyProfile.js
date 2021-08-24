@@ -33,7 +33,6 @@ function getAverageRGB(imgEl) {
   try {
       data = context.getImageData(0, 0, width, height);
   } catch(e) {
-      // /* security error, img on diff domain */alert('x');
       return defaultRGB;
   }
   length = data.data.length;
@@ -44,7 +43,6 @@ function getAverageRGB(imgEl) {
       rgb.b += data.data[i+2];
   }
 
-  // ~~ used to floor values
   rgb.r = ~~(rgb.r/count);
   rgb.g = ~~(rgb.g/count);
   rgb.b = ~~(rgb.b/count);
@@ -69,8 +67,6 @@ function MyProfile() {
         await dispatch(picActions.loadPic(currentUser.id))
       dispatch(loadLikedPlaylists(currentUser.id))
 
-
-        // let baseImage = getBase64Image(document.getElementById('i'));
       })();
   }, [activeForm])
 
