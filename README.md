@@ -4,6 +4,14 @@ Audify is an application that utilizes the Spotify-API to stream music and uses 
 
 Visit and listen at https://audify-app.herokuapp.com/
 
+### Home View:
+
+![homeview]
+
+### Login View:
+
+![loginview]
+
 ## Features
 * Encrypted Sign up/in with proper error handling
 * View all songs available in Spotify by using the Spotify API
@@ -58,3 +66,6 @@ function getAverageRGB(imgEl) {
   }
   
 ```
+
+[loginview]: ./docs/images/loginpage.png
+[homeview]: ./docs/images/homeview.png
