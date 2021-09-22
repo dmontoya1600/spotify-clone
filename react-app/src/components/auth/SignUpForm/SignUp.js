@@ -20,6 +20,8 @@ const SignUpForm = () => {
       if (data) {
         setErrors(data)
       }
+    } else {
+      setErrors(["* Passwords don't match"])
     }
   };
 
@@ -63,7 +65,7 @@ const SignUpForm = () => {
           <div className="orDivider">OR</div>
           <div>
             {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
+          <div key={ind} className="signUpForm__Error">{error}</div>
         ))}
       </div>
         <label htmlFor="username" className="usernameLabel">User Name</label>
@@ -74,6 +76,7 @@ const SignUpForm = () => {
           placeholder="User Name"
           onChange={updateUsername}
           value={username}
+          required
         ></input>
         <label htmlFor="email" id="emailLabel">Email</label>
         <input
@@ -83,6 +86,8 @@ const SignUpForm = () => {
           onChange={updateEmail}
           value={email}
           placeholder="Email"
+          required
+          type="email"
         ></input>
         <label htmlFor="password" id="passwordLabel" >Password</label>
         <input
@@ -92,6 +97,7 @@ const SignUpForm = () => {
           onChange={updatePassword}
           value={password}
           placeholder="Password"
+          required
         ></input>
         <label htmlFor="repeat_password" id="repeatePasswordLabel">Repeat Password</label>
         <input
@@ -102,6 +108,7 @@ const SignUpForm = () => {
           value={repeatPassword}
           required={true}
           placeholder="Repeat Password"
+          required
         ></input>
       <button type='submit' id="signUpButton">Sign Up</button>
     </form>

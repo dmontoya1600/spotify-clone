@@ -161,3 +161,7 @@ a {
   text-transform: uppercase;
   white-space: normal;
 }
+.signUpForm__Error {
+  margin: 8px;
+  color: red;
+}

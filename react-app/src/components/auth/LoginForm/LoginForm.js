@@ -67,6 +67,7 @@ const LoginForm = () => {
           placeholder='Email'
           value={email}
           onChange={updateEmail}
+          required
         />
         <label htmlFor='password' className="passwordLabel">Password</label>
         <input
@@ -76,6 +77,7 @@ const LoginForm = () => {
           placeholder='Password'
           value={password}
           onChange={updatePassword}
+          required
         />
         <button type='submit' className="loginButton">Login</button>
     </form>
