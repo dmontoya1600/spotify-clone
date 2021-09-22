@@ -60,9 +60,9 @@ export const delSongThunk = (obj) => async (dispatch) => {
       switch (action.type) {
           case GET_SONGS:
             action.payload.songs.forEach(song => {
-              state[song.id] = song
+              newState[song.id] = song
             });
-            return state
+            return {...newState}
           case ADD_SONG:
               newState = {...state, [action.payload.id] : action.payload }
               return newState
@@ -71,6 +71,6 @@ export const delSongThunk = (obj) => async (dispatch) => {
               delete newState[action.payload.id]
               return newState
           default:
-              return state;
+              return {...state};
       }
   }
