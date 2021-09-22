@@ -1,7 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
 from app.models import User, db
-from app.forms import UploadFile
 import logging
 import boto3
 from botocore.exceptions import ClientError
@@ -66,7 +65,6 @@ def create_presigned_post(bucket_name, object_name,
 
 @upload_pic_routes.route('/profile/<user_id>', methods=['POST'])
 def upload_profile_pic(user_id):
-    form = UploadFile()
     s3 = boto3.client('s3')
     if request.files:
         file_data = request.files['image']

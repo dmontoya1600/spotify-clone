@@ -19,7 +19,7 @@ function handleClick(id) {
 }
     return (
         <div className="page">
-            <div className='pageText'>Liked Playlists</div>
+            <div className='pageText'><h2>Liked Playlists</h2></div>
             <div className='all__playlists'>
                 {liked_playlists?.map(playlist => (
                     <div className='individual__playlist' onClick={() => handleClick(playlist.id)} key={playlist.id}>

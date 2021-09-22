@@ -1,134 +1,71 @@
-# Flask React Project
+# Audify
 
-This is the starter for the Flask React project.
+Audify is an application that utilizes the Spotify-API to stream music and uses full-stack technology to allow for playlist creations where a user can store songs they like. Inspired by Spotify, the application uses React and Redux to provide the single-page-application experience and Flask in the backend to interact with the PostgreSQL Database.
 
-## Getting started
+Visit and listen at https://audify-app.herokuapp.com/
 
-1. Clone this repository (only this branch)
+### Home View:
 
-   ```bash
-   git clone https://github.com/appacademy-starters/python-project-starter.git
-   ```
+![homeview]
 
-2. Install dependencies
+### Login View:
 
-      ```bash
-      pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
-      ```
+![loginview]
 
-3. Create a **.env** file based on the example with proper settings for your
-   development environment
-4. Setup your PostgreSQL user, password and database and make sure it matches your **.env** file
+## Features
+* Encrypted Sign up/in with proper error handling
+* View all songs available in Spotify by using the Spotify API
+* Stream Spotfiy music by utilizing music player iFrame and fetching track audio from Spotify API
+* User personlization through the creation of MyLibrary component which holds all user generated playlists as well as grabbing the average RGB value of the user profile picture and setting that RGB as the background for the page
+* Continious track play through the use of React top-level placement to prevent re-rendering
+* Users can save other user playlists by liking them
 
-5. Get into your pipenv, migrate your database, seed your database, and run your flask app
+### Technical Details:
+* Audify gives the user a personalized experience by using the user's profile picture to choose the color of the user's "My Library" background. This was done by getting the average RGB of the image by converting the image to a canvas element. The problem with that is that we're using AWS to fetch the image meaning that we have a CORS issue. We fixed the problem by going into AWS and making modification to the CORS policy as well as attaching a cross-origin attribute on the element.
 
-   ```bash
-   pipenv shell
-   ```
+```
+function getAverageRGB(imgEl) {
 
-   ```bash
-   flask db upgrade
-   ```
+  var blockSize = 5, // only visit every 5 pixels
+      defaultRGB = {r:0,g:0,b:0}, // for non-supporting envs
+      canvas = document.createElement('canvas'),
+      context = canvas.getContext && canvas.getContext('2d'),
+      data, width, height,
+      i = -4,
+      length,
+      rgb = {r:0,g:0,b:0},
+      count = 0;
+    if (!imgEl){
+      return defaultRGB
+    }
+    doCount++
+  height = canvas.height = imgEl.naturalHeight || imgEl.offsetHeight || imgEl.height;
+  width = canvas.width = imgEl.naturalWidth || imgEl.offsetWidth || imgEl.width;
 
-   ```bash
-   flask seed all
-   ```
+  context.drawImage(imgEl, 0, 0);
+  //
+  try {
+      data = context.getImageData(0, 0, width, height);
+  } catch(e) {
+      return defaultRGB;
+  }
+  length = data.data.length;
+  while ( (i += blockSize * 4) < length ) {
+      ++count;
+      rgb.r += data.data[i];
+      rgb.g += data.data[i+1];
+      rgb.b += data.data[i+2];
+  }
 
-   ```bash
-   flask run
-   ```
+  rgb.r = ~~(rgb.r/count);
+  rgb.g = ~~(rgb.g/count);
+  rgb.b = ~~(rgb.b/count);
 
-6. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+  return rgb;
 
-***
-*IMPORTANT!*
-   If you add any python dependencies to your pipfiles, you'll need to regenerate your requirements.txt before deployment.
-   You can do this by running:
+  }
+  
+```
 
-   ```bash
-   pipenv lock -r > requirements.txt
-   ```
-
-*ALSO IMPORTANT!*
-   psycopg2-binary MUST remain a dev dependency because you can't install it on apline-linux.
-   There is a layer in the Dockerfile that will install psycopg2 (not binary) for us.
-***
-
-## Deploy to Heroku
-
-1. Before you deploy, don't forget to run the following command in order to
-ensure that your production environment has all of your up-to-date
-dependencies. You only have to run this command when you have installed new
-Python packages since your last deployment, but if you aren't sure, it won't
-hurt to run it again.
-
-   ```bash
-   pipenv lock -r > requirements.txt
-   ```
-
-2. Create a new project on Heroku
-3. Under Resources click "Find more add-ons" and add the add on called "Heroku Postgres"
-4. Install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-command-line)
-5. Run
-
-   ```bash
-   heroku login
-   ```
-
-6. Login to the heroku container registry
-
-   ```bash
-   heroku container:login
-   ```
-
-7. Update the `REACT_APP_BASE_URL` variable in the Dockerfile.
-   This should be the full URL of your Heroku app: i.e. "https://flask-react-aa.herokuapp.com"
-8. Push your docker container to heroku from the root directory of your project.
-   (If you are using an M1 mac, follow [these steps below](#for-m1-mac-users) instead, then continue on to step 9.)
-   This will build the Dockerfile and push the image to your heroku container registry.
-
-   ```bash
-   heroku container:push web -a {NAME_OF_HEROKU_APP}
-   ```
-
-9. Release your docker container to heroku
-
-      ```bash
-      heroku container:release web -a {NAME_OF_HEROKU_APP}
-      ```
-
-10. set up your database
-
-      ```bash
-      heroku run -a {NAME_OF_HEROKU_APP} flask db upgrade
-      heroku run -a {NAME_OF_HEROKU_APP} flask seed all
-      ```
-
-11. Under Settings find "Config Vars" and add any additional/secret .env
-variables.
-
-12. profit
-
-### For M1 Mac users
-
-(Replaces **Step 8**)
-
-1. Build image with linux platform for heroku servers. Replace
-{NAME_OF_HEROKU_APP} with your own tag:
-
-   ```bash=
-   docker buildx build --platform linux/amd64 -t {NAME_OF_HEROKU_APP} .
-   ```
-
-2. Tag your app with the url for your apps registry. Make sure to use the name
-of your Heroku app in the url and tag name:
-
-   ```bash=2
-   docker tag {NAME_OF_HEROKU_APP} registry.heroku.com/{NAME_OF_HEROKU_APP}/web
-   ```
-
-3. Use docker to push the image to the Heroku container registry:
-
-   ```bash=3
-   docker push registry.heroku.com/{NAME_OF_HEROKU_APP}/web
-   ```
+[loginview]: ./docs/images/loginpage.png
+[homeview]: ./docs/images/homeview.png

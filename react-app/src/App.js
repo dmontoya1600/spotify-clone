@@ -6,7 +6,6 @@ import SignUpForm from './components/auth/SignUpForm/SignUp';
 import Search from "./components/Search";
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
-import User from './components/User';
 import MyLibrary from './components/MyLibrary';
 import SinglePlaylist from './components/SinglePlaylist';
 import { authenticate } from './store/session';

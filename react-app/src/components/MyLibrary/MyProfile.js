@@ -21,8 +21,9 @@ function getAverageRGB(imgEl) {
       length,
       rgb = {r:0,g:0,b:0},
       count = 0;
-
-    console.log('COUNT:', doCount)
+    if (!imgEl){
+      return defaultRGB
+    }
     doCount++
   height = canvas.height = imgEl.naturalHeight || imgEl.offsetHeight || imgEl.height;
   width = canvas.width = imgEl.naturalWidth || imgEl.offsetWidth || imgEl.width;
@@ -32,7 +33,6 @@ function getAverageRGB(imgEl) {
   try {
       data = context.getImageData(0, 0, width, height);
   } catch(e) {
-      // /* security error, img on diff domain */alert('x');
       return defaultRGB;
   }
   length = data.data.length;
@@ -43,7 +43,6 @@ function getAverageRGB(imgEl) {
       rgb.b += data.data[i+2];
   }
 
-  // ~~ used to floor values
   rgb.r = ~~(rgb.r/count);
   rgb.g = ~~(rgb.g/count);
   rgb.b = ~~(rgb.b/count);
@@ -68,10 +67,6 @@ function MyProfile() {
         await dispatch(picActions.loadPic(currentUser.id))
       dispatch(loadLikedPlaylists(currentUser.id))
 
-
-        // let baseImage = getBase64Image(document.getElementById('i'));
-        console.log('FIRST TRIGGER', document.getElementById('i'))
-        console.log('THIS IS THE RGB', getAverageRGB(document.getElementById('i')))
       })();
   }, [activeForm])
 
@@ -80,19 +75,15 @@ function MyProfile() {
 }
 
 useEffect( async () => {
-  console.log('SECOND TRIGGER')
   await fetch(currentUser.user_image)
   let rgbObj = JSON.parse(JSON.stringify(getAverageRGB(document.getElementById('i'))))
-  console.log(`THIS IS THE RGB${currentUser.user_image}`, rgbObj)
 
   if(rgbObj.r !== 0 && rgbObj.g !== 0){
     let r = rgbObj.r
     let g = rgbObj.g
     let b = rgbObj.b
-    console.log(`rgb(${r}, ${g}, ${b})`)
 
     setBackgroundColor(`rgb(${r}, ${g}, ${b})`)
-    console.log('THIS IS BACKGROUND COLOR', backgroundColor, rgbObj)
   }
 }, [pageUser])
 

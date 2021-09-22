@@ -15,7 +15,6 @@ export const EditPlaylist = ({ playlistId, hideForm }) => {
 
     let playlist;
     if(sessionPlaylists && sessionPlaylists[id]) playlist = sessionPlaylists[id];
-    console.log("playlist: ", playlist);
 
     useEffect(() => {
         // dispatch(getPlaylist(id))
@@ -51,9 +50,7 @@ export const EditPlaylist = ({ playlistId, hideForm }) => {
 
 
         if(updatedPlaylist){
-            console.log("updatedPlaylist: ", updatedPlaylist)
             updatedPlaylist = await dispatch(editOnePlaylist(userId, updatedPlaylist));
-            console.log("All the way up: ", updatedPlaylist);
             hideForm();
         }
     }
@@ -90,7 +87,7 @@ export const EditPlaylist = ({ playlistId, hideForm }) => {
                     placeholder="Choose Photo URL"
                     onChange={(e)=>setPlaylistImg(e.target.value)}
                 />
-                <button className="submit" >update</button>
+                <button className="submit" >Update</button>
                 <button className="delete" onClick={handleDelete} >Delete Playlist</button>
             </form>
         </div>

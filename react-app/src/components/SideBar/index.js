@@ -20,7 +20,7 @@ const SideBar = () => {
         dispatch(getPlaylists( userId));
     }, [sessionUser]);
 
-    
+
     let num = 0;
     const handleCreate = async(e) => {
         e.preventDefault();
@@ -33,7 +33,6 @@ const SideBar = () => {
         }
         if(newPlaylist){
             newPlaylist = await dispatch(makePlaylist(userId, newPlaylist));
-            console.log("inside if condition", newPlaylist)
         }
         for(const [key, value] of Object.entries(newPlaylist.playlists)){
             playlist=value
@@ -108,12 +107,12 @@ const SideBar = () => {
                         {buttons}
                     </div>
 
-    
+
 
             </div>
             { list}
 
-            
+
 
             </div>
 

@@ -38,8 +38,6 @@ export const addSongThunk = (obj) => async (dispatch) => {
     })
     if (res.ok) {
       const data = await res.json()
-      console.log("THIS IS RES", res)
-      console.log("THIS IS Data", data)
       dispatch(addSong(data))
       return data
     }
