@@ -13,8 +13,12 @@ const NavBar = () => {
   const location = useLocation().pathname
 
   useEffect(async()=> {
+    if (!searchInput) {
+      dispatch(setSearch({}))
+    }
     if (token && searchInput) {
          const res = await fetchSearch(token, searchInput)
+         console.log(res)
          dispatch(setSearch(res))
     }
   }, [searchInput])
