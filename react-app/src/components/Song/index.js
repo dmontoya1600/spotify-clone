@@ -7,9 +7,8 @@ import { setCurrentSong } from '../../store/currentSong';
 
 
 export default function Song({ track }) {
-    console.log("THIS IS THE TRACK OBJECT", track)
     const dispatch = useDispatch();
-    const [showAddSong, setShowAddSong] = useState(false)
+    // const [showAddSong, setShowAddSong] = useState(false)
     const [showMenu, setShowMenu] = useState(false)
     const [showForm, setShowForm] = useState(false)
     let allPlaylists = useSelector(state => Object.values(state.playlists))
@@ -21,7 +20,6 @@ export default function Song({ track }) {
             setUserPlaylists(allPlaylists.filter(list => list.user == sessionUser.id))
         }
     }, [])
-
 
     function formatMillis(millis) {
         var mins = Math.floor(millis / 60000);
@@ -80,7 +78,7 @@ export default function Song({ track }) {
                         </div>
                     }
                     <form>
-                        <button onClick={(e)=> e.preventDefault() }>Create Playlist</button>
+                        {/* <button onClick={(e)=> e.preventDefault() }>Create Playlist</button> */}
                     </form>
                 </div>
             }

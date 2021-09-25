@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import * as picActions from '../../store/uploadPic'
 import {loadUser} from '../../store/userPage'
@@ -34,11 +34,13 @@ function handleIconClick(){
   return (
     <div className='all__playlists'>
         {userPlaylists?.map(playlist => (
+          <NavLink to={`/playlists/${playlist.id}`}>
             <div className='individual__playlist' key={playlist.id}>
                 <img className='individual__playlist__image' src={playlist.img.length > 10 ? playlist.img: 'https://www.westernheights.k12.ok.us/wp-content/uploads/2020/01/No-Photo-Available.jpg'}/>
                 <div className='individual__playlist__name'>{playlist.name}</div>
                 <div className='individual__playlist__creator'>By {playlist.username}</div>
             </div>
+          </NavLink>
         ))}
     </div>
   );

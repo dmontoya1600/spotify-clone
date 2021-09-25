@@ -86,7 +86,7 @@
     right: 39px;
     top: 5px;
     width: 105px;
-    height:42px;
+    height: auto;
     background-color: #282828;
     border-radius: 4px;
 }
@@ -97,6 +97,7 @@
     color: white;
     font-family: sans-serif;
     font-weight: 600;
+    padding: 5px;
 }
 .song_addForm button:hover {
     background-color: #413f3f;
