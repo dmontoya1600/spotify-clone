@@ -18,7 +18,6 @@ const NavBar = () => {
     }
     if (token && searchInput) {
          const res = await fetchSearch(token, searchInput)
-         console.log(res)
          dispatch(setSearch(res))
     }
   }, [searchInput])

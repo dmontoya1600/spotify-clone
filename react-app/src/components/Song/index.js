@@ -7,6 +7,7 @@ import { setCurrentSong } from '../../store/currentSong';
 
 
 export default function Song({ track }) {
+    console.log("THIS IS THE TRACK OBJECT", track)
     const dispatch = useDispatch();
     const [showAddSong, setShowAddSong] = useState(false)
     const [showMenu, setShowMenu] = useState(false)
@@ -53,7 +54,7 @@ export default function Song({ track }) {
             </div>
             <div className="song__text">
                 <h4>{track.name}</h4>
-                <p>{track.album.name}</p>
+                <p>{track.artists[0].name}</p>
             </div>
             <div className="song__durationDiv">
                 <div className="song__duration">{track.duration_ms && formatMillis(track.duration_ms)}</div>
